@@ -1,0 +1,3097 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nabzo — bədəninin nəbzi</title>
+<meta name="description" content="Nabzo — iPhone-un və saatın oxuduğu məlumatı bərpa, yuxu və gündəlik bala çevirən süni intellekt sağlamlıq məşqçisi. iOS və Android buraxılış tarixləri.">
+<meta name="theme-color" content="#0A0812">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nabzo — bədəninin nəbzi">
+<meta property="og:description" content="Süni intellekt sağlamlıq məşqçisi. Bərpa, yuxu, məşq yükü və gündəlik fitnes balı — tək iPhone-la başlayır.">
+<meta property="og:site_name" content="Nabzo">
+<meta property="og:url" content="https://nabzo.store">
+<meta property="og:image" content="https://nabzo.store/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nabzo — the pulse of your body">
+<meta name="twitter:image" content="https://nabzo.store/img/og.jpg">
+<link rel="icon" href="/img/coach-head.webp">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════════════════
+   ⚙️  BURAYA TOXUN — buraxılış tarixləri yalnız burada yazılır.
+       Aşağıdakı `--ios-*` / `--android-*` mətnləri HTML-də `data-` ilə yox,
+       birbaşa #launch bölməsində yazılıb. Dəyişmək üçün "TARİXLƏR" şərhini axtar.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* Nabzo Theme.swift — dark palette, birə-bir */
+  --bg:#0A0812;  --bg-2:#0d0a18;
+  --card:#181524; --well:#12101c;
+  --text:#ffffff; --muted:#8E8A9F;
+  --hair:rgba(255,255,255,.10); --rule:rgba(255,255,255,.13);
+  --accent:#2ECC9A; --accent-ink:#60E0B0;
+  --blue:#06B6D4; --purple:#A855F7; --gold:#EAB34E; --red:#F06468;
+  --r:24px; --r-sm:16px; --r-hero:30px;
+  --font-display:ui-rounded,"Outfit",system-ui,-apple-system,sans-serif;
+  --font-text:-apple-system,BlinkMacSystemFont,"Inter","SF Pro Text",system-ui,sans-serif;
+  --maxw:1140px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--font-text); font-size:17px; line-height:1.55;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+h1,h2,h3,.display{font-family:var(--font-display); font-weight:800; letter-spacing:-.02em; line-height:1.05; margin:0}
+a{color:inherit}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px}
+.eyebrow{
+  font-family:var(--font-text); font-size:12px; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); margin:0 0 14px;
+}
+.muted{color:var(--muted)}
+.center{text-align:center}
+
+/* ── Ambient aurora (Nabzo-nun ambientBackground-unun veb qarşılığı) ───── */
+.aurora{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+.blob{position:absolute; border-radius:50%; filter:blur(90px); opacity:.32; will-change:transform}
+.b1{width:52vw;height:52vw;left:-14vw;top:-12vw;background:var(--accent);animation:drift1 26s ease-in-out infinite}
+.b2{width:44vw;height:44vw;right:-12vw;top:18vh;background:var(--purple);opacity:.22;animation:drift2 32s ease-in-out infinite}
+.b3{width:38vw;height:38vw;left:26vw;bottom:-16vh;background:var(--blue);opacity:.2;animation:drift3 28s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(8vw,6vh,0) scale(1.15)}}
+@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1.1)}50%{transform:translate3d(-7vw,10vh,0) scale(.9)}}
+@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(.95)}50%{transform:translate3d(6vw,-8vh,0) scale(1.2)}}
+main,header,footer{position:relative; z-index:1}
+
+/* ── Nav ──────────────────────────────────────────────────────────────── */
+header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(160%) blur(18px); -webkit-backdrop-filter:saturate(160%) blur(18px);
+  background:rgba(10,8,18,.62); border-bottom:1px solid transparent; transition:border-color .3s, background .3s;
+}
+header.scrolled{border-bottom-color:var(--hair); background:rgba(10,8,18,.86)}
+.nav{display:flex; align-items:center; gap:18px; height:66px}
+.logo{display:flex; align-items:center; gap:9px; font-family:var(--font-display); font-weight:900; font-size:21px; letter-spacing:-.03em; text-decoration:none}
+.logo .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(46,204,154,.7);animation:beat 2.1s ease-out infinite}
+@keyframes beat{0%{box-shadow:0 0 0 0 rgba(46,204,154,.7)}70%{box-shadow:0 0 0 14px rgba(46,204,154,0)}100%{box-shadow:0 0 0 0 rgba(46,204,154,0)}}
+.nav nav{display:flex; gap:24px; margin-left:auto; font-size:15px; font-weight:500}
+.nav nav a{color:var(--muted); text-decoration:none; transition:color .2s}
+.nav nav a:hover{color:var(--text)}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:12px 22px; border-radius:999px; text-decoration:none;
+  font-weight:700; font-size:15px; border:1px solid transparent; cursor:pointer;
+  transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .25s, background .2s;
+}
+.btn-primary{background:var(--accent); color:#04150e; box-shadow:0 10px 30px rgba(46,204,154,.28)}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 44px rgba(46,204,154,.4)}
+.btn-lg{padding:16px 32px; font-size:17px}
+.btn-ghost{border-color:var(--rule); color:var(--text); background:rgba(255,255,255,.03)}
+.btn-ghost:hover{transform:translateY(-2px); background:rgba(255,255,255,.07)}
+@media (max-width:820px){ .nav nav{display:none} }
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.hero{padding:clamp(64px,11vh,120px) 0 72px; text-align:center}
+.hero h1{font-size:clamp(46px,8.4vw,96px); font-weight:900}
+.hero h1 .line{display:block; overflow:hidden}
+.hero h1 .line span{display:block; transform:translateY(110%); animation:riseIn .95s cubic-bezier(.16,1,.3,1) forwards}
+.hero h1 .line:nth-child(2) span{animation-delay:.1s}
+.hero h1 .line:nth-child(3) span{animation-delay:.2s}
+@keyframes riseIn{to{transform:translateY(0)}}
+.grad{background:linear-gradient(100deg,var(--accent),var(--blue) 48%,var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{
+  max-width:600px; margin:22px auto 0; font-size:clamp(17px,2.1vw,20px); color:var(--muted);
+  opacity:0; animation:fadeUp .9s .45s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero .cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:32px; opacity:0; animation:fadeUp .9s .6s cubic-bezier(.16,1,.3,1) forwards}
+
+/* Pulse line — "nabz" özü. SVG yolu öz-özünü çəkir. */
+.pulse{max-width:820px; margin:44px auto 0; opacity:0; animation:fadeUp 1s .75s cubic-bezier(.16,1,.3,1) forwards}
+.pulse svg{width:100%; height:110px; display:block; overflow:visible}
+.pulse path{
+  fill:none; stroke:url(#pg); stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round;
+  stroke-dasharray:1200; stroke-dashoffset:1200; animation:draw 3.2s .9s cubic-bezier(.5,0,.2,1) infinite;
+  filter:drop-shadow(0 0 10px rgba(46,204,154,.55));
+}
+@keyframes draw{0%{stroke-dashoffset:1200}55%{stroke-dashoffset:0}100%{stroke-dashoffset:-1200}}
+
+/* ── Status chips ─────────────────────────────────────────────────────── */
+.chips{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:34px}
+.chip{
+  display:flex; align-items:center; gap:10px; padding:11px 18px; border-radius:999px;
+  border:1px solid var(--hair); background:rgba(255,255,255,.035); font-size:14px; font-weight:600;
+}
+.chip .led{width:8px;height:8px;border-radius:50%;flex:none}
+.chip .led.live{background:var(--accent);animation:beat 2.1s ease-out infinite}
+.chip .led.soon{background:var(--gold)}
+.chip small{color:var(--muted); font-weight:500}
+
+/* ── Reveal on scroll ─────────────────────────────────────────────────── */
+.reveal{opacity:0; transform:translateY(30px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); transition-delay:var(--d,0s)}
+.reveal.in{opacity:1; transform:none}
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+section{padding:clamp(72px,10vh,128px) 0}
+.sechead{max-width:660px; margin:0 auto 52px; text-align:center}
+.sechead h2{font-size:clamp(32px,4.6vw,52px)}
+.sechead p{color:var(--muted); margin:16px 0 0; font-size:17px}
+
+
+/* ── Earn & burn calculator ───────────────────────────────────────────── */
+.calc{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:stretch}
+@media (max-width:820px){ .calc{grid-template-columns:1fr} }
+.calc-controls, .calc-out{background:var(--card); border:1px solid var(--hair); border-radius:var(--r); padding:26px}
+.ctrl{margin-bottom:22px}
+.ctrl:last-child{margin-bottom:0}
+.ctrl label{display:flex; justify-content:space-between; align-items:baseline; font-size:14px; font-weight:600; margin-bottom:10px}
+.ctrl label b{font-family:var(--font-display); font-size:19px; color:var(--accent-ink); font-variant-numeric:tabular-nums}
+.ctrl input[type=range]{
+  -webkit-appearance:none; appearance:none; width:100%; height:6px; border-radius:99px;
+  background:linear-gradient(90deg,var(--accent) var(--p,50%), rgba(255,255,255,.12) var(--p,50%));
+  outline:none; cursor:pointer;
+}
+.ctrl input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; width:22px; height:22px; border-radius:50%; background:#fff;
+  box-shadow:0 3px 12px rgba(0,0,0,.5); cursor:grab;
+}
+.ctrl select{
+  width:100%; padding:13px 15px; border-radius:13px; font:inherit; font-size:15px;
+  background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--text);
+}
+.calc-out{display:flex; flex-direction:column; gap:18px}
+.burn{text-align:center; padding:10px 0 4px}
+.burn b{display:block; font-family:var(--font-display); font-size:clamp(46px,9vw,68px); font-weight:900; line-height:1; color:var(--gold); font-variant-numeric:tabular-nums}
+.burn span{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.earn{border-top:1px solid var(--hair); padding-top:16px}
+.earn .row{display:flex; justify-content:space-between; align-items:baseline; font-size:14px; margin-bottom:9px}
+.earn .row b{font-family:var(--font-display); font-size:20px; color:var(--accent-ink); font-variant-numeric:tabular-nums}
+.earn .track{height:9px; border-radius:99px; background:rgba(255,255,255,.10); overflow:hidden}
+.earn .bar{height:100%; border-radius:99px; background:linear-gradient(90deg,var(--accent),var(--blue)); width:0; transition:width .35s cubic-bezier(.2,.8,.2,1)}
+.earn small{display:block; color:var(--muted); font-size:12.5px; margin-top:8px}
+.foods{display:flex; gap:8px; flex-wrap:wrap; border-top:1px solid var(--hair); padding-top:16px}
+.foods span{
+  display:inline-flex; align-items:center; gap:7px; padding:8px 13px; border-radius:999px;
+  background:rgba(234,179,78,.10); border:1px solid rgba(234,179,78,.22); font-size:13.5px; font-weight:600;
+}
+.calc-note{color:var(--muted); font-size:13px; text-align:center; margin:18px auto 0; max-width:640px}
+
+/* ── Train: week shape + body groups ──────────────────────────────────── */
+.weeks{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px}
+@media (max-width:720px){ .weeks{grid-template-columns:1fr} }
+.week{background:var(--card); border:1px solid var(--hair); border-radius:var(--r); padding:26px}
+.week h3{font-size:19px; margin-bottom:14px}
+.week ul{list-style:none; padding:0; margin:0; display:grid; gap:9px}
+.week li{display:flex; align-items:center; gap:11px; font-size:15px}
+.week li i{
+  font-style:normal; width:26px; height:26px; border-radius:8px; display:grid; place-items:center;
+  font-size:13px; font-weight:800; font-family:var(--font-display); flex:none;
+  background:rgba(46,204,154,.13); color:var(--accent-ink);
+}
+.week li.rest i{background:rgba(255,255,255,.07); color:var(--muted)}
+.dose{
+  background:linear-gradient(140deg, rgba(46,204,154,.14), rgba(6,182,212,.07));
+  border:1px solid rgba(46,204,154,.24); border-radius:var(--r); padding:24px 26px; margin-bottom:18px;
+}
+.dose b{font-family:var(--font-display); font-size:18px; display:block; margin-bottom:6px}
+.dose p{margin:0; color:var(--muted); font-size:15px}
+.dose code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:14.5px; color:var(--accent-ink);
+  background:rgba(46,204,154,.12); padding:3px 8px; border-radius:7px;
+}
+.bodies{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px}
+.body{background:var(--card); border:1px solid var(--hair); border-radius:var(--r); padding:24px; transition:transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s}
+.body:hover{transform:translateY(-5px); border-color:var(--rule)}
+.body .tag2{font-size:11px; letter-spacing:.13em; text-transform:uppercase; color:var(--accent-ink); font-weight:700}
+.body h3{font-size:18px; margin:7px 0 6px}
+.body p{color:var(--muted); font-size:14.5px; margin:0 0 12px}
+.body .moves{display:flex; gap:6px; flex-wrap:wrap}
+.body .moves span{font-size:12.5px; padding:5px 10px; border-radius:8px; background:rgba(255,255,255,.05); border:1px solid var(--hair)}
+
+/* ── Cards ────────────────────────────────────────────────────────────── */
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:18px}
+.card{
+  background:var(--card); border:1px solid var(--hair); border-radius:var(--r); padding:28px;
+  position:relative; overflow:hidden; transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s;
+}
+.card::after{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,0%), rgba(46,204,154,.13), transparent 65%);
+  opacity:0; transition:opacity .35s;
+}
+.card:hover{transform:translateY(-6px); border-color:var(--rule)}
+.card:hover::after{opacity:1}
+.icon{
+  color:var(--accent);
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:18px;
+  font-size:22px; background:rgba(46,204,154,.12); border:1px solid rgba(46,204,154,.22);
+}
+.icon.p{color:var(--purple);background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.25)}
+.icon.b{color:var(--blue);background:rgba(6,182,212,.12);border-color:rgba(6,182,212,.25)}
+.icon.g{color:var(--gold);background:rgba(234,179,78,.12);border-color:rgba(234,179,78,.25)}
+.card h3{font-size:21px; margin-bottom:9px}
+.card p{color:var(--muted); font-size:15.5px; margin:0}
+
+/* ── Marquee (cihazlar) ───────────────────────────────────────────────── */
+.marquee{overflow:hidden; mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee ul{display:flex; gap:14px; list-style:none; padding:0; margin:0; width:max-content; animation:slide 34s linear infinite}
+.marquee:hover ul{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marquee li{
+  display:flex; align-items:center; gap:10px; padding:14px 22px; border-radius:999px;
+  border:1px solid var(--hair); background:rgba(255,255,255,.03); white-space:nowrap; font-weight:600; font-size:15px;
+}
+.marquee li i{font-style:normal; font-size:18px}
+.marquee li s{text-decoration:none; color:var(--muted); font-weight:500; font-size:13px}
+
+/* ── Launch timeline ──────────────────────────────────────────────────── */
+.timeline{max-width:720px; margin:0 auto; position:relative; padding-left:34px}
+.timeline::before{
+  content:""; position:absolute; left:9px; top:6px; bottom:6px; width:2px;
+  background:linear-gradient(180deg,var(--accent),var(--blue),var(--purple)); opacity:.35;
+}
+.tl-fill{position:absolute; left:9px; top:6px; width:2px; background:linear-gradient(180deg,var(--accent),var(--blue)); height:0; transition:height .1s linear}
+.step{position:relative; padding:0 0 40px 8px}
+.step::before{
+  content:""; position:absolute; left:-33px; top:5px; width:20px;height:20px;border-radius:50%;
+  background:var(--bg); border:2px solid var(--rule); transition:border-color .4s, box-shadow .4s;
+}
+.step.done::before{border-color:var(--accent); box-shadow:0 0 0 6px rgba(46,204,154,.14)}
+.step.now::before{border-color:var(--gold); box-shadow:0 0 0 6px rgba(234,179,78,.16); animation:beat 2.2s ease-out infinite}
+.step .when{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-ink); font-weight:700}
+.step h3{font-size:23px; margin:6px 0 6px}
+.step p{color:var(--muted); margin:0; font-size:15.5px}
+.step .tag{display:inline-block; margin-top:10px; padding:5px 12px; border-radius:999px; font-size:12.5px; font-weight:700; border:1px solid var(--hair)}
+.tag.review{color:var(--gold); border-color:rgba(234,179,78,.3); background:rgba(234,179,78,.1)}
+.tag.plan{color:var(--muted)}
+
+/* Two-stage beat — lub, then dub — at roughly 58 bpm. */
+@keyframes lubdub{
+  0%,100%{transform:scale(1)}
+  7%{transform:scale(1.24)}
+  15%{transform:scale(1.03)}
+  25%{transform:scale(1.15)}
+  38%{transform:scale(1)}
+}
+.heart{display:inline-block; transform-origin:center; animation:lubdub 1.05s cubic-bezier(.3,0,.4,1) infinite; will-change:transform}
+.heart svg{display:block}
+.heart.slow{animation-duration:1.35s}
+.heart-badge{
+  display:inline-flex; align-items:center; gap:10px; padding:9px 16px 9px 12px; border-radius:999px;
+  border:1px solid rgba(240,100,104,.28); background:rgba(240,100,104,.1);
+  font-size:13px; font-weight:700; color:#ffb3b5;
+}
+.heart-badge b{font-variant-numeric:tabular-nums; color:#fff}
+.vein-pump{position:fixed; z-index:1; pointer-events:none; opacity:.9}
+
+/* ── Announcement bar — the loudest thing on the page, by design ──────── */
+.annbar{
+  position:relative; z-index:60; display:block; text-decoration:none;
+  background:linear-gradient(90deg,var(--accent),var(--blue) 55%,var(--purple));
+  background-size:220% 100%; animation:sweep 9s linear infinite;
+  color:#04150e; font-weight:800; font-size:14.5px; text-align:center; padding:11px 18px;
+}
+@keyframes sweep{to{background-position:220% 0}}
+.annbar span{display:inline-flex; align-items:center; gap:9px}
+.annbar .arrow{transition:transform .25s}
+.annbar:hover .arrow{transform:translateX(4px)}
+/* On a phone the full sentence wrapped to three lines and ate 89px of the first
+   screen — the bar is a hook, not a paragraph. */
+@media (max-width:560px){
+  .annbar{font-size:13px; padding:9px 12px}
+  .annbar .ann-tail{display:none}
+}
+
+/* ── Tester flow ──────────────────────────────────────────────────────── */
+.steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-bottom:34px; counter-reset:s}
+.step-card{
+  background:var(--well); border:1px solid var(--hair); border-radius:var(--r); padding:26px 24px; position:relative;
+}
+.step-card::before{
+  counter-increment:s; content:counter(s);
+  position:absolute; top:-14px; left:24px; width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center; font-family:var(--font-display); font-weight:800; font-size:15px;
+  background:var(--accent); color:#04150e; box-shadow:0 6px 18px rgba(46,204,154,.35);
+}
+.step-card h3{font-size:18px; margin:8px 0 7px}
+.step-card p{color:var(--muted); font-size:14.5px; margin:0}
+.step-card a{color:var(--accent-ink)}
+
+.tester-box{
+  background:linear-gradient(150deg,rgba(46,204,154,.13),rgba(6,182,212,.08));
+  border:1px solid var(--hair); border-radius:var(--r-hero); padding:clamp(28px,5vw,52px);
+}
+.seats{
+  display:inline-flex; align-items:center; gap:9px; padding:8px 15px; border-radius:999px;
+  border:1px solid rgba(234,179,78,.28); background:rgba(234,179,78,.1); color:var(--gold);
+  font-size:13px; font-weight:700; margin-bottom:18px;
+}
+form.tf{display:grid; gap:12px; max-width:520px; margin:0 auto}
+form.tf .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+form.tf input{
+  width:100%; padding:15px 17px; border-radius:14px; font:inherit; font-size:15.5px;
+  background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--text); transition:border-color .2s, background .2s;
+}
+form.tf input::placeholder{color:var(--muted)}
+form.tf input:focus{outline:none; border-color:var(--accent); background:rgba(255,255,255,.08)}
+form.tf .hp{position:absolute; left:-9999px; width:1px; height:1px}
+.btn-tf{width:100%; padding:16px 22px; font-size:16.5px}
+.formnote{font-size:13px; color:var(--muted); text-align:center; margin:2px 0 0}
+.result{
+  display:none; text-align:center; padding:22px; border-radius:var(--r-sm);
+  border:1px solid rgba(46,204,154,.3); background:rgba(46,204,154,.1);
+}
+.result.show{display:block; animation:fadeUp .5s cubic-bezier(.16,1,.3,1)}
+.result.err{border-color:rgba(240,100,104,.35); background:rgba(240,100,104,.1)}
+.result h3{font-size:20px; margin-bottom:8px}
+.result p{color:var(--muted); font-size:15px; margin:0 0 16px}
+@media (max-width:560px){ form.tf .row{grid-template-columns:1fr} }
+
+/* ── Sport animations ─────────────────────────────────────────────────────
+   Every figure is built from parts that each move on their own axis, because a
+   whole PNG that slides across the screen reads as a sticker, and a leg that
+   swings from the hip reads as running. */
+.sports{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
+.sport{
+  background:var(--card); border:1px solid var(--hair); border-radius:var(--r);
+  padding:0 0 22px; overflow:hidden; transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s;
+}
+.sport:hover{transform:translateY(-6px); border-color:var(--rule)}
+.sport .stage{
+  height:150px; display:grid; place-items:center; position:relative; overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 100%, rgba(46,204,154,.14), transparent 70%);
+}
+.sport.ride .stage{background:radial-gradient(120% 90% at 50% 100%, rgba(168,85,247,.16), transparent 70%)}
+.sport.swim .stage{background:radial-gradient(120% 90% at 50% 100%, rgba(6,182,212,.18), transparent 70%)}
+.sport.tennis .stage{background:radial-gradient(120% 90% at 50% 100%, rgba(234,179,78,.16), transparent 70%)}
+.sport .stage svg{width:170px; height:120px; overflow:visible}
+.sport .stage .hero-fig:not(.sprite){
+  height:132px; width:auto; max-width:88%; object-fit:contain;
+  filter:drop-shadow(0 10px 26px rgba(6,182,212,.35));
+  transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.sport:hover .stage .hero-fig{animation-duration:1.4s}
+.sport .meta{padding:0 22px}
+.sport h3{font-size:19px; margin-bottom:5px}
+.sport p{color:var(--muted); font-size:14.5px; margin:0}
+.sport .met{
+  display:inline-block; margin-top:12px; padding:5px 12px; border-radius:999px; font-size:12.5px;
+  font-weight:700; background:rgba(46,204,154,.12); color:var(--accent-ink); border:1px solid rgba(46,204,154,.22);
+}
+
+/* shared parts */
+.fig line, .fig path, .fig circle, .fig rect{stroke-linecap:round}
+.limb{transform-box:fill-box}
+.ground{stroke-dasharray:14 12; animation:groundRun .55s linear infinite}
+@keyframes groundRun{to{stroke-dashoffset:-26}}
+
+/* runner */
+.run-body{animation:runBob .46s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 100%}
+@keyframes runBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.run-legA{transform-origin:50% 0; animation:swingA .46s ease-in-out infinite}
+.run-legB{transform-origin:50% 0; animation:swingB .46s ease-in-out infinite}
+.run-armA{transform-origin:50% 0; animation:swingB .46s ease-in-out infinite}
+.run-armB{transform-origin:50% 0; animation:swingA .46s ease-in-out infinite}
+@keyframes swingA{0%,100%{transform:rotate(34deg)}50%{transform:rotate(-32deg)}}
+@keyframes swingB{0%,100%{transform:rotate(-32deg)}50%{transform:rotate(34deg)}}
+
+/* cyclist */
+.wheel{transform-box:fill-box; transform-origin:center; animation:spin .75s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.crank{transform-box:fill-box; transform-origin:center; animation:spin .62s linear infinite}
+.ride-body{animation:rideBob .62s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 100%}
+@keyframes rideBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-1.5px) rotate(-1.5deg)}}
+
+/* swimmer */
+.stroke{transform-origin:0% 50%; animation:spin 1.15s linear infinite}
+.kickA{transform-origin:0% 50%; animation:kickA .5s ease-in-out infinite}
+.kickB{transform-origin:0% 50%; animation:kickB .5s ease-in-out infinite}
+@keyframes kickA{0%,100%{transform:rotate(13deg)}50%{transform:rotate(-13deg)}}
+@keyframes kickB{0%,100%{transform:rotate(-13deg)}50%{transform:rotate(13deg)}}
+.wave{animation:waveMove 2.2s linear infinite}
+@keyframes waveMove{to{transform:translateX(-40px)}}
+
+/* tennis */
+.racket{transform-origin:50% 0; animation:swing 1.5s cubic-bezier(.4,0,.3,1) infinite}
+@keyframes swing{0%,100%{transform:rotate(38deg)}42%{transform:rotate(-72deg)}60%{transform:rotate(-58deg)}}
+.ball{animation:ballFly 1.5s cubic-bezier(.35,0,.5,1) infinite}
+@keyframes ballFly{
+  0%{transform:translate(0,0);opacity:0}
+  12%{opacity:1}
+  42%{transform:translate(-14px,-30px)}
+  70%{transform:translate(52px,-58px);opacity:1}
+  100%{transform:translate(96px,-8px);opacity:0}
+}
+
+/* ── Nabzo Open — the tennis mini-game ────────────────────────────────── */
+.game-box{
+  background:linear-gradient(155deg, rgba(234,179,78,.12), rgba(46,204,154,.08));
+  border:1px solid var(--hair); border-radius:var(--r-hero); padding:clamp(22px,4vw,40px);
+}
+.court{
+  position:relative; width:100%; max-width:560px; margin:0 auto; aspect-ratio:3/4;
+  border-radius:var(--r); overflow:hidden; background:#0f1a24;
+  border:1px solid var(--hair); touch-action:none;
+}
+.court canvas{width:100%; height:100%; display:block}
+.court.playing{cursor:none}
+.overlay input{cursor:text}
+.hud{
+  position:absolute; inset:12px 14px auto; display:flex; justify-content:space-between;
+  font-family:var(--font-display); font-weight:800; font-size:14px; pointer-events:none; z-index:2;
+}
+.hud .rally{color:var(--gold)} .hud .best{color:var(--muted)}
+.overlay{
+  position:absolute; inset:0; display:grid; place-content:center; text-align:center; gap:14px; padding:26px;
+  background:rgba(8,12,18,.86); backdrop-filter:blur(6px); z-index:3;
+}
+/* Generic, and declared ONCE: `.overlay.hide` alone left every other element
+   that toggles `.hide` (the prize-claim form) permanently visible. */
+.hide{display:none !important}
+.overlay h3{font-size:clamp(22px,4vw,32px)}
+.overlay p{color:var(--muted); margin:0; font-size:15px; max-width:340px}
+.overlay .btn{justify-self:center}
+.prize{
+  display:grid; gap:8px; margin:4px 0 2px; text-align:left;
+  background:rgba(255,255,255,.04); border:1px solid var(--hair); border-radius:14px; padding:14px 16px;
+}
+.prize div{display:flex; align-items:center; gap:10px; font-size:14px}
+.prize b{font-family:var(--font-display); color:var(--gold); min-width:34px}
+.prize.won b{color:var(--accent-ink)}
+.board{max-width:560px; margin:26px auto 0}
+.board h4{font-family:var(--font-display); font-size:15px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 12px; text-align:center}
+.board ol{list-style:none; padding:0; margin:0; display:grid; gap:6px}
+.board li{display:flex; gap:12px; align-items:center; padding:9px 14px; border-radius:12px; background:rgba(255,255,255,.035); font-size:14.5px}
+.board li b{font-family:var(--font-display); width:22px; color:var(--muted)}
+.board li .sc{margin-left:auto; font-variant-numeric:tabular-nums; font-weight:700}
+.board li.gold b{color:var(--gold)}
+.board .empty{text-align:center; color:var(--muted); font-size:14px}
+.claim{display:grid; gap:10px; max-width:340px; margin:0 auto}
+.claim input{
+  padding:13px 15px; border-radius:13px; font:inherit; font-size:15px;
+  background:rgba(255,255,255,.06); border:1px solid var(--hair); color:var(--text);
+}
+.claim input:focus{outline:none; border-color:var(--accent)}
+.share-row{display:flex; gap:9px; justify-content:center; flex-wrap:wrap}
+
+
+/* ── Shop ─────────────────────────────────────────────────────────────── */
+.shop{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px}
+.item{
+  background:var(--card); border:1px solid var(--hair); border-radius:var(--r); overflow:hidden;
+  display:flex; flex-direction:column; transition:transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s;
+}
+.item:hover{transform:translateY(-6px); border-color:var(--rule)}
+.item .top .shot{
+  width:auto; height:100px; max-width:80%; object-fit:contain;
+  border-radius:12px; background:#fff; padding:6px; box-shadow:0 6px 20px rgba(0,0,0,.35);
+}
+.item .go{
+  margin-left:auto; padding:11px 18px; border-radius:999px; text-decoration:none;
+  background:var(--accent); color:#04150e; font-weight:700; font-size:14px;
+  transition:transform .18s; white-space:nowrap;
+}
+.item .go:hover{transform:translateY(-2px)}
+.item .top{
+  height:120px; display:grid; place-items:center; font-size:52px; position:relative;
+  background:radial-gradient(120% 100% at 50% 0%, rgba(46,204,154,.16), transparent 70%);
+}
+.item .badge{
+  position:absolute; top:12px; left:12px; font-size:11px; font-weight:800; letter-spacing:.08em;
+  text-transform:uppercase; padding:5px 10px; border-radius:999px;
+  background:rgba(46,204,154,.16); color:var(--accent-ink); border:1px solid rgba(46,204,154,.28);
+}
+.item .badge.gold{background:rgba(234,179,78,.14); color:var(--gold); border-color:rgba(234,179,78,.28)}
+.item .in{padding:20px 22px 22px; display:flex; flex-direction:column; flex:1}
+.item h3{font-size:18px; margin-bottom:5px}
+.item .sub{color:var(--muted); font-size:13px; margin:0 0 12px}
+.item .unlocks{list-style:none; padding:0; margin:0 0 16px; display:grid; gap:6px}
+.item .unlocks li{font-size:13.5px; color:var(--muted); display:flex; gap:8px; align-items:flex-start}
+.item .unlocks li::before{content:"✓"; color:var(--accent); font-weight:800; flex:none}
+.item .buy{display:flex; align-items:center; gap:12px; margin-top:auto}
+.item .price{font-family:var(--font-display); font-size:22px; font-weight:800}
+.item .price s{color:var(--muted); font-size:13px; font-weight:500; text-decoration:none; display:block}
+.item .buy button{
+  margin-left:auto; padding:11px 18px; border-radius:999px; border:0; cursor:pointer;
+  background:var(--accent); color:#04150e; font:inherit; font-weight:700; font-size:14px;
+  transition:transform .18s;
+}
+.item .buy button:hover{transform:translateY(-2px)}
+.shop-note{color:var(--muted); font-size:13px; text-align:center; margin:20px auto 0; max-width:660px}
+
+/* ── Competitions ─────────────────────────────────────────────────────── */
+.comps{display:grid; gap:16px}
+.comp{
+  background:var(--card); border:1px solid var(--hair); border-radius:var(--r); padding:26px;
+  display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center;
+}
+@media (max-width:720px){ .comp{grid-template-columns:1fr} }
+.comp .when{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); font-weight:700}
+.comp h3{font-size:22px; margin:7px 0 8px}
+.comp p{color:var(--muted); font-size:15px; margin:0 0 14px}
+.comp .facts{display:flex; gap:8px; flex-wrap:wrap}
+.comp .facts span{
+  font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:999px;
+  background:rgba(255,255,255,.05); border:1px solid var(--hair);
+}
+.comp .facts span.prize{background:rgba(234,179,78,.12); border-color:rgba(234,179,78,.26); color:var(--gold)}
+.comp .join{display:grid; gap:8px; justify-items:center; min-width:150px}
+.comp .join b{font-family:var(--font-display); font-size:30px; line-height:1}
+.comp .join small{color:var(--muted); font-size:12px}
+.comp .join button{
+  padding:12px 24px; border-radius:999px; border:0; cursor:pointer; width:100%;
+  background:var(--accent); color:#04150e; font:inherit; font-weight:700; transition:transform .18s;
+}
+.comp .join button:hover{transform:translateY(-2px)}
+.comp.past{opacity:.55}
+.comp.past .join button{background:var(--well); color:var(--muted); cursor:default}
+
+/* ── Shared order/join dialog ─────────────────────────────────────────── */
+.sheet{
+  position:fixed; inset:0; z-index:90; display:none; place-items:center; padding:20px;
+  background:rgba(6,8,14,.72); backdrop-filter:blur(8px);
+}
+.sheet.open{display:grid}
+.sheet-card{
+  background:var(--card); border:1px solid var(--hair); border-radius:var(--r-hero);
+  padding:30px; width:min(420px,100%); animation:panelIn .34s cubic-bezier(.16,1,.3,1);
+}
+.sheet-card h3{font-size:22px; margin-bottom:6px}
+.sheet-card .sub{color:var(--muted); font-size:14.5px; margin:0 0 20px}
+.sheet-card form{display:grid; gap:11px}
+.sheet-card input, .sheet-card textarea{
+  padding:13px 15px; border-radius:13px; font:inherit; font-size:15px; width:100%;
+  background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--text); resize:vertical;
+}
+.sheet-card input:focus, .sheet-card textarea:focus{outline:none; border-color:var(--accent)}
+.sheet-card .row2{display:grid; grid-template-columns:1fr 90px; gap:11px}
+.sheet-close{
+  background:none; border:0; color:var(--muted); font-size:15px; cursor:pointer;
+  font:inherit; padding:10px; width:100%;
+}
+.sheet-ok{text-align:center}
+.sheet-ok .tick{font-size:44px; display:block; margin-bottom:10px}
+
+
+/* ── B2B band ─────────────────────────────────────────────────────────── */
+.b2b{
+  background:linear-gradient(150deg, rgba(6,182,212,.12), rgba(168,85,247,.09));
+  border:1px solid var(--hair); border-radius:var(--r-hero); padding:clamp(28px,5vw,52px);
+}
+.b2b-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(24px,4vw,44px); align-items:start}
+@media (max-width:860px){ .b2b-grid{grid-template-columns:1fr} }
+.b2b-points{display:grid; gap:18px; margin:0; padding:0; list-style:none}
+.b2b-points li{display:grid; grid-template-columns:44px 1fr; gap:14px; align-items:start}
+.b2b-points .ic{color:var(--blue);
+  width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:20px;
+  background:rgba(6,182,212,.14); border:1px solid rgba(6,182,212,.26);
+}
+.b2b-points b{display:block; font-family:var(--font-display); font-size:17px; margin-bottom:4px}
+.b2b-points span{color:var(--muted); font-size:14.5px; line-height:1.5}
+.b2b form{display:grid; gap:11px; background:var(--card); border:1px solid var(--hair); border-radius:var(--r); padding:24px}
+.b2b form h3{font-size:18px; margin-bottom:4px}
+.b2b form p.hint{color:var(--muted); font-size:13.5px; margin:0 0 8px}
+.b2b input, .b2b select, .b2b textarea{
+  padding:13px 15px; border-radius:13px; font:inherit; font-size:15px; width:100%;
+  background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--text); resize:vertical;
+}
+.b2b input:focus, .b2b select:focus, .b2b textarea:focus{outline:none; border-color:var(--blue)}
+.b2b .row2{display:grid; grid-template-columns:1fr 1fr; gap:11px}
+@media (max-width:520px){ .b2b .row2{grid-template-columns:1fr} }
+.b2b .ok{
+  display:none; text-align:center; padding:16px; border-radius:14px;
+  border:1px solid rgba(46,204,154,.3); background:rgba(46,204,154,.1); font-size:15px;
+}
+.b2b .ok.show{display:block}
+
+
+/* ── Product demo ─────────────────────────────────────────────────────────
+   A video without a video file: the "screens" are live DOM, so they stay sharp
+   at any size, weigh ~6 KB instead of ~6 MB, and start instantly on a phone
+   connection. Each chapter replays its own animation when it becomes active. */
+.demo{display:grid; grid-template-columns:auto 1fr; gap:clamp(28px,5vw,60px); align-items:center}
+@media (max-width:860px){ .demo{grid-template-columns:1fr; justify-items:center} }
+.phone{
+  width:286px; height:590px; border-radius:44px; padding:11px; flex:none; position:relative;
+  background:linear-gradient(160deg,#2a3340,#11151c); box-shadow:0 40px 90px rgba(0,0,0,.6);
+  border:1px solid rgba(255,255,255,.10);
+}
+.phone .screen{
+  position:relative; width:100%; height:100%; border-radius:34px; overflow:hidden;
+  background:#0A0812; isolation:isolate;
+}
+.phone .island{
+  position:absolute; top:10px; left:50%; transform:translateX(-50%); width:78px; height:22px;
+  background:#000; border-radius:99px; z-index:5;
+}
+.scr{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center;
+  opacity:0; transform:translateY(10px) scale(.99);
+  transition:opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1);
+  pointer-events:none;
+}
+.scr.on{opacity:1; transform:none}
+.scr h4{font-family:var(--font-display); font-size:15px; margin:0 0 2px}
+.scr .sub{font-size:11px; color:var(--muted); margin:0 0 14px}
+
+/* chapter list */
+.chapters{list-style:none; margin:0; padding:0; display:grid; gap:8px; max-width:420px}
+.chapters button{
+  width:100%; text-align:left; background:none; border:0; cursor:pointer; color:inherit;
+  padding:14px 16px; border-radius:16px; position:relative; overflow:hidden;
+  border:1px solid transparent; transition:background .3s, border-color .3s;
+}
+.chapters button:hover{background:rgba(255,255,255,.04)}
+.chapters li.on button{background:rgba(255,255,255,.05); border-color:var(--hair)}
+.chapters b{display:block; font-family:var(--font-display); font-size:16px; margin-bottom:3px}
+.chapters span{font-size:13.5px; color:var(--muted); line-height:1.45}
+.chapters .bar{position:absolute; left:0; bottom:0; height:2px; width:0; background:var(--accent)}
+.chapters li.on .bar{animation:chapBar var(--dur,5s) linear forwards}
+@keyframes chapBar{to{width:100%}}
+
+/* screen 1 — recovery ring */
+.d-ring{width:150px;height:150px;margin:6px auto 12px;position:relative}
+.d-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.d-ring .tr{fill:none;stroke:rgba(255,255,255,.10);stroke-width:11}
+.d-ring .bar2{fill:none;stroke:url(#dg);stroke-width:11;stroke-linecap:round;stroke-dasharray:396;stroke-dashoffset:396}
+.scr.on .d-ring .bar2{animation:dRing 1.5s .25s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes dRing{to{stroke-dashoffset:75}}
+.d-ring .val{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.d-ring .val b{font-family:var(--font-display);font-size:38px;font-weight:900;line-height:1}
+.d-ring .val i{font-style:normal;font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.d-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.d-tile{background:rgba(255,255,255,.05);border:1px solid var(--hair);border-radius:14px;padding:10px 12px}
+.d-tile b{display:block;font-family:var(--font-display);font-size:18px}
+.d-tile span{font-size:10px;color:var(--muted);letter-spacing:.06em}
+
+/* screen 2 — sleep stages */
+.d-stage{margin-bottom:9px}
+.d-stage .lab{display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px}
+.d-stage .lab b{font-weight:600}
+.d-stage .tr{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.d-stage .fl{height:100%;border-radius:99px;width:0}
+.scr.on .d-stage .fl{animation:dGrow 1.1s cubic-bezier(.16,1,.3,1) forwards}
+.d-stage:nth-child(3) .fl{animation-delay:.15s} .d-stage:nth-child(4) .fl{animation-delay:.3s}
+@keyframes dGrow{to{width:var(--w)}}
+.d-hyp{display:flex;gap:2px;align-items:flex-end;height:52px;margin-top:14px}
+.d-hyp i{flex:1;border-radius:2px;background:var(--blue);opacity:.5;height:20%}
+
+/* screen 3 — coach chat */
+.d-msg{max-width:86%;padding:9px 12px;border-radius:14px;font-size:12px;line-height:1.4;margin-bottom:8px;opacity:0}
+.scr.on .d-msg{animation:dIn .5s forwards}
+.scr.on .d-msg:nth-of-type(2){animation-delay:.5s}
+.scr.on .d-msg:nth-of-type(3){animation-delay:1.1s}
+.scr.on .d-msg:nth-of-type(4){animation-delay:1.9s}
+@keyframes dIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.d-msg.bot{background:rgba(255,255,255,.06);border:1px solid var(--hair);border-bottom-left-radius:5px}
+.d-msg.me{background:var(--accent);color:#04150e;margin-left:auto;border-bottom-right-radius:5px;font-weight:500}
+
+/* screen 4 — week plan */
+.d-day{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:13px;
+  background:rgba(255,255,255,.04);border:1px solid var(--hair);margin-bottom:7px;font-size:12px;opacity:0}
+.scr.on .d-day{animation:dIn .45s forwards}
+.scr.on .d-day:nth-of-type(2){animation-delay:.12s}.scr.on .d-day:nth-of-type(3){animation-delay:.24s}
+.scr.on .d-day:nth-of-type(4){animation-delay:.36s}.scr.on .d-day:nth-of-type(5){animation-delay:.48s}
+.d-day em{font-style:normal;font-weight:700;font-family:var(--font-display);width:26px;color:var(--accent-ink)}
+.d-day s{text-decoration:none;margin-left:auto;color:var(--muted);font-size:10.5px}
+.d-day.rest em{color:var(--muted)}
+
+/* screen 5 — map + board */
+.d-map{height:150px;border-radius:16px;position:relative;overflow:hidden;margin-bottom:12px;
+  background:linear-gradient(150deg,#12202a,#161226)}
+.d-map i{position:absolute;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18)}
+.d-pin{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:34px;height:34px;
+  border-radius:50%;background:var(--purple);display:grid;place-items:center;font-weight:800;
+  font-family:var(--font-display);font-size:14px;color:#fff;border:2px solid #fff}
+.scr.on .d-pin{animation:dPop .6s .2s cubic-bezier(.2,1.6,.4,1) backwards}
+@keyframes dPop{from{transform:translate(-50%,-50%) scale(0)}to{transform:translate(-50%,-50%) scale(1)}}
+.d-badge{position:absolute;top:-6px;right:-8px;background:var(--accent-ink);color:#04150e;
+  font-size:9px;font-weight:800;padding:2px 5px;border-radius:99px;border:1.5px solid #fff}
+.d-row{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:11px;font-size:11.5px;
+  background:rgba(255,255,255,.04);margin-bottom:5px;opacity:0}
+.scr.on .d-row{animation:dIn .4s forwards}
+.scr.on .d-row:nth-of-type(2){animation-delay:.12s}.scr.on .d-row:nth-of-type(3){animation-delay:.24s}
+.d-row b{width:14px;color:var(--muted);font-family:var(--font-display)}
+.d-row .sc{margin-left:auto;font-weight:700}
+.d-row.me{background:rgba(46,204,154,.14)}
+
+/* Idle life. Kept small on purpose — a mascot that swings 20px is a distraction
+   on a page people are trying to read; 3-4px reads as breathing. */
+@keyframes botIdle{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  25%{transform:translateY(-4px) rotate(-2.5deg)}
+  60%{transform:translateY(-1px) rotate(2deg)}
+}
+/* Cadence, per sport. A stride is ~0.35s, so the vertical bounce runs at 0.7s;
+   a pedal stroke is slower; a swim stroke slower still. */
+@keyframes strideBounce{
+  0%,100%{transform:translateY(0) rotate(-1.2deg)}
+  50%{transform:translateY(-6px) rotate(1.2deg)}
+}
+@keyframes pedalRock{
+  0%,100%{transform:translateY(0) rotate(-0.8deg)}
+  50%{transform:translateY(-3px) rotate(0.8deg)}
+}
+@keyframes swimGlide{
+  0%,100%{transform:translate(0,0) rotate(-2deg)}
+  50%{transform:translate(4px,-5px) rotate(1.5deg)}
+}
+@keyframes swingTurn{
+  0%,100%{transform:rotate(-3deg) translateY(0)}
+  35%{transform:rotate(4deg) translateY(-4px)}
+  55%{transform:rotate(1deg) translateY(-1px)}
+}
+
+/* ── Scene motion: what actually sells the movement ─────────────────────── */
+.sport .stage{position:relative}
+/* Ground: dashes sweeping backwards under the runner and the bike. */
+.sport.run .stage::after, .sport.ride .stage::after{
+  content:""; position:absolute; left:-20%; right:-20%; bottom:16px; height:3px;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.30) 0 18px, transparent 18px 40px);
+  animation:groundSweep .5s linear infinite; pointer-events:none;
+  mask-image:linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+.sport.ride .stage::after{animation-duration:.32s}
+@keyframes groundSweep{to{transform:translateX(-40px)}}
+/* Speed streaks behind the figure. */
+.sport.run .stage::before, .sport.ride .stage::before{
+  content:""; position:absolute; inset:24% 0 34% 0; pointer-events:none;
+  background:
+    linear-gradient(90deg, transparent, rgba(6,182,212,.55) 60%, transparent) left 22% / 40% 2px no-repeat,
+    linear-gradient(90deg, transparent, rgba(46,204,154,.45) 60%, transparent) left 58% / 28% 2px no-repeat,
+    linear-gradient(90deg, transparent, rgba(6,182,212,.35) 60%, transparent) left 80% / 34% 2px no-repeat;
+  animation:streak .55s linear infinite;
+}
+@keyframes streak{
+  0%{transform:translateX(14px); opacity:0}
+  30%{opacity:1}
+  100%{transform:translateX(-46px); opacity:0}
+}
+/* Water: ripple arcs drifting under the swimmer. */
+.sport.swim .stage::after{
+  content:""; position:absolute; left:-10%; right:-10%; bottom:14px; height:26px; pointer-events:none;
+  background:
+    radial-gradient(60% 100% at 20% 100%, rgba(6,182,212,.5), transparent 70%),
+    radial-gradient(50% 100% at 55% 100%, rgba(6,182,212,.35), transparent 70%),
+    radial-gradient(60% 100% at 88% 100%, rgba(6,182,212,.45), transparent 70%);
+  animation:ripple 2.4s linear infinite; filter:blur(3px); opacity:.85;
+  mask-image:linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+}
+@keyframes ripple{to{transform:translateX(-60px)}}
+/* Tennis: the arc the racket just travelled through. */
+.sport.tennis .stage::before{
+  content:""; position:absolute; left:10%; top:26%; width:46%; height:46%;
+  border-top:2px solid rgba(234,179,78,.55); border-left:2px solid rgba(234,179,78,.2);
+  border-radius:50% 0 0 0; pointer-events:none;
+  animation:swipe 1.5s cubic-bezier(.4,0,.3,1) infinite;
+}
+@keyframes swipe{
+  0%,100%{opacity:0; transform:rotate(-18deg) scale(.9)}
+  30%{opacity:1; transform:rotate(4deg) scale(1)}
+  60%{opacity:0; transform:rotate(14deg) scale(1.04)}
+}
+.bot-btn .bot-face{animation:botIdle 4.2s ease-in-out infinite; will-change:transform}
+.bot-btn:hover .bot-face{animation-duration:1.6s}
+.sport .stage .hero-fig{will-change:transform}
+@media (prefers-reduced-motion:reduce){
+  .bot-btn .bot-face, .sport .stage .hero-fig,
+  .sport .stage::before, .sport .stage::after{animation:none}
+  .sport .stage::before{opacity:0}
+}
+
+
+/* ── Inside the app ───────────────────────────────────────────────────────
+   A breadth list, not another six cards. Six cards implied the app has six
+   features; it has dozens, and a visitor comparing it against Whoop or Oura is
+   counting. Grouped by tab so it maps onto what they'll actually see. */
+.inside{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:16px}
+.ins{background:var(--card); border:1px solid var(--hair); border-radius:var(--r); padding:22px 24px}
+.ins h3{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:12px}
+.ins ul{list-style:none; margin:0; padding:0; display:grid; gap:7px}
+.ins li{font-size:14.5px; color:var(--muted); line-height:1.45; padding-left:16px; position:relative}
+.ins li::before{content:"·"; position:absolute; left:2px; color:var(--accent); font-weight:800}
+.ins li b{color:var(--text); font-weight:600}
+.inside-note{color:var(--muted); font-size:13px; text-align:center; margin:22px auto 0; max-width:620px}
+
+/* ── Frame animation ──────────────────────────────────────────────────────
+   A sprite sheet, not N <img> tags: one request, no flash on the first cycle,
+   and `steps()` snaps between frames instead of cross-fading — a cross-fade of
+   two limb positions looks like a ghost, not a stroke. */
+.sprite{
+  background-repeat:no-repeat; background-position:0 0;
+  filter:drop-shadow(0 10px 26px rgba(6,182,212,.35));
+}
+.s-swim{
+  width:150px; height:148px;
+  background-image:url("img/sport/swim-sheet.webp");
+  background-size:450px 148px;                 /* 3 frames wide */
+  animation:swimFrames .9s steps(3) infinite;
+}
+@keyframes swimFrames{to{background-position:-450px 0}}
+.s-tennis{
+  width:140px; height:140px;
+  background-image:url("img/sport/tennis-sheet.webp");
+  background-size:280px 140px;                 /* 2 frames wide */
+  animation:tennisFrames .9s steps(2) infinite;
+}
+@keyframes tennisFrames{to{background-position:-280px 0}}
+/* Cadence stays honest: a stride is ~0.35 s, so a 2-frame cycle runs at 0.7 s.
+   The pedal cycle is a touch slower. */
+.s-run{
+  width:140px; height:140px;
+  background-image:url("img/sport/run-sheet.webp");
+  background-size:280px 140px;
+  animation:runFrames .7s steps(2) infinite;
+}
+@keyframes runFrames{to{background-position:-280px 0}}
+.s-ride{
+  width:150px; height:148px;
+  background-image:url("img/sport/ride-sheet.webp");
+  background-size:300px 148px;
+  animation:rideFrames .62s steps(2) infinite;
+}
+@keyframes rideFrames{to{background-position:-300px 0}}
+@media (prefers-reduced-motion:reduce){ .sprite{animation:none} }
+
+/* ── Robot coach: launcher + chat ─────────────────────────────────────── */
+.bot-launch{
+  position:fixed; right:22px; bottom:22px; z-index:80; display:flex; align-items:flex-end; gap:12px;
+}
+.bot-bubble{
+  background:var(--card); border:1px solid var(--hair); border-radius:18px 18px 6px 18px;
+  padding:12px 16px; font-size:14.5px; font-weight:600; max-width:210px; line-height:1.35;
+  box-shadow:0 14px 40px rgba(0,0,0,.45); position:relative;
+  opacity:0; transform:translateY(10px) scale(.94); transform-origin:bottom right;
+  transition:opacity .45s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.16,1,.3,1);
+}
+.bot-bubble.show{opacity:1; transform:none}
+.bot-bubble small{display:block; color:var(--muted); font-weight:500; font-size:12.5px; margin-top:3px}
+.bot-btn{
+  width:78px;height:78px;border-radius:50%; border:1px solid rgba(46,204,154,.3); cursor:pointer;
+  background:radial-gradient(120% 120% at 30% 20%, #1d2a3d, #12101c);
+  box-shadow:0 16px 44px rgba(0,0,0,.5), 0 0 0 0 rgba(46,204,154,.45);
+  display:grid; place-items:center; padding:0; position:relative; flex:none;
+  animation:botPulse 3.4s ease-out infinite;
+  transition:transform .22s cubic-bezier(.2,.8,.2,1);
+}
+.bot-btn:hover{transform:translateY(-4px) scale(1.05)}
+@keyframes botPulse{0%{box-shadow:0 16px 44px rgba(0,0,0,.5),0 0 0 0 rgba(46,204,154,.45)}
+  70%{box-shadow:0 16px 44px rgba(0,0,0,.5),0 0 0 20px rgba(46,204,154,0)}
+  100%{box-shadow:0 16px 44px rgba(0,0,0,.5),0 0 0 0 rgba(46,204,154,0)}}
+.bot-btn .bot-face{
+  width:112%; height:112%; border-radius:50%; object-fit:contain; object-position:50% 60%;
+  display:block; margin:-6%;
+}
+.bot-btn svg{width:56px;height:56px;overflow:visible}
+
+/* The robot itself. Each part animates on its own so it reads as a body, not
+   a rotating picture: the torso bobs, the arm waves from the shoulder, the eyes
+   blink on their own clock. */
+.rb-body{animation:bob 2.6s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 100%}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+.rb-arm{transform-box:fill-box; transform-origin:12% 8%; animation:wave 1.9s ease-in-out infinite}
+@keyframes wave{0%,100%{transform:rotate(-8deg)}25%{transform:rotate(-42deg)}55%{transform:rotate(-12deg)}75%{transform:rotate(-38deg)}}
+.rb-eye{transform-box:fill-box; transform-origin:center; animation:blink 4.4s ease-in-out infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.12)}}
+.rb-ant{transform-box:fill-box; transform-origin:center; animation:beatDot 1.05s ease-out infinite}
+@keyframes beatDot{0%,100%{transform:scale(1);opacity:1}45%{transform:scale(1.5);opacity:.65}}
+
+.bot-panel{
+  position:fixed; right:22px; bottom:22px; z-index:81; width:min(384px, calc(100vw - 32px));
+  height:min(560px, calc(100svh - 44px)); background:var(--card);
+  border:1px solid var(--hair); border-radius:26px; box-shadow:0 30px 90px rgba(0,0,0,.6);
+  display:none; flex-direction:column; overflow:hidden;
+}
+.bot-panel.open{display:flex; animation:panelIn .38s cubic-bezier(.16,1,.3,1)}
+@keyframes panelIn{from{opacity:0; transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+.bot-head{
+  display:flex; align-items:center; gap:12px; padding:15px 16px; border-bottom:1px solid var(--hair);
+  background:linear-gradient(120deg, rgba(46,204,154,.16), rgba(6,182,212,.08));
+}
+.bot-head .mini{width:40px;height:40px;border-radius:50%;background:var(--well);display:grid;place-items:center;flex:none}
+.bot-head .mini img{width:118%;height:118%;margin:-9%;border-radius:50%;object-fit:contain;object-position:50% 58%}
+.bot-head .mini svg{width:30px;height:30px;overflow:visible}
+.bot-head b{font-family:var(--font-display); font-size:16px; display:block}
+.bot-head span{font-size:12.5px; color:var(--accent-ink); display:flex; align-items:center; gap:6px}
+.bot-head span i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
+.bot-close{margin-left:auto; background:none; border:0; color:var(--muted); font-size:22px; cursor:pointer; padding:4px 8px; line-height:1}
+.bot-close:hover{color:var(--text)}
+.bot-msgs{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:11px}
+.msg{max-width:84%; padding:11px 14px; border-radius:16px; font-size:15px; line-height:1.45; white-space:pre-wrap; word-wrap:break-word}
+.msg.bot{background:var(--well); border:1px solid var(--hair); border-bottom-left-radius:5px; align-self:flex-start}
+.msg.me{background:var(--accent); color:#04150e; font-weight:500; border-bottom-right-radius:5px; align-self:flex-end}
+.msg.in{animation:fadeUp .35s cubic-bezier(.16,1,.3,1)}
+.typing{display:flex; gap:5px; align-items:center; padding:13px 15px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);display:block;animation:dotty 1.2s ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:.18s} .typing i:nth-child(3){animation-delay:.36s}
+@keyframes dotty{0%,60%,100%{opacity:.28;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+.bot-sugg{display:flex; gap:7px; flex-wrap:wrap; padding:0 16px 12px}
+.bot-sugg button{
+  background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--text);
+  border-radius:999px; padding:8px 13px; font:inherit; font-size:13px; cursor:pointer; transition:background .2s, border-color .2s;
+}
+.bot-sugg button:hover{background:rgba(46,204,154,.14); border-color:rgba(46,204,154,.35)}
+.bot-form{display:flex; gap:9px; padding:12px 14px; border-top:1px solid var(--hair)}
+.bot-form input{
+  flex:1; padding:13px 15px; border-radius:14px; font:inherit; font-size:15px;
+  background:rgba(255,255,255,.05); border:1px solid var(--hair); color:var(--text);
+}
+.bot-form input:focus{outline:none; border-color:var(--accent)}
+.bot-form button{
+  width:46px;height:46px;border-radius:14px;border:0;background:var(--accent);color:#04150e;
+  font-size:19px; cursor:pointer; flex:none; transition:transform .18s
+}
+.bot-form button:hover{transform:scale(1.06)}
+.bot-form button:disabled{opacity:.45; cursor:default; transform:none}
+.bot-legal{font-size:11.5px; color:var(--muted); text-align:center; padding:0 16px 12px; margin:0}
+@media (max-width:520px){
+  .bot-launch{right:14px; bottom:14px}
+  .bot-bubble{display:none}
+  .bot-btn{width:66px;height:66px} .bot-btn svg{width:48px;height:48px}
+  .bot-panel{right:8px; left:8px; bottom:8px; width:auto; height:min(78svh, 620px)}
+}
+
+/* ── CTA + footer ─────────────────────────────────────────────────────── */
+.cta-box{
+  background:linear-gradient(150deg,rgba(46,204,154,.14),rgba(168,85,247,.10));
+  border:1px solid var(--hair); border-radius:var(--r-hero); padding:clamp(36px,6vw,68px); text-align:center;
+}
+.cta-box h2{font-size:clamp(30px,4.4vw,46px)}
+.cta-box p{color:var(--muted); max-width:520px; margin:16px auto 30px}
+footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); font-size:14px}
+.foot{display:flex; gap:22px; flex-wrap:wrap; align-items:center}
+.foot a{color:var(--muted); text-decoration:none}
+.foot a:hover{color:var(--text)}
+.foot .sp{margin-left:auto}
+.disclaimer{margin-top:18px; font-size:12.5px; color:var(--muted); opacity:.75; max-width:760px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important}
+  .reveal{opacity:1;transform:none}
+  .hero h1 .line span{transform:none}
+}
+
+/* ── Language switch ──────────────────────────────────────────────────── */
+.lang{display:flex; gap:2px; padding:3px; border-radius:999px; border:1px solid var(--hair); background:rgba(255,255,255,.04)}
+.lang button{
+  background:none; border:0; color:var(--muted); font:inherit; font-size:12.5px; font-weight:700;
+  padding:6px 11px; border-radius:999px; cursor:pointer; transition:color .2s, background .2s;
+}
+.lang button.on{background:var(--accent); color:#04150e}
+.lang button:not(.on):hover{color:var(--text)}
+@media (max-width:520px){ .lang{margin-left:auto} }
+</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+
+<a class="annbar" href="#tester"><span data-i18n-html="ann"></span></a>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="logo" href="#top"><span class="dot"></span>nabzo</a>
+    <nav>
+      <a href="#features" data-i18n="nav_features"></a>
+      <a href="#inside" data-i18n="nav_inside"></a>
+      <a href="#shop" data-i18n="nav_shop"></a>
+      <a href="#b2b" data-i18n="nav_b2b"></a>
+      <a href="#game" data-i18n="nav_game"></a>
+      <a href="#launch" data-i18n="nav_launch"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="en" type="button">EN</button>
+      <button data-lang="az" type="button">AZ</button>
+    </div>
+    <a class="btn btn-primary" href="#tester" data-i18n="cta_tester"></a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="wrap">
+      <h1>
+        <span class="line"><span data-i18n="hero_l1"></span></span>
+        <span class="line"><span class="grad" data-i18n="hero_l2"></span></span>
+        <span class="line"><span data-i18n="hero_l3"></span></span>
+      </h1>
+      <p class="lead" data-i18n="hero_lead"></p>
+      <div class="cta">
+        <a class="btn btn-primary btn-lg" href="#tester" data-i18n="hero_cta1"></a>
+        <a class="btn btn-ghost" href="#launch" data-i18n="hero_cta2"></a>
+      </div>
+
+      <!-- Real ECG geometry, not a zigzag: flat baseline → P wave → QRS complex
+           (small q dip, tall narrow R, sharp S) → T wave. The `d` is generated in
+           JS from one beat so every beat is identical and the heart icons can be
+           driven off the same 1.05 s period. -->
+      <div class="pulse" aria-hidden="true">
+        <svg viewBox="0 0 800 110" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="pg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#2ECC9A"/><stop offset=".5" stop-color="#06B6D4"/><stop offset="1" stop-color="#A855F7"/>
+            </linearGradient>
+            <radialGradient id="scan">
+              <stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#2ECC9A"/><stop offset="1" stop-color="rgba(46,204,154,0)"/>
+            </radialGradient>
+          </defs>
+          <path id="ecgPath" d=""/>
+          <circle id="ecgDot" r="6" fill="url(#scan)" opacity="0"/>
+        </svg>
+      </div>
+
+      <div class="chips">
+        <div class="heart-badge">
+          <span class="heart" id="heroHeart"></span> <b id="bpm">58</b> <span data-i18n="chip_bpm"></span>
+        </div>
+        <div class="chip"><span class="led soon"></span> iOS <small data-i18n="chip_ios"></small></div>
+        <div class="chip"><span class="led soon"></span> Android <small data-i18n="chip_android"></small></div>
+        <div class="chip"><span class="led live"></span> Apple Watch <small data-i18n="chip_watch"></small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTER FLOW — the page's main action, so it sits above everything -->
+  <section id="tester" style="padding-top:0">
+    <div class="wrap">
+      <div class="tester-box reveal">
+        <div class="center">
+          <div class="seats" id="seats"><span class="led live" style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span> <span data-i18n-html="t_seats"></span></div>
+          <p class="eyebrow" style="margin-bottom:10px" data-i18n="t_eyebrow"></p>
+          <h2 style="font-size:clamp(30px,4.6vw,50px)" data-i18n="t_title"></h2>
+          <p class="muted" style="max-width:560px;margin:16px auto 34px" data-i18n="t_lead"></p>
+        </div>
+
+        <div class="steps">
+          <div class="step-card">
+            <h3 data-i18n="t_s1_h"></h3>
+            <p data-i18n-html="t_s1_p"></p>
+          </div>
+          <div class="step-card">
+            <h3 data-i18n="t_s2_h"></h3>
+            <p data-i18n="t_s2_p"></p>
+          </div>
+          <div class="step-card">
+            <h3 data-i18n="t_s3_h"></h3>
+            <p data-i18n="t_s3_p"></p>
+          </div>
+        </div>
+
+        <form class="tf" id="tfForm" novalidate>
+          <div class="row">
+            <input type="text" name="name" data-i18n-ph="t_ph_name" autocomplete="name" maxlength="80">
+            <input type="text" name="device" data-i18n-ph="t_ph_device" maxlength="80">
+          </div>
+          <input type="email" name="email" data-i18n-ph="t_ph_email" autocomplete="email" required maxlength="200">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn btn-primary btn-tf" type="submit" id="tfSubmit" data-i18n="t_submit"></button>
+          <p class="formnote" data-i18n-html="t_note"></p>
+        </form>
+
+        <div class="result" id="tfResult">
+          <h3 id="tfTitle"></h3>
+          <p id="tfMsg"></p>
+          <a class="btn btn-primary" id="tfLink" href="https://testflight.apple.com/join/THnzA3gv" target="_blank" rel="noopener" data-i18n="t_open_tf"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCT DEMO ─────────────────────────────────────────────────────
+       Five app screens on a loop. Live DOM rather than a video file: ~6 KB
+       instead of megabytes, sharp on any display, and it starts the moment the
+       section scrolls into view instead of buffering. -->
+  <section id="demo">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="dm_eyebrow"></p>
+        <h2 data-i18n="dm_title"></h2>
+        <p data-i18n="dm_lead"></p>
+      </div>
+
+      <div class="demo reveal">
+        <div class="phone">
+          <div class="screen">
+            <div class="island"></div>
+
+            <!-- Frames lifted from the App Review walkthrough recording, so what
+                 the site shows is literally what the app shows. Re-cut them from a
+                 newer recording whenever the UI moves. -->
+            <img class="scr" data-scr="0" src="img/app/today.webp" alt="Nabzo — Today">
+            <img class="scr" data-scr="1" src="img/app/ai.webp" alt="Nabzo — AI read on your day">
+            <img class="scr" data-scr="2" src="img/app/health.webp" alt="Nabzo — Health">
+            <img class="scr" data-scr="3" src="img/app/insights.webp" alt="Nabzo — Insights">
+            <img class="scr" data-scr="4" src="img/app/map.webp" alt="Nabzo — Nearby">
+          </div>
+        </div>
+
+        <ol class="chapters" id="chapters">
+          <li><button data-go="0"><b data-i18n="dm1_h"></b><span data-i18n="dm1_c"></span><i class="bar"></i></button></li>
+          <li><button data-go="1"><b data-i18n="dm2_h"></b><span data-i18n="dm2_c"></span><i class="bar"></i></button></li>
+          <li><button data-go="2"><b data-i18n="dm3_h"></b><span data-i18n="dm3_c"></span><i class="bar"></i></button></li>
+          <li><button data-go="3"><b data-i18n="dm4_h"></b><span data-i18n="dm4_c"></span><i class="bar"></i></button></li>
+          <li><button data-go="4"><b data-i18n="dm5_h"></b><span data-i18n="dm5_c"></span><i class="bar"></i></button></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ─────────────────────────────────────────────────────── -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="f_eyebrow"></p>
+        <h2 data-i18n="f_title"></h2>
+        <p data-i18n="f_lead"></p>
+      </div>
+      <div class="grid">
+        <article class="card reveal" style="--d:0s"><div class="icon" data-ic="coach"></div>
+          <h3 data-i18n="f1_h"></h3><p data-i18n="f1_p"></p></article>
+        <article class="card reveal" style="--d:.06s"><div class="icon b" data-ic="sleep"></div>
+          <h3 data-i18n="f2_h"></h3><p data-i18n="f2_p"></p></article>
+        <article class="card reveal" style="--d:.12s"><div class="icon p" data-ic="bolt"></div>
+          <h3 data-i18n="f3_h"></h3><p data-i18n="f3_p"></p></article>
+        <article class="card reveal" style="--d:.18s"><div class="icon g" data-ic="trend"></div>
+          <h3 data-i18n="f4_h"></h3><p data-i18n="f4_p"></p></article>
+        <article class="card reveal" style="--d:.24s"><div class="icon" data-ic="map"></div>
+          <h3 data-i18n="f5_h"></h3><p data-i18n="f5_p"></p></article>
+        <article class="card reveal" style="--d:.3s"><div class="icon b" data-ic="lab"></div>
+          <h3 data-i18n="f6_h"></h3><p data-i18n="f6_p"></p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EARN & BURN ──────────────────────────────────────────────────────
+       kcal = MET × kg × hours, with the SAME MET table the app scores you
+       with (FitnessMath.met). One input, two answers: what it burns, and what
+       it earns toward the weekly 1000 MET-minute target. -->
+  <section id="calc">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="ca_eyebrow"></p>
+        <h2 data-i18n="ca_title"></h2>
+        <p data-i18n="ca_lead"></p>
+      </div>
+
+      <div class="calc reveal">
+        <div class="calc-controls">
+          <div class="ctrl">
+            <label for="cWeight"><span data-i18n="ca_weight"></span> <b><span id="cWeightV">75</span> kg</b></label>
+            <input id="cWeight" type="range" min="40" max="140" value="75" step="1">
+          </div>
+          <div class="ctrl">
+            <label for="cAct"><span data-i18n="ca_activity"></span></label>
+            <select id="cAct"></select>
+          </div>
+          <div class="ctrl">
+            <label for="cMin"><span data-i18n="ca_minutes"></span> <b><span id="cMinV">45</span> <span data-i18n="ca_min"></span></b></label>
+            <input id="cMin" type="range" min="10" max="120" value="45" step="5">
+          </div>
+        </div>
+
+        <div class="calc-out">
+          <div class="burn">
+            <b id="cKcal">0</b>
+            <span data-i18n="ca_burn"></span>
+          </div>
+          <div class="earn">
+            <div class="row"><span data-i18n="ca_earn"></span> <b><span id="cMet">0</span> MET-min</b></div>
+            <div class="track"><div class="bar" id="cBar"></div></div>
+            <small id="cPct"></small>
+          </div>
+          <div class="foods" id="cFoods"></div>
+        </div>
+      </div>
+      <p class="calc-note reveal" data-i18n="ca_note"></p>
+    </div>
+  </section>
+
+  <!-- ── WHAT TO TRAIN ────────────────────────────────────────────────────
+       The week shapes and the strength dose are the app's own prescriptions
+       (TrainingCoachEngine.weekShape / gapAnalysis), not generic gym advice. -->
+  <section id="train">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="tr_eyebrow"></p>
+        <h2 data-i18n="tr_title"></h2>
+        <p data-i18n="tr_lead"></p>
+      </div>
+
+      <div class="weeks reveal">
+        <div class="week">
+          <h3 data-i18n="tr_beg_h"></h3>
+          <ul>
+            <li><i>2</i> <span data-i18n="tr_beg_1"></span></li>
+            <li><i>2</i> <span data-i18n="tr_beg_2"></span></li>
+            <li><i>1</i> <span data-i18n="tr_beg_3"></span></li>
+            <li class="rest"><i>2</i> <span data-i18n="tr_beg_4"></span></li>
+          </ul>
+        </div>
+        <div class="week">
+          <h3 data-i18n="tr_exp_h"></h3>
+          <ul>
+            <li><i>3–4</i> <span data-i18n="tr_exp_1"></span></li>
+            <li><i>2</i> <span data-i18n="tr_exp_2"></span></li>
+            <li><i>1–2</i> <span data-i18n="tr_exp_3"></span></li>
+            <li class="rest"><i>≥1</i> <span data-i18n="tr_exp_4"></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dose reveal">
+        <b data-i18n="tr_dose_h"></b>
+        <p data-i18n-html="tr_dose_p"></p>
+      </div>
+
+      <div class="bodies">
+        <article class="body reveal" style="--d:0s">
+          <div class="tag2" data-i18n="tr_b1_t"></div>
+          <h3 data-i18n="tr_b1_h"></h3>
+          <p data-i18n="tr_b1_p"></p>
+          <div class="moves" data-moves="b1"></div>
+        </article>
+        <article class="body reveal" style="--d:.06s">
+          <div class="tag2" data-i18n="tr_b2_t"></div>
+          <h3 data-i18n="tr_b2_h"></h3>
+          <p data-i18n="tr_b2_p"></p>
+          <div class="moves" data-moves="b2"></div>
+        </article>
+        <article class="body reveal" style="--d:.12s">
+          <div class="tag2" data-i18n="tr_b3_t"></div>
+          <h3 data-i18n="tr_b3_h"></h3>
+          <p data-i18n="tr_b3_p"></p>
+          <div class="moves" data-moves="b3"></div>
+        </article>
+        <article class="body reveal" style="--d:.18s">
+          <div class="tag2" data-i18n="tr_b4_t"></div>
+          <h3 data-i18n="tr_b4_h"></h3>
+          <p data-i18n="tr_b4_p"></p>
+          <div class="moves" data-moves="b4"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INSIDE THE APP ───────────────────────────────────────────────────
+       The six feature cards above read as "this app does six things". It does
+       dozens, and anyone comparing it with Whoop or Oura is counting. Grouped by
+       tab so the list maps onto what they will actually open. -->
+  <section id="inside">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="in_eyebrow"></p>
+        <h2 data-i18n="in_title"></h2>
+        <p data-i18n="in_lead"></p>
+      </div>
+      <div class="inside">
+        <div class="ins reveal" style="--d:0s">
+          <h3 data-i18n="in_g1"></h3><ul data-list="g1"></ul></div>
+        <div class="ins reveal" style="--d:.05s">
+          <h3 data-i18n="in_g2"></h3><ul data-list="g2"></ul></div>
+        <div class="ins reveal" style="--d:.1s">
+          <h3 data-i18n="in_g3"></h3><ul data-list="g3"></ul></div>
+        <div class="ins reveal" style="--d:.15s">
+          <h3 data-i18n="in_g4"></h3><ul data-list="g4"></ul></div>
+        <div class="ins reveal" style="--d:.2s">
+          <h3 data-i18n="in_g5"></h3><ul data-list="g5"></ul></div>
+        <div class="ins reveal" style="--d:.25s">
+          <h3 data-i18n="in_g6"></h3><ul data-list="g6"></ul></div>
+      </div>
+      <p class="inside-note reveal" data-i18n="in_note"></p>
+    </div>
+  </section>
+
+  <!-- ── REAL RULES ───────────────────────────────────────────────────────
+       Every number in this section is lifted from the shipping app's engines
+       (RecoveryEngine, SleepEngine, StreakEngine, AnalyticsEngine, FitnessMath).
+       If one of them changes in the app, change it here too — a marketing page
+       that quotes a threshold the product no longer uses is a lie with a date. -->
+  <section id="rules">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="ru_eyebrow"></p>
+        <h2 data-i18n="ru_title"></h2>
+        <p data-i18n="ru_lead"></p>
+      </div>
+      <div class="grid">
+        <article class="card reveal" style="--d:0s"><div class="icon" data-ic="bolt"></div>
+          <h3 data-i18n="ru1_h"></h3><p data-i18n="ru1_p"></p></article>
+        <article class="card reveal" style="--d:.06s"><div class="icon b" data-ic="sleep"></div>
+          <h3 data-i18n="ru2_h"></h3><p data-i18n="ru2_p"></p></article>
+        <article class="card reveal" style="--d:.12s"><div class="icon g" data-ic="flame"></div>
+          <h3 data-i18n="ru3_h"></h3><p data-i18n-html="ru3_p"></p></article>
+        <article class="card reveal" style="--d:.18s"><div class="icon p" data-ic="target"></div>
+          <h3 data-i18n="ru4_h"></h3><p data-i18n="ru4_p"></p></article>
+        <article class="card reveal" style="--d:.24s"><div class="icon" data-ic="search"></div>
+          <h3 data-i18n="ru5_h"></h3><p data-i18n-html="ru5_p"></p></article>
+        <article class="card reveal" style="--d:.3s"><div class="icon b" data-ic="down"></div>
+          <h3 data-i18n="ru6_h"></h3><p data-i18n="ru6_p"></p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPORTS ───────────────────────────────────────────────────────── -->
+  <section id="sports">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="sp_eyebrow"></p>
+        <h2 data-i18n="sp_title"></h2>
+        <p data-i18n="sp_lead"></p>
+      </div>
+
+      <div class="sports">
+        <article class="sport run reveal" style="--d:0s">
+          <div class="stage"><div class="hero-fig sprite s-run" role="img" aria-label=""></div></div>
+          <div class="meta">
+            <h3 data-i18n="sp1_h"></h3><p data-i18n="sp1_p"></p><span class="met">9.8 MET · ≈735 kcal/h*</span>
+          </div>
+        </article>
+
+        <article class="sport ride reveal" style="--d:.07s">
+          <div class="stage"><div class="hero-fig sprite s-ride" role="img" aria-label=""></div></div>
+          <div class="meta">
+            <h3 data-i18n="sp2_h"></h3><p data-i18n="sp2_p"></p><span class="met">7.5 MET · ≈563 kcal/h*</span>
+          </div>
+        </article>
+
+        <article class="sport swim reveal" style="--d:.14s">
+          <div class="stage"><div class="hero-fig sprite s-swim" role="img" aria-label=""></div></div>
+          <div class="meta">
+            <h3 data-i18n="sp3_h"></h3><p data-i18n="sp3_p"></p><span class="met">7.0 MET · ≈525 kcal/h*</span>
+          </div>
+        </article>
+
+        <article class="sport tennis reveal" style="--d:.21s">
+          <div class="stage"><div class="hero-fig sprite s-tennis" role="img" aria-label=""></div></div>
+          <div class="meta">
+            <h3 data-i18n="sp4_h"></h3><p data-i18n="sp4_p"></p><span class="met">7.3 MET · ≈548 kcal/h*</span>
+          </div>
+        </article>
+      </div>
+      <p class="calc-note reveal" data-i18n="sp_note"></p>
+    </div>
+  </section>
+
+  <!-- ── GAME ─────────────────────────────────────────────────────────── -->
+  <section id="game">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow">Nabzo Open</p>
+        <h2 data-i18n="g_title"></h2>
+        <p data-i18n-html="g_lead"></p>
+      </div>
+
+      <div class="game-box reveal">
+        <div class="court" id="court">
+          <canvas id="cv" width="600" height="800"></canvas>
+          <div class="hud">
+            <span class="rally"><span data-i18n="g_rally"></span> <span id="rally">0</span></span>
+            <span class="best"><span data-i18n="g_best"></span> <span id="best">0</span></span>
+          </div>
+
+          <div class="overlay" id="ovStart">
+            <h3>Nabzo Open</h3>
+            <p data-i18n="g_start_p"></p>
+            <div class="claim" id="playerBox">
+              <input id="pName" type="text" data-i18n-ph="g_ph_player" maxlength="24">
+              <input id="pEmail" type="email" data-i18n-ph="g_ph_email_opt" maxlength="200">
+            </div>
+            <div class="prize">
+              <div><b>10</b> <span data-i18n="g_prize10"></span></div>
+              <div><b>25</b> <span data-i18n="g_prize25"></span></div>
+            </div>
+            <button class="btn btn-primary" id="btnStart" data-i18n="g_btn_start"></button>
+          </div>
+
+          <div class="overlay hide" id="ovEnd">
+            <h3 id="endTitle"></h3>
+            <p id="endText"></p>
+            <div class="claim hide" id="claimBox">
+              <input id="gName" type="text" data-i18n-ph="g_ph_name" maxlength="24">
+              <input id="gEmail" type="email" data-i18n-ph="g_ph_email" maxlength="200">
+              <button class="btn btn-primary" id="btnClaim" data-i18n="g_claim"></button>
+            </div>
+            <div class="share-row">
+              <button class="btn btn-ghost" id="btnAgain" data-i18n="g_again"></button>
+              <button class="btn btn-ghost" id="btnShare" data-i18n="g_share"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="board">
+          <h4 data-i18n="g_board"></h4>
+          <ol id="boardList"></ol>
+        </div>
+      </div>
+      <p class="disclaimer" style="margin-left:auto;margin-right:auto;text-align:center" data-i18n="g_disclaimer"></p>
+    </div>
+  </section>
+
+  <!-- ── SHOP ─────────────────────────────────────────────────────────────
+       Requests, not checkout — see supabase/schema_shop.sql for why. Prices and
+       stock live in the SHOP array in JS: one place to edit, no duplication
+       between the two languages. -->
+  <section id="shop">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="sh_eyebrow"></p>
+        <h2 data-i18n="sh_title"></h2>
+        <p data-i18n="sh_lead"></p>
+      </div>
+      <div class="shop" id="shopGrid"></div>
+      <p class="shop-note reveal" data-i18n="sh_note"></p>
+    </div>
+  </section>
+
+  <!-- ── COMPETITIONS ─────────────────────────────────────────────────────
+       Loaded from hd_competitions, so a new challenge is a database row, not a
+       site deploy. -->
+  <section id="comps">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="co_eyebrow"></p>
+        <h2 data-i18n="co_title"></h2>
+        <p data-i18n="co_lead"></p>
+      </div>
+      <div class="comps" id="compList"></div>
+    </div>
+  </section>
+
+  <!-- ── DEVICES ──────────────────────────────────────────────────────── -->
+  <section id="devices">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="d_eyebrow"></p>
+        <h2 data-i18n="d_title"></h2>
+        <p data-i18n="d_lead"></p>
+      </div>
+    </div>
+    <div class="marquee reveal" id="marquee" aria-label="Compatible devices"><ul></ul></div>
+  </section>
+
+  <!-- ── LAUNCH ───────────────────────────────────────────────────────── -->
+  <section id="launch">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="l_eyebrow"></p>
+        <h2 data-i18n="l_title"></h2>
+        <p data-i18n="l_lead"></p>
+      </div>
+
+      <div class="timeline reveal" id="tl">
+        <div class="tl-fill" id="tlFill"></div>
+
+        <!-- ══ DATES — if a date changes, this is the only block to touch ══ -->
+        <div class="step done">
+          <div class="when" data-i18n="l1_when"></div>
+          <h3 data-i18n="l1_h"></h3>
+          <p data-i18n="l1_p"></p>
+        </div>
+
+        <div class="step now">
+          <div class="when" data-i18n="l2_when"></div>
+          <h3 data-i18n="l2_h"></h3>
+          <p data-i18n="l2_p"></p>
+          <span class="tag review" data-i18n="l2_tag"></span>
+        </div>
+
+        <div class="step">
+          <div class="when" data-i18n="l3_when"></div>
+          <h3 data-i18n="l3_h"></h3>
+          <p data-i18n="l3_p"></p>
+          <span class="tag plan" data-i18n="l_tag_plan"></span>
+        </div>
+
+        <div class="step">
+          <div class="when" data-i18n="l4_when"></div>
+          <h3 data-i18n="l4_h"></h3>
+          <p data-i18n="l4_p"></p>
+          <span class="tag plan" data-i18n="l_tag_plan"></span>
+        </div>
+        <!-- ══ END OF DATES ══ -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── B2B ──────────────────────────────────────────────────────────────
+       Deliberately names no insurer or employer. A logo on this page without a
+       signed agreement reads as an endorsement, and the first company to see its
+       own name here uninvited is the one you were trying to sign. -->
+  <section id="b2b">
+    <div class="wrap">
+      <div class="sechead reveal">
+        <p class="eyebrow" data-i18n="bb_eyebrow"></p>
+        <h2 data-i18n="bb_title"></h2>
+        <p data-i18n="bb_lead"></p>
+      </div>
+
+      <div class="b2b reveal">
+        <div class="b2b-grid">
+          <ul class="b2b-points">
+            <li><span class="ic" data-ic="down"></span><div><b data-i18n="bb_p1_h"></b><span data-i18n="bb_p1_p"></span></div></li>
+            <li><span class="ic" data-ic="run"></span><div><b data-i18n="bb_p2_h"></b><span data-i18n="bb_p2_p"></span></div></li>
+            <li><span class="ic" data-ic="lab"></span><div><b data-i18n="bb_p3_h"></b><span data-i18n="bb_p3_p"></span></div></li>
+            <li><span class="ic" data-ic="lock"></span><div><b data-i18n="bb_p4_h"></b><span data-i18n="bb_p4_p"></span></div></li>
+          </ul>
+
+          <form id="b2bForm">
+            <h3 data-i18n="bb_form_h"></h3>
+            <p class="hint" data-i18n="bb_form_p"></p>
+            <input id="bCompany" type="text" data-i18n-ph="bb_company" maxlength="120" required>
+            <div class="row2">
+              <input id="bName" type="text" data-i18n-ph="bb_name" maxlength="80" required>
+              <input id="bContact" type="text" data-i18n-ph="bb_contact" maxlength="120" required>
+            </div>
+            <div class="row2">
+              <select id="bSize"></select>
+              <select id="bInterest"></select>
+            </div>
+            <textarea id="bNote" rows="2" data-i18n-ph="bb_note" maxlength="800"></textarea>
+            <button class="btn btn-primary" type="submit" id="bSend" data-i18n="bb_send"></button>
+            <div class="ok" id="b2bOk" data-i18n="bb_ok"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="wrap">
+      <div class="cta-box reveal">
+        <h2 data-i18n="c_title"></h2>
+        <p data-i18n="c_lead"></p>
+        <a class="btn btn-primary btn-lg" href="#tester" data-i18n="c_btn"></a>
+      </div>
+      <p class="disclaimer wrap" style="padding:0" data-i18n="c_disclaimer"></p>
+    </div>
+  </section>
+
+</main>
+
+<div class="sheet" id="sheet">
+  <div class="sheet-card">
+    <div id="sheetBody">
+      <h3 id="sheetTitle"></h3>
+      <p class="sub" id="sheetSub"></p>
+      <form id="sheetForm">
+        <div class="row2">
+          <input id="oName" type="text" data-i18n-ph="o_name" maxlength="80" required>
+          <input id="oQty" type="number" min="1" max="10" value="1">
+        </div>
+        <input id="oContact" type="text" data-i18n-ph="o_contact" maxlength="120" required>
+        <input id="oCity" type="text" data-i18n-ph="o_city" maxlength="60">
+        <textarea id="oNote" rows="2" data-i18n-ph="o_note" maxlength="500"></textarea>
+        <button class="btn btn-primary" type="submit" id="oSend" data-i18n="o_send"></button>
+      </form>
+    </div>
+    <div class="sheet-ok hide" id="sheetOk">
+      <span class="tick">✅</span>
+      <h3 data-i18n="o_ok_h"></h3>
+      <p class="sub" data-i18n="o_ok_p"></p>
+    </div>
+    <button class="sheet-close" id="sheetClose" data-i18n="o_close"></button>
+  </div>
+</div>
+
+<!-- ── Robot coach: the waving launcher + the chat panel ─────────────────── -->
+<div class="bot-launch" id="botLaunch">
+  <div class="bot-bubble" id="botBubble"><span data-i18n="b_bubble"></span><small data-i18n="b_bubble_sub"></small></div>
+  <button class="bot-btn" id="botBtn" aria-label="Chat with the robot coach">
+    <img src="img/coach-head.webp" alt="" class="bot-face">
+  </button>
+</div>
+
+<div class="bot-panel" id="botPanel" role="dialog" aria-label="Robot coach">
+  <div class="bot-head">
+    <div class="mini"><img src="img/coach-head.webp" alt=""></div>
+    <div>
+      <b data-i18n="b_name"></b>
+      <span><i></i> <span data-i18n="b_status"></span></span>
+    </div>
+    <button class="bot-close" id="botClose" aria-label="Close">×</button>
+  </div>
+
+  <div class="bot-msgs" id="botMsgs"></div>
+  <div class="bot-sugg" id="botSugg"></div>
+
+  <form class="bot-form" id="botForm">
+    <input id="botInput" type="text" data-i18n-ph="b_ph" autocomplete="off" maxlength="500">
+    <button type="submit" id="botSend" aria-label="Send">↑</button>
+  </form>
+  <p class="bot-legal" data-i18n="b_legal"></p>
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#top" style="font-size:18px"><span class="dot"></span>nabzo</a>
+    <a href="https://elegant-syrniki-2bb4b4.netlify.app" data-i18n="fo_privacy"></a>
+    <a href="https://elegant-syrniki-2bb4b4.netlify.app/support/" data-i18n="fo_support"></a>
+    <a href="mailto:aliyeveea@gmail.com" data-i18n="fo_contact"></a>
+    <span class="sp" data-i18n="fo_rights"></span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Backend. The publishable key is meant to be public — every guard that
+     matters is an RLS policy or a SECURITY DEFINER function, not this string. */
+  const SUPA = 'https://korzbyowwyvqujocuymr.supabase.co';
+  const ANON = 'sb_publishable_KWcvui6RsuFzjH0y0ql5yA__0-Db7yS';
+
+  /* One heartbeat period drives the heart icons and the ECG scan dot together. */
+  const BEAT_MS = 1050;                       // ≈ 57 bpm
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const el = (n, a = {}) => { const e = document.createElementNS(SVGNS, n);
+    for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+  /* ══ i18n ══════════════════════════════════════════════════════════════
+     English is the default; Azerbaijani is one tap away and is picked
+     automatically for an az-* browser. Every visible string lives here — a page
+     with half its copy hard-coded in the markup can only ever be half translated. */
+  const T = {
+    en: {
+      docTitle: 'Nabzo — the pulse of your body',
+      docDesc: 'Nabzo turns what your iPhone and watch already record into recovery, sleep and a daily fitness score. iOS and Android release dates.',
+      ann: '🚀 Beta is open — <b>200</b> TestFlight seats<span class="ann-tail"> · run Nabzo before anyone else</span> <i class="arrow">→</i>',
+      annLive: '🚀 Beta is open — <b>{n}</b> seats left<span class="ann-tail"> · run Nabzo before anyone else</span> <i class="arrow">→</i>',
+      nav_features: 'Features', nav_calc: 'Calories', nav_train: 'Training', nav_game: 'Game 🎾',
+      nav_devices: 'Devices', nav_launch: 'Release', cta_tester: 'Become a tester',
+
+      hero_l1: 'The pulse', hero_l2: 'of your', hero_l3: 'body.',
+      hero_lead: 'Nabzo turns what your iPhone and watch already record into recovery, sleep and a daily fitness score — and explains it in plain language.',
+      hero_cta1: 'Become a tester — free', hero_cta2: 'Release dates',
+      chip_bpm: 'bpm · live', chip_ios: '· in App Store review', chip_android: '· in progress', chip_watch: '· included',
+
+      t_seats: 'TestFlight · <b id="seatsLeft">200</b> seats left',
+      t_eyebrow: 'Beta', t_title: 'In your hands before the App Store.',
+      t_lead: 'Nabzo is running on TestFlight right now. Three steps, about two minutes — and you see every new build first.',
+      t_s1_h: 'Install TestFlight', t_s1_p: 'Apple’s free testing app. <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">Get it on the App Store →</a>',
+      t_s2_h: 'Open the invite', t_s2_p: 'The button below takes you straight into Nabzo’s test group. No code, no waiting.',
+      t_s3_h: 'Use it and tell me', t_s3_p: 'Take a screenshot and send it with TestFlight’s “Send Feedback” — it comes straight to me.',
+      t_ph_name: 'Your name', t_ph_device: 'Your gear (e.g. iPhone 14 + Amazfit)', t_ph_email: 'Your email',
+      t_submit: 'Join and open TestFlight',
+      t_note: 'The email is only used for beta news. You can also skip this and go <a href="https://testflight.apple.com/join/THnzA3gv" target="_blank" rel="noopener" style="color:var(--accent-ink)">straight to TestFlight</a>.',
+      t_ok_title: 'You’re on the list 🎉', t_ok_msg: 'You are on Nabzo\u2019s TestFlight tester list. Apple is reviewing the current beta build and will email your invitation the moment it clears \u2014 no code to enter, nothing else to do.',
+      t_err_title: 'Sign-up failed', t_err_msg: 'Something went wrong — no harm done, the TestFlight link still works.',
+      t_open_tf: 'Open in TestFlight', t_sending: 'Sending…',
+
+
+      f_eyebrow: 'Features', f_title: 'Not a health app — a coach.',
+      f_lead: 'Not something to stare at every morning. Nabzo talks, warns you early, and adapts the plan to you.',
+      f1_h: 'AI coach', f1_p: 'Morning call, voice check-in, a daily read on where you are. It remembers you — last week’s stress is context for this week.',
+      f2_h: 'Sleep stages', f2_p: 'Deep, REM and light, sleep debt, a regularity index and your chronotype — it tells you when to go to bed, with a number.',
+      f3_h: 'Recovery and load', f3_p: 'HRV, resting heart rate, overnight vitals. When the acute:chronic load ratio spikes you hear about it — before the injury.',
+      f4_h: 'Trend analytics', f4_p: 'An on-device analysis engine: what actually moves your numbers, plus early illness and overload signals.',
+      f5_h: 'Map and leaderboard', f5_p: 'Your fitness score on your pin. Walking, running, cycling and swimming distance — and a leaderboard with friends.',
+      f6_h: 'Blood tests', f6_p: 'Photograph a lab result — Nabzo reads it, explains it in plain words and tracks the markers over time.',
+
+      ru_eyebrow: 'Under the hood', ru_title: 'The app’s actual rules.',
+      ru_lead: 'Most apps hide how the score is computed. Nabzo’s are right here — you can check them yourself.',
+      ru1_h: 'Recovery: 67 and 34', ru1_p: 'Above 67 is high, 34–66 moderate, below 34 low. Those two numbers live in exactly one place in the app, so no two screens can ever disagree about them.',
+      ru2_h: 'Deep 13–23%, REM 20–25%', ru2_p: 'Stage shares are judged against those typical ranges. On a night without a watch there are no stages — so Nabzo prints no percentages rather than inventing them.',
+      ru3_h: 'Rest doesn’t break the streak', ru3_p: 'A day counts on 6,000 steps <b>or</b> 20 exercise minutes — <b>or</b> a genuine rest day (recovery ≤ 34). Two freezes are there as well, so one missed day doesn’t reset everything.',
+      ru4_h: 'Fitness score = MET-minutes', ru4_p: 'Not an invented index: intensity × minutes. 1000 MET-minutes a week is a full score, 500 is the lower end of the activity guideline. Leaderboard points are those same MET-minutes.',
+      ru5_h: 'The “why” is never circular', ru5_p: 'When it explains a drop, Nabzo only points at <b>things you did</b> — a late night, alcohol, load. Never at HRV or heart rate, because the score is computed from those in the first place.',
+      ru6_h: 'Less data, fewer claims', ru6_p: 'A personal baseline needs at least 14 nights. Until then the app declares nothing — a confident verdict from thin data is just a confident mistake.',
+
+      sp_eyebrow: 'Every move counts', sp_title: 'One hour is not one hour.',
+      sp_lead: 'Nabzo tracks distance per sport and effort in MET-minutes, so an hour of tennis and an hour of walking never score the same. Below: what each sport costs, what it earns, and what the app does with it.',
+      sp1_h: 'Running', sp1_p: 'Earns ~590 MET-min an hour — over half your week in one session. Nabzo keeps run distance separate from walking, tracks pace and heart zones, and warns you when your acute:chronic load ratio spikes. That warning is the point: most running injuries arrive after a sudden jump in volume, not after a hard day.',
+      sp2_h: 'Cycling', sp2_p: 'Earns ~450 MET-min an hour with almost no joint impact — which is why it is the app\u2019s first suggestion when your load is already high but you still want to move. Cycling distance flows in from Apple Health on its own; nothing extra to log.',
+      sp3_h: 'Swimming', sp3_p: 'Earns ~420 MET-min an hour and is the one hard session your knees never feel. Heart-rate data is unreliable underwater, so Nabzo scores swims on duration and distance instead of pretending the HR trace is good.',
+      sp4_h: 'Tennis', sp4_p: 'Earns ~440 MET-min an hour — one match is close to half the weekly guideline, plus the change-of-direction work no treadmill gives you. Counted as endurance, so it satisfies the cardio side of your week.',
+      sp_note: '* kcal for a 75 kg body: kcal = MET × kg × hours. Your own number changes with your weight — try it in the calculator above.',
+
+      g_title: 'Pick up the racket, win the subscription.',
+      g_lead: 'Survive 10 rallies — <b style="color:var(--gold)">1 month free</b> at launch. Survive 25 — <b style="color:var(--accent-ink)">1 year free</b>. The ball speeds up, so it isn’t easy.',
+      g_rally: 'Rally:', g_best: 'Your best:',
+      g_start_p: 'Move the racket with your finger (or the mouse). Every return makes the ball faster.',
+      g_prize10: 'rallies → 1 month of Nabzo Premium free', g_prize25: 'rallies → 1 year free (early-user prize)',
+      g_btn_start: 'Start', g_ph_name: 'Name (shown on the board)', g_ph_email: 'Email — we send the prize here',
+      g_ph_player: 'Your name (for the board)', g_ph_email_opt: 'Email (optional — for the prize)',
+      g_claim: 'Claim the prize', g_again: 'Again', g_share: 'Share your score', g_copied: 'Copied ✓',
+      g_board: 'Top 10', g_board_empty: 'Nobody has played yet — be the first.',
+      g_disclaimer: 'Prize codes are emailed after the App Store release. One prize per person.',
+      g_lose_title: 'You dropped it', g_month_title: '1 MONTH FREE 🎉', g_year_title: '1 YEAR FREE 🎾',
+      g_lose_msg: '{n} rallies. You need 10 for a prize — give it another go.',
+      g_month_msg: '{n} rallies — a free month is yours. Reach 25 and it becomes a year.',
+      g_year_msg: '{n} rallies — you’ve won the early-user prize.',
+      g_claimed: 'Done — we’ll email your prize code on release day.', g_saved: 'Saved ✓', g_sending: 'Sending…',
+      g_share_text: 'I survived {n} rallies at Nabzo Open 🎾 Think you can beat that?',
+
+      d_eyebrow: 'Compatibility', d_title: 'It starts with just an iPhone.',
+      d_lead: 'Nabzo reads from Apple Health. So any band whose app writes there works — you are not forced to buy a watch.',
+      dev: [['⌚️','Apple Watch','full support'],['📱','iPhone only','steps, workouts, trends'],
+            ['🔋','Amazfit / Zepp','sleep + HRV'],['🟠','Xiaomi Mi Band','via Mi Fitness'],
+            ['🔺','Huawei / Honor',''],['🧭','Garmin','via Garmin Connect'],
+            ['❤️','Chest strap','heart rate'],['⚖️','Smart scale','weight, body fat']],
+
+      l_eyebrow: 'Release', l_title: 'When you’ll have it.',
+      l_lead: 'Written as it stands — we don’t show an unconfirmed date as if it were a release.',
+      l1_when: 'Done', l1_h: 'Beta · TestFlight', l1_p: 'First users in Baku. Recovery, sleep, the AI coach and the Apple Watch app all work.',
+      l2_when: 'August 2026', l2_h: 'iOS · App Store', l2_p: 'Version 1.1 is submitted and sitting in Apple’s review queue. The moment it is approved this line becomes a release date.',
+      l2_tag: 'In review',
+      l3_when: 'Q4 2026', l3_h: 'Android · closed beta', l3_p: 'The first Android build as a closed test on Google Play. Seats are limited — join the list.',
+      l4_when: 'Q1 2027', l4_h: 'Android · Google Play', l4_p: 'Open to everyone: the same coach, the same scores, device data through Health Connect.',
+      l_tag_plan: 'Planned',
+
+      c_title: 'Don’t want to wait?', c_lead: 'The beta is running now. Join before the TestFlight seats run out — you stay a tester after launch too.',
+      c_btn: 'Become a tester — free',
+      c_disclaimer: 'Nabzo is a health and habit app. Its scores and comments are estimates, not a medical diagnosis or treatment advice. If something worries you, see a doctor.',
+
+      b_bubble: 'Ask me 👋', b_bubble_sub: 'anything about Nabzo',
+      b_name: 'Nabzo', b_status: 'online · answers instantly',
+      b_greet: 'Hi! I’m Nabzo’s robot coach 👋 Ask me anything — features, release dates, which devices work.',
+      b_sugg: ['When does it launch?', 'Which devices work?', 'How much does it cost?', 'How do I become a tester?'],
+      b_ph: 'Type your question…', b_legal: 'Answered by AI — not medical advice.',
+      b_rate: 'Give it a minute — too many questions at once 🙂',
+      b_err: 'Sorry, I couldn’t answer just now. Write to aliyeveea@gmail.com and you’ll get a reply.',
+      b_net: 'Looks like a connection problem. Try again in a moment.',
+
+      ca_eyebrow: 'Calories', ca_title: 'Earn it, or burn it.',
+      ca_lead: 'One session, two answers: the calories it burns, and how much of your weekly fitness score it earns. Same MET table the app scores you with.',
+      ca_weight: 'Your weight', ca_activity: 'Activity', ca_minutes: 'Duration', ca_min: 'min',
+      ca_burn: 'kcal burned', ca_earn: 'Earned toward your week',
+      ca_pct: '{p}% of the weekly 1000 MET-min target',
+      ca_note: 'kcal = MET × body weight (kg) × hours. Food values are rough averages — they are there to make the number tangible, not to count your diet.',
+      ca_acts: [['Walking, brisk',3.5],['Running',9.8],['Cycling',7.5],['Swimming',7.0],['Tennis',7.3],
+                ['Football',7.0],['Basketball',6.5],['Boxing',7.8],['HIIT',8.0],['Strength training',5.0],
+                ['Rowing',7.0],['Stair climbing',8.8],['Elliptical',5.0],['Hiking',6.0],['Dancing',5.0],['Yoga',2.5]],
+      ca_foods: [['🍌','banana',105],['🍞','slice of bread',80],['🥤','can of cola',139],
+                 ['🍫','chocolate bar',230],['🌯','doner wrap',600],['🍯','baklava piece',120]],
+
+      tr_eyebrow: 'Training', tr_title: 'What to train, and how.',
+      tr_lead: 'These are the app\u2019s own prescriptions — the same week shapes and doses the coach hands you when it spots a gap.',
+      tr_beg_h: 'Starting out', tr_beg_1: 'easy cardio sessions', tr_beg_2: 'full-body strength', tr_beg_3: 'mind-body session', tr_beg_4: 'rest / restorative days',
+      tr_exp_h: 'Already training', tr_exp_1: 'cardio (80% easy)', tr_exp_2: 'strength', tr_exp_3: 'mind-body', tr_exp_4: 'full rest day',
+      tr_dose_h: 'The strength dose that actually matters',
+      tr_dose_p: 'If you do cardio but no strength, this is the first thing Nabzo asks for: <code>2× full-body per week, 1–3 sets × 6–8 reps, stopping 2–3 reps short of failure</code>. Two sessions a week roughly halve injury risk and protect the muscle you lose with age — more than that is optional, less than that is the gap.',
+      tr_b1_t: 'Push', tr_b1_h: 'Chest, shoulders, triceps',
+      tr_b1_p: 'Everything you press away from you. Weakest link for most desk workers, and what keeps your shoulders healthy.',
+      tr_b2_t: 'Pull', tr_b2_h: 'Back, biceps, rear delts',
+      tr_b2_p: 'The counterweight to pushing. Skip it and posture and shoulder pain follow — train it at least as often as push.',
+      tr_b3_t: 'Legs', tr_b3_h: 'Quads, glutes, hamstrings',
+      tr_b3_p: 'The biggest muscles you own, so the biggest metabolic return — and the ones that decide how you walk at 70.',
+      tr_b4_t: 'Core', tr_b4_h: 'Abs, obliques, lower back',
+      tr_b4_p: 'Not for the six-pack: it transfers force between upper and lower body and is the cheapest back-pain insurance there is.',
+      tr_moves: {b1:['Push-ups','Bench press','Overhead press','Dips'],
+                 b2:['Rows','Pull-ups','Lat pulldown','Face pulls'],
+                 b3:['Squats','Lunges','Deadlifts','Hip thrusts'],
+                 b4:['Plank','Dead bug','Farmer carry','Bird dog']},
+
+      nav_shop: 'Shop', nav_comps: 'Competitions',
+      sh_eyebrow: 'Shop', sh_title: 'Buy the device that actually feeds Nabzo.',
+      sh_lead: 'Not every band talks to Apple Health, and the ones that don\u2019t leave Nabzo half blind. These do — each card says exactly which part of the app it switches on.',
+      sh_note: 'Order here, pay on delivery in Baku — no prepayment. We confirm the price and availability by phone before anything ships. The manufacturer\u2019s warranty applies; we hand over the receipt with the device.',
+      sh_buy: 'Order',
+      sh_badge_best: 'Best data', sh_badge_value: 'Best value', sh_badge_new: 'New',
+      sh_items: {
+        aw:  {n:'Apple Watch SE 3 · GPS 44mm', s:'The deepest integration — Nabzo has its own watch app',
+              u:['Sleep stages + overnight HRV','Recovery score from day one','Nabzo watch app: breathing, live scores','Workout heart-rate zones']},
+        aw2: {n:'Apple Watch Series 11 · GPS 42mm', s:'Everything the SE does, plus temperature and ECG',
+              u:['Wrist temperature trend','Blood oxygen + ECG','Sleep stages + HRV','Longest battery for overnight wear']},
+        amz: {n:'Amazfit Active 2', s:'The value pick that still gives real sleep data',
+              u:['Sleep stages via Zepp → Apple Health','HRV and resting heart rate','7-day battery','Costs a fifth of a watch']},
+        bip: {n:'Amazfit Bip 5', s:'Sleep stages and HRV for the price of dinner out',
+              u:['Sleep stages via Zepp → Apple Health','Resting heart rate + HRV','10-day battery','Big screen, GPS built in']},
+        mi:  {n:'Xiaomi Smart Band 10', s:'The cheapest way to stop guessing',
+              u:['Steps, workouts, sleep duration','Resting heart rate','2-week battery','Syncs through Mi Fitness']},
+        scl: {n:'Xiaomi Smart Scale S200', s:'Weight alone is a bad number — this fixes it',
+              u:['Body fat % and BMI into Apple Health','Feeds the app\u2019s Body & Fitness screen','Trend lines, not single readings','Whole family, one scale']},
+        bp:  {n:'Omron M3 Comfort', s:'The one number no wearable can read',
+              u:['Clinically validated upper-arm cuff','Readings appear on Nabzo\u2019s trend screen once they are in Apple Health','Irregular-heartbeat detection','Two-user memory, 60 readings']},
+      },
+
+      co_eyebrow: 'Competitions', co_title: 'Compete, don\u2019t just track.',
+      co_lead: 'Challenges scored from Apple Health — no manual logging, no screenshots, no honour system. Join from here, compete from the app.',
+      co_join: 'Join', co_entrants: 'entrants', co_ended: 'Finished', co_soon: 'Opens soon',
+      co_target: 'Target', co_prize: 'Prize', co_none: 'No open challenges right now — the next one is being planned.',
+      co_metric_steps: 'Steps', co_metric_distance_km: 'Distance', co_metric_met_minutes: 'MET-minutes', co_metric_workouts: 'Workouts',
+
+      o_name: 'Your name', o_contact: 'Phone or email', o_city: 'City / district (optional)',
+      o_note: 'Note (colour, size, questions…)', o_send: 'Send request', o_close: 'Close',
+      o_order_sub: 'We call you back, confirm the price and availability, and deliver. No prepayment.',
+      o_join_sub: 'Leave your contact and we will send you the rules and the start reminder.',
+      o_ok_h: 'Got it', o_ok_p: 'We will get back to you shortly on the contact you left.',
+      o_sending: 'Sending…', o_fail: 'Could not send — write to aliyeveea@gmail.com and we will sort it out.',
+
+      nav_b2b: 'For business',
+      bb_eyebrow: 'For employers and insurers', bb_title: 'A benefit people actually open.',
+      bb_lead: 'Most corporate wellness spend goes on things nobody uses twice. Nabzo is a daily app with a coach — and the numbers behind it are the ones your risk team already cares about.',
+      bb_p1_h: 'Signals before claims', bb_p1_p: 'Resting heart rate, HRV, sleep and respiratory-rate drift are early markers. Nabzo surfaces them to the member — quietly, without diagnosing anything — at the point where a habit can still change.',
+      bb_p2_h: 'Challenges that run themselves', bb_p2_p: 'Company step and distance challenges scored straight from Apple Health. No spreadsheets, no screenshots, no honour system — and a leaderboard people check.',
+      bb_p3_h: 'Check-ups that are not forgotten', bb_p3_p: 'You already pay for annual blood work nobody reads twice. Members photograph the result; Nabzo explains it in plain language and tracks the markers year over year.',
+      bb_p4_h: 'Health data stays with the member', bb_p4_p: 'Readings live on the phone. An employer or insurer never receives individual health data — only what a member explicitly agrees to share, and aggregate participation.',
+      bb_form_h: 'Talk to us', bb_form_p: 'Tell us the size and we will come back with a concrete pilot proposal.',
+      bb_company: 'Company', bb_name: 'Your name', bb_contact: 'Phone or email', bb_note: 'What are you trying to solve? (optional)',
+      bb_send: 'Request a pilot proposal', bb_sending: 'Sending…',
+      bb_ok: 'Thank you — we will come back within two working days.',
+      bb_fail: 'Could not send. Please write to aliyeveea@gmail.com.',
+      bb_sizes: ['Team size', '1–50 people', '50–250 people', '250–1000 people', '1000+ people'],
+      bb_interests: ['Interested in', 'Corporate wellness', 'Insurance / member benefit', 'Something else'],
+
+      nav_demo: 'How it works',
+      dm_eyebrow: 'How it works', dm_title: 'The real app, screen by screen.',
+      dm_lead: 'These are screenshots from the app itself, not mock-ups — the same build that is sitting in App Store review.',
+      dm1_h: 'Bu gün',
+      dm1_c: 'Bərpa halqası və altındakı dörd bal — yük, enerji, yuxu, stres — sən hələ yatarkən keçən gecədən hesablanır.',
+      dm2_h: 'Günün oxunuşu',
+      dm2_c: 'Məşqçi bunu insan dilində yazır: nə etdin, sənə nəyə başa gəldi və bu gün nəyi götürə bilər. Panel yox — hərəkətə keçirilə bilən bir cümlə.',
+      dm3_h: 'Sağlamlıq',
+      dm3_c: 'VO\u2082max-dan fitnes yaşı, onu aşağı salmaq üçün həftəlik məşq planı, 30/90/365 günlük trendlər və şəklini çəkib əlavə etdiyin analiz nəticələri.',
+      dm4_h: 'Müşahidələr',
+      dm4_c: 'Avtomatik işarələnir: bərpa yüksəkdir, HRV normandan yuxarıdır, istirahət nəbzi qalxıb. Hər biri nə demək olduğunu və nə etməli olduğunu yazır.',
+      dm5_h: 'Yaxınlıqda',
+      dm5_c: 'Ətrafındakı idman məkanları, canlı sessiyalar, öz pinində fitnes balın — və arxasındakı reytinq cədvəli.',
+
+      nav_inside: 'Everything inside',
+      in_eyebrow: 'Everything inside', in_title: 'It is not six features.',
+      in_lead: 'The full list, grouped the way the app is. Every line below is something that exists in the build under review — nothing here is planned.',
+      in_g1: 'Today', in_g2: 'Sleep', in_g3: 'Health & body', in_g4: 'Coach', in_g5: 'Social & food', in_g6: 'Also in there',
+      in_note: 'Some of it needs a wearable (sleep stages, HRV, overnight vitals). The rest — coach, trends, food, map, fitness score, camera pulse — runs on an iPhone alone.',
+      in_lists: {
+        g1: ['<b>Recovery, Strain, Energy, Sleep, Stress</b> — five scores, computed overnight',
+             'Activity, Stress and Resilience sub-scores',
+             '<b>Readiness verdict</b> — push, moderate, easy, restorative or rest',
+             'Streak with genuine rest days and two freezes',
+             'Step goal tuned to your own recent pace',
+             '<b>Desk time</b> — hours at your workplace, and how still they were',
+             'Time on the road, phone-use signal',
+             'AI briefing: a written read on your day'],
+        g2: ['<b>Stages</b> — deep, REM, light, awake, with typical ranges',
+             'Sleep debt against your personalised need',
+             '<b>Sleep Regularity Index</b> and your chronotype',
+             'Social jetlag — weekday vs weekend midpoint',
+             'Last-night journal: alcohol, caffeine, late screen, stress…',
+             'Daylight minutes — the strongest clock-setting signal',
+             'Overnight HRV, resting HR, respiratory rate, wrist temperature'],
+        g3: ['<b>Fitness age</b> from your VO₂max',
+             'Trends over 30 / 90 / 365 days on every metric',
+             '<b>Lab results</b> — photograph a report, it is read and tracked',
+             'Body composition: weight, body fat, BMI, lean mass',
+             'Blood pressure and blood oxygen',
+             '<b>Physique check-in</b> — a photo assessment across 7 muscle groups',
+             'Pulse from the phone camera when you have no watch'],
+        g4: ['Chat that remembers you across weeks',
+             '<b>Morning wake-up call</b> — your coach actually phones you',
+             'Voice check-in — talk instead of typing',
+             '<b>What-if</b> — "if I slept 8 hours, what happens to recovery?"',
+             'Illness and overload early signals',
+             'Weekly training plan with load (ACWR) guardrails',
+             'Gap analysis — what your week is missing'],
+        g5: ['<b>Food by photo</b> — snap a meal, get calories and macros',
+             'Daily energy balance: eaten vs burned',
+             '<b>Nearby map</b> — sports places, live sessions, go live',
+             'Friends, direct messages, groups',
+             '<b>Friend streaks</b> — a streak that only advances if you both move',
+             'Fitness leaderboard on MET-minutes'],
+        g6: ['Cycle tracking, with the coach informed only if you allow it',
+             'Monthly recap and a year-in-review Wrapped',
+             'Milestones with share cards',
+             'Breathing: box and 4-7-8, with watch haptics',
+             'Mood check-ins and a mind hub',
+             '<b>Apple Watch app</b> — live scores and eyes-free breathing',
+             'Places journal with auto-detected home and work',
+             'Full app in English, Azerbaijani and Russian'],
+      },
+
+      fo_privacy: 'Privacy', fo_support: 'Support', fo_contact: 'Contact', fo_rights: '© 2026 Emil Aliyev · Baku',
+    },
+
+    az: {
+      docTitle: 'Nabzo — bədəninin nəbzi',
+      docDesc: 'Nabzo iPhone-un və saatının onsuz da topladığı məlumatı bərpa, yuxu və gündəlik fitnes balına çevirir. iOS və Android buraxılış tarixləri.',
+      ann: '🚀 Beta açıqdır — TestFlight-da <b>200</b> tester yeri<span class="ann-tail"> · Nabzo-nu hamıdan əvvəl işlət</span> <i class="arrow">→</i>',
+      annLive: '🚀 Beta açıqdır — <b>{n}</b> tester yeri qalıb<span class="ann-tail"> · Nabzo-nu hamıdan əvvəl işlət</span> <i class="arrow">→</i>',
+      nav_features: 'İmkanlar', nav_calc: 'Kalori', nav_train: 'Məşq', nav_game: 'Oyun 🎾',
+      nav_devices: 'Cihazlar', nav_launch: 'Buraxılış', cta_tester: 'Tester ol',
+
+      hero_l1: 'Bədəninin', hero_l2: 'nəbzi.', hero_l3: 'Hər gün.',
+      hero_lead: 'Nabzo iPhone-unun və saatının onsuz da topladığı məlumatı bərpa, yuxu və gündəlik fitnes balına çevirir — və bunu sənə insan dilində izah edir.',
+      hero_cta1: 'Tester ol — pulsuz', hero_cta2: 'Buraxılış tarixləri',
+      chip_bpm: 'bpm · canlı', chip_ios: '· App Store baxışında', chip_android: '· hazırlanır', chip_watch: '· daxildir',
+
+      t_seats: 'TestFlight · <b id="seatsLeft">200</b> yer qalıb',
+      t_eyebrow: 'Beta', t_title: 'App Store-dan əvvəl sənin əlində.',
+      t_lead: 'Nabzo hazırda TestFlight-da işləyir. Üç addım, təxminən iki dəqiqə — və hər həftə yeni versiyanı ilk sən görürsən.',
+      t_s1_h: 'TestFlight-ı yüklə', t_s1_p: 'Apple-ın pulsuz test tətbiqi. <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">App Store-dan al →</a>',
+      t_s2_h: 'Dəvəti aç', t_s2_p: 'Aşağıdakı düymə səni birbaşa Nabzo-nun test qrupuna aparır \u2014 Apple betanı təsdiqlədi, kod və gözləmə yoxdur.',
+      t_s3_h: 'İşlət və yaz', t_s3_p: 'Ekranın şəklini çək, TestFlight-dakı «Send Feedback» ilə göndər — birbaşa mənə gəlir.',
+      t_ph_name: 'Adın', t_ph_device: 'Cihazın (məs. iPhone 14 + Amazfit)', t_ph_email: 'E-poçt ünvanın',
+      t_submit: 'Tester ol və TestFlight-ı aç',
+      t_note: 'E-poçtu yalnız beta xəbərləri üçün saxlayırıq. Səhifəni keçib <a href="https://testflight.apple.com/join/THnzA3gv" target="_blank" rel="noopener" style="color:var(--accent-ink)">birbaşa TestFlight-a</a> da keçə bilərsən.',
+      t_ok_title: 'Səni siyahıya yazdıq 🎉', t_ok_msg: 'Nabzo-nun TestFlight tester siyahısındasan. Apple cari beta buildi yoxlayır və təsdiq gələn kimi dəvəti özü e-poçtuna göndərəcək \u2014 kod yazmaq, başqa bir şey etmək lazım deyil.',
+      t_err_title: 'Qeydiyyat alınmadı', t_err_msg: 'Bir problem oldu — narahat olma, TestFlight linki elə də işləyir.',
+      t_open_tf: 'TestFlight-da aç', t_sending: 'Göndərilir…',
+
+
+      f_eyebrow: 'İmkanlar', f_title: 'Sağlamlıq tətbiqi yox — məşqçi.',
+      f_lead: 'Hər gün eyni panelə baxmaq üçün deyil. Nabzo danışır, xəbərdarlıq edir və planı sənə uyğunlaşdırır.',
+      f1_h: 'Süni intellekt məşqçi', f1_p: 'Səhər zəngi, səsli söhbət, gündəlik təhlil. Səni yadda saxlayır — keçən həftəki gərginliyi bu həftə xatırlayır.',
+      f2_h: 'Yuxu fazaları', f2_p: 'Dərin, REM və yüngül faza, yuxu borcu, müntəzəmlik indeksi və xronotip — nə vaxt yatmalı olduğunu rəqəmlə deyir.',
+      f3_h: 'Bərpa və yük', f3_p: 'HRV, istirahət nəbzi və gecə göstəriciləri. ACWR yük nisbəti həddi aşanda xəbərdarlıq gəlir — zədədən əvvəl.',
+      f4_h: 'Trend analitikası', f4_p: 'Cihazda işləyən analiz mühərriki: nəyin nəyə təsir etdiyini, xəstəlik və həddi aşma siqnallarını tapır.',
+      f5_h: 'Xəritə və reytinq', f5_p: 'Fitnes balın xəritədəki profilində. Piyada, qaçış, velosiped, üzgüçülük məsafələri və dostlarla reytinq cədvəli.',
+      f6_h: 'Analiz nəticələri', f6_p: 'Qan analizinin şəklini çək — Nabzo onu oxuyub sadə dildə izah etsin və göstəriciləri zamanla izləsin.',
+
+      ru_eyebrow: 'Qapağın altında', ru_title: 'Appın həqiqi qaydaları.',
+      ru_lead: 'Çox tətbiq balı necə hesabladığını gizlədir. Nabzo-nunkular buradadır — hədləri özün yoxlaya bilərsən.',
+      ru1_h: 'Bərpa: 67 və 34', ru1_p: 'Bal 67-dən yuxarı — yüksək, 34–66 — orta, 34-dən aşağı — aşağı. Bu iki rəqəm bütün appda tək bir yerdə saxlanılır, ona görə heç bir ekran digəri ilə ziddiyyət təşkil edə bilmir.',
+      ru2_h: 'Dərin 13–23%, REM 20–25%', ru2_p: 'Faza payları bu tipik aralıqlara görə qiymətləndirilir. Saat taxmadığın gecədə faza məlumatı yoxdursa, Nabzo faiz uydurmur — sadəcə susur.',
+      ru3_h: 'Seriyanı istirahət qırmır', ru3_p: 'Gün sayılır: 6000 addım <b>və ya</b> 20 dəqiqə məşq — <b>və ya</b> həqiqi istirahət günü (bərpa ≤ 34). Üstəlik 2 «dondurma» var, ona görə bir buraxılan gün hər şeyi sıfırlamır.',
+      ru4_h: 'Fitnes balı = MET-dəqiqə', ru4_p: 'Uydurma indeks yox: fəaliyyətin şiddəti × dəqiqə. Həftəlik 1000 MET-dəqiqə = 100 bal, 500 = normanın aşağı həddi. Reytinqdəki xallar elə həmin MET-dəqiqələrdir.',
+      ru5_h: '«Niyə» dairəvi olmur', ru5_p: 'Balın niyə düşdüyünü izah edəndə Nabzo yalnız <b>sənin etdiyin şeyləri</b> göstərir — gec yatmaq, alkoqol, yük. HRV və nəbzə heç vaxt istinad etmir, çünki bal onsuz da onlardan çıxır.',
+      ru6_h: 'Az məlumat = az iddia', ru6_p: 'Şəxsi normanı qurmaq üçün ən azı 14 gecə lazımdır. O vaxta qədər app nəticə elan etmir — az məlumatdan çıxarılan qəti qərar səhv qərardır.',
+
+      sp_eyebrow: 'Hər hərəkət sayılır', sp_title: 'Bir saat bir saata bərabər deyil.',
+      sp_lead: 'Nabzo məsafəni idman növü üzrə, gücü isə MET-dəqiqə ilə sayır — ona görə bir saat tennis ilə bir saat gəzinti eyni bal vermir. Aşağıda: hər idmanın nəyə başa gəldiyi, nə qazandırdığı və appın onunla nə etdiyi.',
+      sp1_h: 'Qaçış', sp1_p: 'Saatda ~590 MET-dəqiqə qazandırır — bir seansda həftənin yarısından çoxu. Nabzo qaçış məsafəsini piyadadan ayrı saxlayır, temp və ürək zonalarını izləyir, ACWR yük nisbəti kəskin qalxanda xəbərdarlıq edir. Əsas məsələ elə o xəbərdarlıqdır: qaçış zədələrinin çoxu ağır gündən yox, həcmin qəfil artmasından sonra gəlir.',
+      sp2_h: 'Velosiped', sp2_p: 'Saatda ~450 MET-dəqiqə, oynaqlara demək olar sıfır zərbə ilə — məhz buna görə yük artıq yüksək olanda, amma hərəkət etmək istəyəndə appın ilk təklifi budur. Velosiped məsafəsi Apple Health-dən özü düşür, əlavə qeyd lazım deyil.',
+      sp3_h: 'Üzgüçülük', sp3_p: 'Saatda ~420 MET-dəqiqə və dizlərinin heç vaxt hiss etmədiyi yeganə ağır seans. Su altında ürək məlumatı etibarsızdır, ona görə Nabzo üzgüçülüyü nəbzə görə yox, müddət və məsafəyə görə qiymətləndirir — səhv məlumatı doğru kimi göstərmək əvəzinə.',
+      sp4_h: 'Tennis', sp4_p: 'Saatda ~440 MET-dəqiqə — bir oyun həftəlik normanın təxminən yarısıdır, üstəlik heç bir yürüş zolağının vermədiyi istiqamət dəyişmə işi. Dözümlülük kimi sayılır, yəni həftənin kardio tərəfini bağlayır.',
+      sp_note: '* 75 kq bədən üçün kkal: kkal = MET × kq × saat. Öz rəqəmin çəkinlə dəyişir — yuxarıdakı kalkulyatorda yoxla.',
+
+      g_title: 'Raketi götür, aboneliyi qazan.',
+      g_lead: '10 zərbə saxla — buraxılışda <b style="color:var(--gold)">1 ay pulsuz</b>. 25 saxla — <b style="color:var(--accent-ink)">1 il pulsuz</b>. Top sürətlənir, ona görə asan deyil.',
+      g_rally: 'Zərbə:', g_best: 'Rekordun:',
+      g_start_p: 'Raketi barmağınla (və ya siçanla) tərpət. Topu qaytardıqca sürət artır.',
+      g_prize10: 'zərbə → 1 ay pulsuz Nabzo Premium', g_prize25: 'zərbə → 1 il pulsuz (ilk istifadəçi mükafatı)',
+      g_btn_start: 'Başla', g_ph_name: 'Adın (cədvəldə görünəcək)', g_ph_email: 'E-poçt — mükafatı bura göndərəcəyik',
+      g_ph_player: 'Adın (cədvəl üçün)', g_ph_email_opt: 'E-poçt (istəyə bağlı — mükafat üçün)',
+      g_claim: 'Mükafatı götür', g_again: 'Yenidən', g_share: 'Nəticəni paylaş', g_copied: 'Kopyalandı ✓',
+      g_board: 'Ən yaxşı 10', g_board_empty: 'Hələ heç kim oynamayıb — birinci sən ol.',
+      g_disclaimer: 'Mükafat kodları App Store buraxılışından sonra e-poçtla göndərilir. Bir adama bir mükafat.',
+      g_lose_title: 'Topu buraxdın', g_month_title: '1 AY PULSUZ 🎉', g_year_title: '1 İL PULSUZ 🎾',
+      g_lose_msg: '{n} zərbə. Mükafat üçün 10 lazımdır — bir də yoxla.',
+      g_month_msg: '{n} zərbə — bir aylıq Premium sənindir. 25-ə çatsan bir il olur.',
+      g_year_msg: '{n} zərbə — ilk istifadəçi mükafatını qazandın.',
+      g_claimed: 'Hazırdır — buraxılış günü mükafat kodunu e-poçtuna göndərəcəyik.', g_saved: 'Qeydə alındı ✓', g_sending: 'Göndərilir…',
+      g_share_text: 'Nabzo Open-də {n} zərbə saxladım 🎾 Sən bacararsan?',
+
+      d_eyebrow: 'Uyğunluq', d_title: 'Tək iPhone-la başlayır.',
+      d_lead: 'Nabzo məlumatı Apple Health-dən oxuyur. Yəni Apple Health-ə yazan istənilən qolbaq işləyir — saat almağa məcbur deyilsən.',
+      dev: [['⌚️','Apple Watch','tam dəstək'],['📱','yalnız iPhone','addım, məşq, trend'],
+            ['🔋','Amazfit / Zepp','yuxu + HRV'],['🟠','Xiaomi Mi Band','Mi Fitness körpüsü'],
+            ['🔺','Huawei / Honor',''],['🧭','Garmin','Garmin Connect'],
+            ['❤️','Sinə kəməri','nəbz ölçmə'],['⚖️','Ağıllı tərəzi','çəki, yağ faizi']],
+
+      l_eyebrow: 'Buraxılış', l_title: 'Nə vaxt əlində olacaq.',
+      l_lead: 'Vəziyyəti olduğu kimi yazırıq — təsdiqlənməmiş tarixi buraxılış kimi göstərmirik.',
+      l1_when: 'Tamamlandı', l1_h: 'Beta · TestFlight', l1_p: 'Bakıda ilk istifadəçilər. Bərpa, yuxu, süni intellekt məşqçi və Apple Watch tətbiqi işləyir.',
+      l2_when: 'Avqust 2026', l2_h: 'iOS · App Store', l2_p: 'Versiya 1.1 Apple-a göndərilib və hazırda baxış növbəsindədir. Təsdiq gələn kimi bu sətir buraxılış tarixinə dəyişəcək.',
+      l2_tag: 'Baxışdadır',
+      l3_when: '2026-cı ilin IV rübü', l3_h: 'Android · qapalı beta', l3_p: 'İlk Android buraxılışı Google Play-də qapalı test kimi. Yerlər məhduddur — siyahıya yazıl.',
+      l4_when: '2027-ci ilin I rübü', l4_h: 'Android · Google Play', l4_p: 'Hamı üçün açıq buraxılış: eyni məşqçi, eyni ballar, Health Connect ilə cihaz məlumatı.',
+      l_tag_plan: 'Planda',
+
+      c_title: 'Gözləmək istəmirsən?', c_lead: 'Beta elə indi işləyir. TestFlight yerləri bitənə qədər qoşul — buraxılışdan sonra da tester olaraq qalırsan.',
+      c_btn: 'Tester ol — pulsuz',
+      c_disclaimer: 'Nabzo sağlamlıq və vərdiş tətbiqidir. Göstərdiyi ballar və şərhlər təxmini qiymətləndirmədir, tibbi diaqnoz və ya müalicə tövsiyəsi deyil. Narahatlıq varsa həkimə müraciət et.',
+
+      b_bubble: 'Sual ver 👋', b_bubble_sub: 'Nabzo haqqında nə istəsən soruş',
+      b_name: 'Nabzo', b_status: 'onlayn · dərhal cavab verir',
+      b_greet: 'Salam! Mən Nabzo-nun robot məşqçisiyəm 👋 Tətbiq, buraxılış tarixləri, cihaz uyğunluğu — nə istəsən soruş.',
+      b_sugg: ['Nə vaxt çıxır?', 'Hansı cihazlarla işləyir?', 'Qiyməti nədir?', 'Tester necə olum?'],
+      b_ph: 'Sualını yaz…', b_legal: 'Süni intellekt cavab verir — tibbi məsləhət deyil.',
+      b_rate: 'Bir azdan yenidən yaz — çox sual gəldi 🙂',
+      b_err: 'Bağışla, indi cavab verə bilmədim. Sualını aliyeveea@gmail.com ünvanına yaz — mütləq cavablandırılacaq.',
+      b_net: 'İnternet bağlantısında problem var deyəsən. Bir azdan yenidən yoxla.',
+
+      ca_eyebrow: 'Kalori', ca_title: 'Ya qazan, ya yandır.',
+      ca_lead: 'Bir məşq, iki cavab: neçə kalori yandırdığı və həftəlik fitnes balına nə qədər qazandırdığı. Appın səni qiymətləndirdiyi eyni MET cədvəli ilə.',
+      ca_weight: 'Çəkin', ca_activity: 'Fəaliyyət', ca_minutes: 'Müddət', ca_min: 'dəq',
+      ca_burn: 'kalori yandı', ca_earn: 'Həftənə qazandın',
+      ca_pct: 'həftəlik 1000 MET-dəq hədəfinin {p}%-i',
+      ca_note: 'kkal = MET × çəki (kq) × saat. Qida dəyərləri təxmini ortalamadır — rəqəmi əyaniləşdirmək üçündür, pəhriz saymaq üçün deyil.',
+      ca_acts: [['Sürətli yeriş',3.5],['Qaçış',9.8],['Velosiped',7.5],['Üzgüçülük',7.0],['Tennis',7.3],
+                ['Futbol',7.0],['Basketbol',6.5],['Boks',7.8],['HIIT',8.0],['Güc məşqi',5.0],
+                ['Avarçəkmə',7.0],['Pilləkən',8.8],['Ellips trenajor',5.0],['Piyada yürüş',6.0],['Rəqs',5.0],['Yoqa',2.5]],
+      ca_foods: [['🍌','banan',105],['🍞','çörək dilimi',80],['🥤','bir banka kola',139],
+                 ['🍫','şokolad batonu',230],['🌯','dönər',600],['🍯','bir paxlava',120]],
+
+      tr_eyebrow: 'Məşq', tr_title: 'Nəyi, necə məşq etməli.',
+      tr_lead: 'Bunlar appın öz reseptləridir — məşqçi boşluq görəndə sənə verdiyi eyni həftə quruluşu və dozalar.',
+      tr_beg_h: 'Yeni başlayan', tr_beg_1: 'yüngül kardio', tr_beg_2: 'tam bədən güc məşqi', tr_beg_3: 'zehin-bədən seansı', tr_beg_4: 'istirahət / bərpa günü',
+      tr_exp_h: 'Artıq məşq edən', tr_exp_1: 'kardio (80%-i yüngül)', tr_exp_2: 'güc məşqi', tr_exp_3: 'zehin-bədən', tr_exp_4: 'tam istirahət günü',
+      tr_dose_h: 'Əsl əhəmiyyəti olan güc dozası',
+      tr_dose_p: 'Kardio edirsən, güc məşqi etmirsənsə, Nabzo-nun ilk istədiyi budur: <code>həftədə 2× tam bədən, 1–3 dəst × 6–8 təkrar, uğursuzluğa 2–3 təkrar qalmış dayan</code>. Həftədə iki seans zədə riskini təxminən yarıya endirir və yaşla itirilən əzələni qoruyur — artığı istəyə bağlıdır, azı isə boşluqdur.',
+      tr_b1_t: 'İtələmə', tr_b1_h: 'Sinə, çiyin, triseps',
+      tr_b1_p: 'Özündən uzağa itələdiyin hər şey. Masa arxasında işləyənlərin ən zəif həlqəsi və çiyinləri sağlam saxlayan qrup.',
+      tr_b2_t: 'Dartma', tr_b2_h: 'Kürək, biseps, arxa delta',
+      tr_b2_p: 'İtələmənin əks tarazlığı. Buraxsan, duruş pozulur və çiyin ağrısı gəlir — ən azı itələmə qədər məşq et.',
+      tr_b3_t: 'Ayaqlar', tr_b3_h: 'Bud, sağrı, arxa bud',
+      tr_b3_p: 'Bədənindəki ən böyük əzələlər — ən böyük metabolik gəlir. 70 yaşında necə yeriyəcəyini məhz onlar həll edir.',
+      tr_b4_t: 'Mərkəz', tr_b4_h: 'Qarın, yan, bel',
+      tr_b4_p: 'Kub qarın üçün deyil: yuxarı və aşağı bədən arasında qüvvəni ötürür və bel ağrısına qarşı ən ucuz sığortadır.',
+      tr_moves: {b1:['Şınov','Ştanq sinə','Baş üstü press','Dips'],
+                 b2:['Dartma (row)','Dartılma','Lat pulldown','Face pull'],
+                 b3:['Squat','Vıpad (lunge)','Becərmə (deadlift)','Hip thrust'],
+                 b4:['Planka','Dead bug','Farmer carry','Bird dog']},
+
+      nav_shop: 'Mağaza', nav_comps: 'Yarışlar',
+      sh_eyebrow: 'Mağaza', sh_title: 'Nabzo-nu həqiqətən qidalandıran cihazı al.',
+      sh_lead: 'Hər qolbaq Apple Health ilə danışmır, danışmayanlar isə Nabzo-nu yarı kor qoyur. Bunlar danışır — hər kart appın hansı hissəsini açdığını dəqiq yazır.',
+      sh_note: 'Buradan sifariş et, Bakıda çatdırılma zamanı ödə — öncədən ödəniş yoxdur. Göndərmədən əvvəl qiyməti və mövcudluğu telefonla dəqiqləşdiririk. İstehsalçı zəmanəti keçərlidir, qəbzi cihazla birlikdə təhvil veririk.',
+      sh_buy: 'Sifariş et',
+      sh_badge_best: 'Ən dolğun məlumat', sh_badge_value: 'Ən sərfəli', sh_badge_new: 'Yeni',
+      sh_items: {
+        aw:  {n:'Apple Watch SE 3 · GPS 44mm', s:'Ən dərin inteqrasiya — Nabzo-nun öz saat tətbiqi var',
+              u:['Yuxu fazaları + gecə HRV','İlk gündən bərpa balı','Nabzo saat tətbiqi: nəfəs, canlı ballar','Məşqdə ürək zonaları']},
+        aw2: {n:'Apple Watch Series 11 · GPS 42mm', s:'SE-nin etdiyi hər şey, üstəgəl temperatur və EKQ',
+              u:['Bilək temperaturu trendi','Qanda oksigen + EKQ','Yuxu fazaları + HRV','Gecə taxmaq üçün ən uzun batareya']},
+        amz: {n:'Amazfit Active 2', s:'Sərfəli seçim, amma yuxu məlumatı əsldir',
+              u:['Zepp → Apple Health ilə yuxu fazaları','HRV və istirahət nəbzi','7 gün batareya','Saatın beşdə biri qiymətinə']},
+        bip: {n:'Amazfit Bip 5', s:'Bir şam yeməyi qiymətinə yuxu fazaları və HRV',
+              u:['Zepp → Apple Health ilə yuxu fazaları','İstirahət nəbzi + HRV','10 gün batareya','Böyük ekran, daxili GPS']},
+        mi:  {n:'Xiaomi Smart Band 10', s:'Təxmin etməyi dayandırmağın ən ucuz yolu',
+              u:['Addım, məşq, yuxu müddəti','İstirahət nəbzi','2 həftə batareya','Mi Fitness vasitəsilə sinxron']},
+        scl: {n:'Xiaomi Smart Scale S200', s:'Tək çəki pis göstəricidir — bu onu düzəldir',
+              u:['Yağ faizi və BMI → Apple Health','Appın «Bədən və Fitnes» ekranını doldurur','Tək ölçü yox, trend xətti','Bütün ailə, bir tərəzi']},
+        bp:  {n:'Omron M3 Comfort', s:'Heç bir qolbağın oxuya bilmədiyi yeganə göstərici',
+              u:['Klinik təsdiqlənmiş çiyin manjeti','Apple Health-ə düşən ölçmələr Nabzo trendlərində görünür','Nizamsız ürək döyüntüsü aşkarlaması','İki istifadəçi yaddaşı, 60 ölçmə']},
+      },
+
+      co_eyebrow: 'Yarışlar', co_title: 'Sadəcə izləmə — yarış.',
+      co_lead: 'Apple Health-dən qiymətləndirilən çağırışlar — əl ilə qeyd, ekran şəkli, «söz verirəm» sistemi yoxdur. Buradan qoşul, appdan yarış.',
+      co_join: 'Qoşul', co_entrants: 'iştirakçı', co_ended: 'Bitib', co_soon: 'Tezliklə',
+      co_target: 'Hədəf', co_prize: 'Mükafat', co_none: 'Hazırda açıq yarış yoxdur — növbəti planlaşdırılır.',
+      co_metric_steps: 'Addım', co_metric_distance_km: 'Məsafə', co_metric_met_minutes: 'MET-dəqiqə', co_metric_workouts: 'Məşq',
+
+      o_name: 'Adın', o_contact: 'Telefon və ya e-poçt', o_city: 'Şəhər / rayon (istəyə bağlı)',
+      o_note: 'Qeyd (rəng, ölçü, sual…)', o_send: 'Sifarişi göndər', o_close: 'Bağla',
+      o_order_sub: 'Sizə geri zəng edirik, qiyməti və mövcudluğu dəqiqləşdirib çatdırırıq. Öncədən ödəniş yoxdur.',
+      o_join_sub: 'Əlaqə məlumatını qoy — qaydaları və başlama xatırlatmasını göndərəcəyik.',
+      o_ok_h: 'Qeydə alındı', o_ok_p: 'Qoyduğunuz əlaqə vasitəsilə tezliklə sizinlə əlaqə saxlayacağıq.',
+      o_sending: 'Göndərilir…', o_fail: 'Göndərilə bilmədi — aliyeveea@gmail.com ünvanına yaz, həll edək.',
+
+      nav_b2b: 'Biznes üçün',
+      bb_eyebrow: 'İşəgötürənlər və sığortaçılar üçün', bb_title: 'İnsanların həqiqətən açdığı benefit.',
+      bb_lead: 'Korporativ sağlamlıq büdcəsinin çoxu ikinci dəfə açılmayan şeylərə gedir. Nabzo isə məşqçisi olan gündəlik tətbiqdir — və arxasındakı rəqəmlər sizin risk komandanızın onsuz da baxdığı rəqəmlərdir.',
+      bb_p1_h: 'İddiadan əvvəlki siqnallar', bb_p1_p: 'İstirahət nəbzi, HRV, yuxu və tənəffüs tezliyindəki sürüşmə erkən markerlərdir. Nabzo onları istifadəçiyə göstərir — diaqnoz qoymadan, sakitcə — vərdişin hələ dəyişə biləcəyi nöqtədə.',
+      bb_p2_h: 'Özü işləyən yarışlar', bb_p2_p: 'Şirkətdaxili addım və məsafə yarışları birbaşa Apple Health-dən qiymətləndirilir. Cədvəl, ekran şəkli, «söz verirəm» sistemi yoxdur — və insanların baxdığı reytinq var.',
+      bb_p3_h: 'Unudulmayan müayinələr', bb_p3_p: 'İllik qan analizinin pulunu onsuz da ödəyirsiniz, amma nəticəyə ikinci dəfə baxan olmur. İstifadəçi nəticənin şəklini çəkir, Nabzo sadə dildə izah edir və göstəriciləri ildən-ilə izləyir.',
+      bb_p4_h: 'Sağlamlıq məlumatı istifadəçidə qalır', bb_p4_p: 'Ölçmələr telefonda yaşayır. İşəgötürən və ya sığortaçı fərdi sağlamlıq məlumatı almır — yalnız istifadəçinin açıq razılıq verdiyini və ümumi iştirak statistikasını.',
+      bb_form_h: 'Bizimlə danışın', bb_form_p: 'Ölçünü yazın, konkret pilot təklifi ilə qayıdaq.',
+      bb_company: 'Şirkət', bb_name: 'Adınız', bb_contact: 'Telefon və ya e-poçt', bb_note: 'Hansı problemi həll edirsiniz? (istəyə bağlı)',
+      bb_send: 'Pilot təklifi istə', bb_sending: 'Göndərilir…',
+      bb_ok: 'Təşəkkürlər — iki iş günü ərzində qayıdacağıq.',
+      bb_fail: 'Göndərilə bilmədi. Zəhmət olmasa aliyeveea@gmail.com ünvanına yazın.',
+      bb_sizes: ['Komanda ölçüsü', '1–50 nəfər', '50–250 nəfər', '250–1000 nəfər', '1000+ nəfər'],
+      bb_interests: ['Maraq sahəsi', 'Korporativ sağlamlıq', 'Sığorta / üzv benefiti', 'Başqa bir şey'],
+
+      nav_demo: 'Necə işləyir',
+      dm_eyebrow: 'Necə işləyir', dm_title: 'Əsl app, ekran-ekran.',
+      dm_lead: 'Bunlar appın öz ekran görüntüləridir, maket deyil — App Store baxışında olan həmin versiyadan.',
+      dm1_h: 'Bu gün',
+      dm1_c: 'Bərpa halqası və altındakı dörd bal — yük, enerji, yuxu, stres — sən hələ yatarkən keçən gecədən hesablanır.',
+      dm2_h: 'Günün oxunuşu',
+      dm2_c: 'Məşqçi bunu insan dilində yazır: nə etdin, sənə nəyə başa gəldi və bu gün nəyi götürə bilər. Panel yox — hərəkətə keçirilə bilən bir cümlə.',
+      dm3_h: 'Sağlamlıq',
+      dm3_c: 'VO\u2082max-dan fitnes yaşı, onu aşağı salmaq üçün həftəlik məşq planı, 30/90/365 günlük trendlər və şəklini çəkib əlavə etdiyin analiz nəticələri.',
+      dm4_h: 'Müşahidələr',
+      dm4_c: 'Avtomatik işarələnir: bərpa yüksəkdir, HRV normandan yuxarıdır, istirahət nəbzi qalxıb. Hər biri nə demək olduğunu və nə etməli olduğunu yazır.',
+      dm5_h: 'Yaxınlıqda',
+      dm5_c: 'Ətrafındakı idman məkanları, canlı sessiyalar, öz pinində fitnes balın — və arxasındakı reytinq cədvəli.',
+
+      nav_inside: 'Hər şey',
+      in_eyebrow: 'Appın içində', in_title: 'Bu, altı funksiya deyil.',
+      in_lead: 'Tam siyahı, appın öz bölmələrinə görə. Aşağıdaki hər sətir baxışda olan versiyada MÖVCUDDUR — burada planlaşdırılan heç nə yoxdur.',
+      in_g1: 'Bu gün', in_g2: 'Yuxu', in_g3: 'Sağlamlıq və bədən', in_g4: 'Məşqçi', in_g5: 'Sosial və qida', in_g6: 'Bunlar da var',
+      in_note: 'Bir hissəsi qolbaq tələb edir (yuxu fazaları, HRV, gecə göstəriciləri). Qalanı — məşqçi, trendlər, qida, xəritə, fitnes balı, kamera ilə nəbz — tək iPhone-la işləyir.',
+      in_lists: {
+        g1: ['<b>Bərpa, Yük, Enerji, Yuxu, Stres</b> — gecə hesablanan beş bal',
+             'Aktivlik, Stres və Dayanıqlıq alt-balları',
+             '<b>Hazırlıq qərarı</b> — irəli, orta, yüngül, bərpa və ya istirahət',
+             'Həqiqi istirahət günü və iki dondurma ilə seriya',
+             'Öz son tempinə uyğunlaşdırılmış addım hədəfi',
+             '<b>Masa vaxtı</b> — iş yerində neçə saat və nə qədəri hərəkətsiz',
+             'Yolda keçən vaxt, telefon istifadəsi siqnalı',
+             'Süni intellekt xülasəsi: gününün yazılı oxunuşu'],
+        g2: ['<b>Fazalar</b> — dərin, REM, yüngül, oyaq, tipik aralıqlarla',
+             'Şəxsi ehtiyacına görə yuxu borcu',
+             '<b>Yuxu Müntəzəmliyi İndeksi</b> və xronotipin',
+             'Sosial cetlaq — iş günü və həftəsonu fərqi',
+             'Gecə jurnalı: alkoqol, kofein, gec ekran, stres…',
+             'Gün işığı dəqiqələri — daxili saatı quran ən güclü siqnal',
+             'Gecə HRV, istirahət nəbzi, tənəffüs, bilək temperaturu'],
+        g3: ['VO₂max-dan <b>fitnes yaşı</b>',
+             'Hər göstərici üzrə 30 / 90 / 365 günlük trendlər',
+             '<b>Analiz nəticələri</b> — şəklini çək, oxunur və izlənir',
+             'Bədən tərkibi: çəki, yağ faizi, BMI, quru kütlə',
+             'Qan təzyiqi və oksigen',
+             '<b>Fiziki forma yoxlaması</b> — 7 əzələ qrupu üzrə foto qiymətləndirmə',
+             'Saat olmayanda telefon kamerası ilə nəbz'],
+        g4: ['Həftələr boyu səni xatırlayan söhbət',
+             '<b>Səhər zəngi</b> — məşqçi həqiqətən sənə zəng edir',
+             'Səsli check-in — yazmaq yerinə danış',
+             '<b>Nə olarsa</b> — «8 saat yatsam bərpa necə dəyişər?»',
+             'Xəstəlik və həddi aşma erkən siqnalları',
+             'Yük (ACWR) hədləri ilə həftəlik məşq planı',
+             'Boşluq analizi — həftəndə nə çatmır'],
+        g5: ['<b>Qida şəkillə</b> — yeməyin şəklini çək, kalori və makro al',
+             'Günlük enerji balansı: yeyilən və yandırılan',
+             '<b>Yaxınlıqda xəritə</b> — idman məkanları, canlı sessiyalar',
+             'Dostlar, birbaşa mesajlar, qruplar',
+             '<b>Dost seriyası</b> — yalnız ikiniz tərpənəndə irəliləyən seriya',
+             'MET-dəqiqə üzrə fitnes reytinqi'],
+        g6: ['Sikl izləmə — məşqçiyə yalnız icazə versən bildirilir',
+             'Aylıq xülasə və ilin yekunu (Wrapped)',
+             'Mərhələlər və paylaşma kartları',
+             'Nəfəs: box və 4-7-8, saat haptikası ilə',
+             'Əhval check-inləri və zehin bölməsi',
+             '<b>Apple Watch tətbiqi</b> — canlı ballar və gözüyumulu nəfəs',
+             'Avtomatik ev/iş təyini ilə məkan jurnalı',
+             'Tam app ingilis, azərbaycan və rus dilində'],
+      },
+
+      fo_privacy: 'Məxfilik', fo_support: 'Dəstək', fo_contact: 'Əlaqə', fo_rights: '© 2026 Emil Aliyev · Bakı',
+    },
+  };
+
+  /* Default English; an az-* browser starts in Azerbaijani; an explicit choice wins. */
+  const saved = localStorage.getItem('nabzo.lang');
+  let lang = (saved === 'az' || saved === 'en') ? saved
+           : ((navigator.language || '').toLowerCase().startsWith('az') ? 'az' : 'en');
+  const t = (k) => (T[lang] && T[lang][k] !== undefined) ? T[lang][k] : (T.en[k] ?? k);
+  let seatsLeft = null;                       // remembered so a language switch keeps the live count
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    document.title = t('docTitle');
+    const md = document.querySelector('meta[name=description]');
+    if (md) md.setAttribute('content', t('docDesc'));
+
+    document.querySelectorAll('[data-i18n]').forEach(n => { n.textContent = t(n.dataset.i18n); });
+    document.querySelectorAll('[data-i18n-html]').forEach(n => { n.innerHTML = t(n.dataset.i18nHtml); });
+    document.querySelectorAll('[data-i18n-ph]').forEach(n => { n.placeholder = t(n.dataset.i18nPh); });
+
+    // The announcement bar carries a live number, so it is rebuilt rather than
+    // copied: switching language must not roll the seat count back to 50.
+    const bar = document.querySelector('.annbar span');
+    if (bar) bar.innerHTML = seatsLeft === null ? t('ann') : t('annLive').replace('{n}', seatsLeft);
+
+    // Marquee is duplicated on purpose — the loop needs two copies to be seamless.
+    const mq = document.querySelector('#marquee ul');
+    if (mq) {
+      const items = t('dev').map(([i, n, s]) =>
+        `<li><i>${i}</i> ${n}${s ? ` <s>${s}</s>` : ''}</li>`).join('');
+      mq.innerHTML = items + items;
+    }
+
+    const sugg = document.getElementById('botSugg');
+    if (sugg) sugg.innerHTML = t('b_sugg').map(s => `<button>${s}</button>`).join('');
+
+    // Activity picker keeps the CHOSEN INDEX across a language switch — rebuilding
+    // it naively snapped the user back to "walking" mid-calculation.
+    const act = document.getElementById('cAct');
+    if (act) {
+      const keep = act.selectedIndex < 0 ? 0 : act.selectedIndex;
+      act.innerHTML = t('ca_acts').map(([n, m]) => `<option value="${m}">${n}</option>`).join('');
+      act.selectedIndex = keep;
+    }
+    document.querySelectorAll('[data-list]').forEach(n => {
+      n.innerHTML = (t('in_lists')[n.dataset.list] || []).map(li => `<li>${li}</li>`).join('');
+    });
+    document.querySelectorAll('[data-moves]').forEach(n => {
+      n.innerHTML = (t('tr_moves')[n.dataset.moves] || []).map(m => `<span>${m}</span>`).join('');
+    });
+    if (window.__calc) window.__calc();
+    if (window.__renderShopComps) window.__renderShopComps();
+    if (window.__fillB2B) window.__fillB2B();
+
+    document.querySelectorAll('.lang button').forEach(b =>
+      b.classList.toggle('on', b.dataset.lang === lang));
+
+    if (window.__renderBoard) window.__renderBoard();
+  }
+
+  document.querySelector('.lang').addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-lang]');
+    if (!b || b.dataset.lang === lang) return;
+    lang = b.dataset.lang;
+    localStorage.setItem('nabzo.lang', lang);
+    applyLang();
+  });
+
+  /* ── Heart icon (inline SVG so it can be dropped anywhere) ───────────── */
+  const HEART = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 21s-7.5-4.7-9.5-9.2C1 8.5 2.6 5 6.1 4.2 8.4 3.7 10.6 4.7 12 6.6c1.4-1.9 3.6-2.9 5.9-2.4C21.4 5 23 8.5 21.5 11.8 19.5 16.3 12 21 12 21z"
+          fill="#F06468"/></svg>`;
+  document.querySelectorAll('.heart').forEach(h => { h.innerHTML = HEART; h.style.animationDuration = BEAT_MS + 'ms'; });
+
+  /* ── ECG: one anatomically-shaped beat, repeated ─────────────────────── */
+  const ecg = document.getElementById('ecgPath');
+  const dot = document.getElementById('ecgDot');
+  const BEATS = 4, BW = 200, BASE = 55;
+  if (ecg) {
+    let d = 'M0,' + BASE;
+    for (let i = 0; i < BEATS; i++) {
+      const x = i * BW;
+      d += ` L${x + 52},${BASE}`                                  // isoelectric baseline
+        +  ` Q${x + 68},${BASE - 15} ${x + 84},${BASE}`           // P wave — atrial, small and round
+        +  ` L${x + 98},${BASE}`
+        +  ` L${x + 104},${BASE + 8}`                             // Q — brief downward flick
+        +  ` L${x + 112},${BASE - 43}`                            // R — the tall narrow spike
+        +  ` L${x + 120},${BASE + 22}`                            // S — sharp undershoot
+        +  ` L${x + 128},${BASE}`
+        +  ` L${x + 146},${BASE}`
+        +  ` Q${x + 168},${BASE - 22} ${x + 190},${BASE}`         // T wave — broader repolarisation
+        +  ` L${x + BW},${BASE}`;
+    }
+    ecg.setAttribute('d', d);
+
+    /* The scan dot rides the real path, so it sits exactly on the R spike at
+       the moment the heart icons contract. */
+    if (!reduce) {
+      const len = ecg.getTotalLength();
+      const period = BEATS * BEAT_MS;
+      const t0 = performance.now();
+      const ride = (now) => {
+        const p = ((now - t0) % period) / period;
+        const pt = ecg.getPointAtLength(p * len);
+        dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
+        dot.setAttribute('opacity', '1');
+        requestAnimationFrame(ride);
+      };
+      requestAnimationFrame(ride);
+    }
+  }
+
+  /* Nav hairline appears only once you've left the hero. */
+  const hdr = document.getElementById('hdr');
+  const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  /* Reveal-on-scroll. One observer for the whole page. */
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, {threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(n => io.observe(n));
+
+  /* Count-up: runs once, when the number is actually on screen. */
+  const countIO = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const n = e.target, target = parseFloat(n.dataset.count), dec = parseInt(n.dataset.dec || '0', 10);
+      if (reduce) { n.textContent = target.toFixed(dec); countIO.unobserve(n); continue; }
+      const t0 = performance.now(), dur = 1400;
+      const tick = (now) => {
+        const p = Math.min(1, (now - t0) / dur);
+        n.textContent = (target * (1 - Math.pow(1 - p, 3))).toFixed(dec);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      countIO.unobserve(n);
+    }
+  }, {threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(n => countIO.observe(n));
+
+  /* Timeline: the coloured line grows as you read down it. */
+  const tl = document.getElementById('tl'), fill = document.getElementById('tlFill');
+  const drawTL = () => {
+    const r = tl.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, (innerHeight * .78 - r.top) / (r.height || 1)));
+    fill.style.height = (p * (r.height - 12)) + 'px';
+  };
+  addEventListener('scroll', drawTL, {passive:true}); addEventListener('resize', drawTL); drawTL();
+
+  /* Cursor-following glow inside cards. Pointer-only; touch never fires it. */
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('pointermove', (e) => {
+      const b = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - b.left) / b.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - b.top) / b.height * 100) + '%');
+    });
+  });
+
+
+  /* ── Earn & burn ───────────────────────────────────────────────────────
+     kcal = MET × kg × hours — the textbook form, and the same MET table the
+     app scores with, so the two can never tell you different stories. */
+  const cw = document.getElementById('cWeight'), cm = document.getElementById('cMin'),
+        ca = document.getElementById('cAct');
+  if (cw && cm && ca) {
+    const WEEK_TARGET = 1000;                     // MET-minutes, as in FitnessMath
+    const fillTrack = (r) => r.style.setProperty('--p',
+      ((r.value - r.min) / (r.max - r.min) * 100) + '%');
+
+    const calc = () => {
+      const kg = +cw.value, mins = +cm.value, met = +ca.value || 3.5;
+      const kcal = Math.round(met * kg * (mins / 60));
+      const metMin = Math.round(met * mins);
+      document.getElementById('cWeightV').textContent = kg;
+      document.getElementById('cMinV').textContent = mins;
+      document.getElementById('cKcal').textContent = kcal.toLocaleString();
+      document.getElementById('cMet').textContent = metMin;
+      const pct = Math.min(100, Math.round(metMin / WEEK_TARGET * 100));
+      document.getElementById('cBar').style.width = pct + '%';
+      document.getElementById('cPct').textContent = t('ca_pct').replace('{p}', pct);
+
+      // Show the three food equivalents nearest to a whole portion — "0.3 of a
+      // doner" means nothing to anybody.
+      const foods = t('ca_foods')
+        .map(([e, n, k]) => ({e, n, k, q: kcal / k}))
+        .filter(f => f.q >= 0.5)
+        .sort((a, b) => Math.abs(Math.round(a.q) - a.q) - Math.abs(Math.round(b.q) - b.q))
+        .slice(0, 3);
+      document.getElementById('cFoods').innerHTML = foods.length
+        ? foods.map(f => `<span>${f.e} ${f.q < 1.5 ? 1 : Math.round(f.q)}× ${f.n}</span>`).join('')
+        : '';
+      [cw, cm].forEach(fillTrack);
+    };
+    window.__calc = calc;
+    [cw, cm, ca].forEach(n => n.addEventListener('input', calc));
+  }
+
+
+  /* ── Demo player ───────────────────────────────────────────────────────
+     Advances on a timer, but only while the section is on screen: a loop
+     running behind six other sections burns battery for nobody. Clicking a
+     chapter jumps and restarts its timer. */
+  const scrs = [...document.querySelectorAll('.scr')];
+  const chaps = [...document.querySelectorAll('#chapters li')];
+  if (scrs.length) {
+    const HOLD = 5200;
+    let cur = -1, timer = null, visible = false;
+    const show = (i) => {
+      cur = (i + scrs.length) % scrs.length;
+      scrs.forEach((n, k) => n.classList.toggle('on', k === cur));
+      // The chapter's progress bar is a CSS animation keyed to the class, so it
+      // has to be removed and re-added to restart on a repeat visit.
+      chaps.forEach((n, k) => {
+        n.classList.remove('on');
+        if (k === cur) { void n.offsetWidth; n.classList.add('on'); n.style.setProperty('--dur', HOLD + 'ms'); }
+      });
+    };
+    const tick = () => { show(cur + 1); timer = setTimeout(tick, HOLD); };
+    const play = () => { if (timer) return; if (cur < 0) show(0); timer = setTimeout(tick, HOLD); };
+    const pause = () => { clearTimeout(timer); timer = null; };
+
+    new IntersectionObserver((es) => {
+      for (const e of es) { visible = e.isIntersecting; visible ? play() : pause(); }
+    }, {threshold:.25}).observe(document.getElementById('demo'));
+
+    document.getElementById('chapters').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-go]');
+      if (!b) return;
+      pause(); show(+b.dataset.go); if (visible) timer = setTimeout(tick, HOLD);
+    });
+    show(0);
+  }
+
+  /* ── Nabzo Open ───────────────────────────────────────────────────────
+     A rally game, not a match: the opponent never scores, so the only number
+     that exists is how long YOU keep the ball alive. One number is shareable;
+     "3-2 in the second set" is not. */
+  const cv = document.getElementById('cv');
+  if (cv) {
+    const ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    const PRIZE_MONTH = 10, PRIZE_YEAR = 25;
+    const court = document.getElementById('court');
+    const rallyEl = document.getElementById('rally'), bestEl = document.getElementById('best');
+    const ovStart = document.getElementById('ovStart'), ovEnd = document.getElementById('ovEnd');
+    const claimBox = document.getElementById('claimBox');
+
+    let best = parseInt(localStorage.getItem('nabzo.open.best') || '0', 10);
+    bestEl.textContent = best;
+
+    const P = {x: W / 2, w: 142, h: 18, y: H - 46};      // player
+    const O = {x: W / 2, w: 122, h: 16, y: 30};          // opponent
+    const B = {x: W / 2, y: H / 2, vx: 0, vy: 0, r: 12};
+    let rally = 0, running = false, trail = [], raf = 0;
+
+    const reset = () => {
+      rally = 0; rallyEl.textContent = '0'; trail = [];
+      B.x = W / 2; B.y = H / 2;
+      // Served nearly straight down: at ±3.4 the ball drifted ~180px before it
+      // reached the baseline, so the opening point was lost before you could move.
+      B.vx = (Math.random() < .5 ? -1 : 1) * 1.4; B.vy = 5.2;
+      P.x = W / 2; O.x = W / 2;
+    };
+
+    court.addEventListener('pointermove', (e) => {
+      const r = court.getBoundingClientRect();
+      P.x = Math.max(P.w / 2, Math.min(W - P.w / 2, (e.clientX - r.left) / r.width * W));
+    });
+    // Only swallow the gesture during play: on the start overlay this call was
+    // stopping the name field from taking focus at all.
+    court.addEventListener('pointerdown', (e) => {
+      if (running && !e.target.closest('input, button, select, textarea')) e.preventDefault();
+    });
+
+    const draw = () => {
+      ctx.fillStyle = '#0f1a24'; ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(255,255,255,.10)'; ctx.lineWidth = 3;
+      ctx.strokeRect(24, 24, W - 48, H - 48);
+      ctx.beginPath(); ctx.moveTo(24, H / 2); ctx.lineTo(W - 24, H / 2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(W / 2, 24); ctx.lineTo(W / 2, H - 24);
+      ctx.setLineDash([12, 14]); ctx.stroke(); ctx.setLineDash([]);
+
+      trail.forEach((p, i) => {
+        ctx.globalAlpha = (i / trail.length) * .35;
+        ctx.fillStyle = '#EAB34E';
+        ctx.beginPath(); ctx.arc(p.x, p.y, B.r * (i / trail.length), 0, 7); ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+
+      const pad = (p, c) => {
+        ctx.fillStyle = c;
+        ctx.beginPath(); ctx.roundRect(p.x - p.w / 2, p.y - p.h / 2, p.w, p.h, 8); ctx.fill();
+      };
+      pad(O, '#8E8A9F'); pad(P, '#2ECC9A');
+
+      ctx.fillStyle = '#EAB34E';
+      ctx.shadowColor = 'rgba(234,179,78,.8)'; ctx.shadowBlur = 18;
+      ctx.beginPath(); ctx.arc(B.x, B.y, B.r, 0, 7); ctx.fill();
+      ctx.shadowBlur = 0;
+    };
+
+    const stop = () => {
+      running = false; court.classList.remove('playing'); cancelAnimationFrame(raf);
+      if (rally > best) { best = rally; localStorage.setItem('nabzo.open.best', String(best)); bestEl.textContent = best; }
+      const tier = rally >= PRIZE_YEAR ? 'year' : (rally >= PRIZE_MONTH ? 'month' : null);
+      ovEnd.dataset.tier = tier || '';
+      ovEnd.dataset.score = String(rally);
+      document.getElementById('endTitle').textContent =
+        t(tier === 'year' ? 'g_year_title' : tier === 'month' ? 'g_month_title' : 'g_lose_title');
+      document.getElementById('endText').textContent =
+        t(tier === 'year' ? 'g_year_msg' : tier === 'month' ? 'g_month_msg' : 'g_lose_msg').replace('{n}', rally);
+      postScore(rally, tier);
+      // The prize still needs an e-mail; if they already gave one at the start,
+      // there is nothing left to ask.
+      claimBox.classList.toggle('hide', !tier || !!player.email);
+      if (tier && player.email) {
+        document.getElementById('endText').textContent = t('g_claimed');
+      }
+      ovEnd.classList.remove('hide');
+    };
+
+    const step = () => {
+      B.x += B.vx; B.y += B.vy;
+      trail.push({x: B.x, y: B.y}); if (trail.length > 9) trail.shift();
+
+      if (B.x < 24 + B.r) { B.x = 24 + B.r; B.vx = Math.abs(B.vx); }
+      if (B.x > W - 24 - B.r) { B.x = W - 24 - B.r; B.vx = -Math.abs(B.vx); }
+
+      // Opponent: tracks the ball, but capped — it has to be beatable at rally 1
+      // and still returning at rally 30, so the cap grows with the rally.
+      const oSpeed = 4.2 + Math.min(3.6, rally * .11);
+      O.x += Math.max(-oSpeed, Math.min(oSpeed, (B.x - O.x) * .1));
+      O.x = Math.max(O.w / 2, Math.min(W - O.w / 2, O.x));
+
+      const hit = (p, downward) => {
+        const withinY = downward ? (B.y + B.r >= p.y - p.h / 2 && B.y < p.y)
+                                 : (B.y - B.r <= p.y + p.h / 2 && B.y > p.y);
+        return withinY && Math.abs(B.x - p.x) <= p.w / 2 + B.r;
+      };
+
+      if (B.vy > 0 && hit(P, true)) {
+        const off = (B.x - P.x) / (P.w / 2);            // where on the racket it landed
+        // 4.5% per hit compounded to an unreturnable ball around rally 6 — nobody
+        // reached the 10-rally prize. 2.6% keeps it climbing without the cliff.
+        const speed = Math.min(12.6, Math.hypot(B.vx, B.vy) * 1.026);
+        const ang = off * 0.9;
+        B.vx = Math.sin(ang) * speed; B.vy = -Math.abs(Math.cos(ang) * speed);
+        B.y = P.y - P.h / 2 - B.r;
+        rally++; rallyEl.textContent = rally;
+      } else if (B.vy < 0 && hit(O, false)) {
+        const off = (B.x - O.x) / (O.w / 2);
+        const speed = Math.hypot(B.vx, B.vy);
+        const ang = off * 0.85;
+        B.vx = Math.sin(ang) * speed; B.vy = Math.abs(Math.cos(ang) * speed);
+        B.y = O.y + O.h / 2 + B.r;
+      }
+
+      // The opponent missing is not a point for anyone — the ball comes off the
+      // back wall and the rally continues. The only way out is YOUR miss.
+      if (B.y < 24 + B.r) { B.y = 24 + B.r; B.vy = Math.abs(B.vy); }
+      if (B.y > H + 40) { stop(); return; }
+
+      draw();
+      if (running) raf = requestAnimationFrame(step);
+    };
+
+    /* Who is playing — asked once, remembered, reused for every later game. */
+    const PKEY = 'nabzo.open.player';
+    let player = {};
+    try { player = JSON.parse(localStorage.getItem(PKEY) || '{}'); } catch { player = {}; }
+    const pName = document.getElementById('pName'), pEmail = document.getElementById('pEmail');
+    if (pName) pName.value = player.name || '';
+    if (pEmail) pEmail.value = player.email || '';
+
+    const savePlayer = () => {
+      const n = (pName?.value || '').trim().slice(0, 24);
+      const e = (pEmail?.value || '').trim();
+      if (!n) { pName?.focus(); return false; }
+      player = {name: n, email: /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e) ? e : ''};
+      localStorage.setItem(PKEY, JSON.stringify(player));
+      return true;
+    };
+
+    /* Fire-and-forget: a failed post must never block the next game. */
+    const postScore = (score, tier) => {
+      if (!player.name) return;
+      fetch(SUPA + '/rest/v1/hd_game_scores', {
+        method: 'POST',
+        headers: {'apikey': ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'},
+        body: JSON.stringify({name: player.name, score, tier, email: player.email || null})
+      }).then(() => loadBoard()).catch(() => {});
+    };
+
+    const start = () => {
+      if (!savePlayer()) return;
+      reset(); running = true;
+      court.classList.add('playing');
+      ovStart.classList.add('hide'); ovEnd.classList.add('hide');
+      raf = requestAnimationFrame(step);
+    };
+    document.getElementById('btnStart').addEventListener('click', start);
+    document.getElementById('btnAgain').addEventListener('click', start);
+    draw();
+
+    document.getElementById('btnShare').addEventListener('click', async () => {
+      const s = ovEnd.dataset.score || rally;
+      const text = t('g_share_text').replace('{n}', s);
+      const url = 'https://nabzo.store/#game';
+      if (navigator.share) { try { await navigator.share({title: 'Nabzo Open', text, url}); return; } catch {} }
+      try { await navigator.clipboard.writeText(`${text} ${url}`);
+            document.getElementById('btnShare').textContent = t('g_copied'); } catch {}
+    });
+
+    /* Claim: the score goes on the public board, the e-mail goes on the reward
+       list. Two different tables because they have two different audiences. */
+    document.getElementById('btnClaim').addEventListener('click', async () => {
+      const name = (document.getElementById('gName').value || '').trim().slice(0, 24) || player.name;
+      const email = (document.getElementById('gEmail').value || '').trim();
+      const btn = document.getElementById('btnClaim');
+      if (!name) { document.getElementById('gName').focus(); return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { document.getElementById('gEmail').focus(); return; }
+      btn.disabled = true; btn.textContent = t('g_sending');
+      const score = parseInt(ovEnd.dataset.score || '0', 10);
+      const tier = ovEnd.dataset.tier || null;
+      const H2 = {'apikey': ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'};
+      try {
+        await fetch(SUPA + '/rest/v1/hd_game_scores', {method: 'POST', headers: H2,
+          body: JSON.stringify({name, score, tier, email})});
+        await fetch(SUPA + '/rest/v1/hd_testers', {method: 'POST', headers: H2,
+          body: JSON.stringify({name, email, source: 'nabzo-open',
+                                note: `Nabzo Open: ${score} rallies · prize: ${tier || 'none'}`})});
+      } catch {}
+      btn.textContent = t('g_saved');
+      document.getElementById('endText').textContent = t('g_claimed');
+      loadBoard();
+    });
+
+    const escapeHtml = (s) => String(s).replace(/[&<>"']/g, c =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    let boardRows = [];
+    const renderBoard = () => {
+      const ol = document.getElementById('boardList');
+      if (!ol) return;
+      if (!boardRows.length) { ol.innerHTML = `<li class="empty">${t('g_board_empty')}</li>`; return; }
+      ol.innerHTML = boardRows.map((r, i) =>
+        `<li class="${i === 0 ? 'gold' : ''}"><b>${i + 1}</b>${escapeHtml(r.name)}` +
+        `${r.tier === 'year' ? ' 🏆' : (r.tier === 'month' ? ' 🎉' : '')}` +
+        `<span class="sc">${r.score}</span></li>`).join('');
+    };
+    window.__renderBoard = renderBoard;      // so a language switch re-renders the empty state
+    const loadBoard = () => fetch(SUPA + '/rest/v1/rpc/nabzo_game_top', {
+        method: 'POST', headers: {'apikey': ANON, 'Content-Type': 'application/json'},
+        body: JSON.stringify({p_limit: 10})
+      }).then(r => r.ok ? r.json() : []).then(rows => {
+        boardRows = Array.isArray(rows) ? rows : []; renderBoard();
+      }).catch(() => renderBoard());
+    loadBoard();
+  }
+
+
+  /* ── Shop ──────────────────────────────────────────────────────────────
+     Prices, emoji and badges live HERE, in one language-neutral list; only the
+     words come from the dictionary. Edit a price once and both languages change.
+     ⚠️ These are indicative Baku market prices — replace them with your real
+     landed cost + margin before this goes anywhere near a customer. */
+  /* `base` is the supplier price (Birmarket, checked 16 Aug 2026). The sale price
+     is derived, never typed: when a supplier price moves you change ONE number and
+     the margin survives — a hand-typed sale price silently keeps the old margin. */
+
+
+  /* Line icons, one consistent stroke language. Emoji were rendering as Apple
+     glyphs on a Mac, Segoe on Windows and nothing at all on some Androids —
+     these look identical everywhere and inherit the accent colour. */
+  const ICON = (d, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">${d}${extra}</svg>`;
+  const ICONS = {
+    coach:  ICON('<path d="M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1 0 8v1a4 4 0 0 1-8 0v-1a4 4 0 0 1 0-8V7a4 4 0 0 1 4-4Z"/><path d="M12 7v10"/>'),
+    sleep:  ICON('<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>'),
+    bolt:   ICON('<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>'),
+    trend:  ICON('<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>'),
+    map:    ICON('<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>'),
+    lab:    ICON('<path d="M9 3v10.5a4 4 0 1 0 6 0V3"/><path d="M7 3h10"/><path d="M9.5 12h5"/>'),
+    flame:  ICON('<path d="M12 2c1 3 4 4.5 4 8a4 4 0 0 1-8 0c0-1.5.5-2.5 1-3"/><path d="M12 22a6 6 0 0 0 6-6c0-2-1-3.5-2.5-5"/><path d="M12 22a6 6 0 0 1-6-6c0-2 1-3.5 2.5-5"/>'),
+    target: ICON('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'),
+    search: ICON('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'),
+    down:   ICON('<path d="m22 17-8.5-8.5-5 5L2 7"/><path d="M16 17h6v-6"/>'),
+    run:    ICON('<circle cx="15" cy="4" r="2"/><path d="m9 21 2-5-3-3 1.5-5L13 9l4 1"/><path d="m6 12 2-2"/><path d="m14 21 3-4"/>'),
+    lock:   ICON('<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>'),
+  };
+
+  /* ── Device art ────────────────────────────────────────────────────────
+     Drawn, not photographed. Two reasons: the marketplace's product photos
+     belong to the marketplace, and a grid of mismatched white-background stock
+     renders looks wrong on a dark page. Swap any of these for a real photo the
+     day you have the device in your hand — your own photo of real stock
+     converts better than a press render anyway. */
+  const ART = {
+    aw: `<svg viewBox="0 0 120 150" width="86" height="108" aria-hidden="true">
+      <rect x="36" y="4" width="48" height="26" rx="11" fill="#2b3440"/>
+      <rect x="36" y="120" width="48" height="26" rx="11" fill="#2b3440"/>
+      <rect x="30" y="26" width="60" height="98" rx="24" fill="#0e1319" stroke="#4a5763" stroke-width="2.5"/>
+      <rect x="37" y="33" width="46" height="84" rx="19" fill="#05070a"/>
+      <rect x="88" y="56" width="6" height="18" rx="3" fill="#7d8894"/>
+      <circle cx="91" cy="47" r="4.6" fill="#9AA8B4"/>
+      <text x="60" y="66" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="17" font-weight="800" fill="#2ECC9A">84</text>
+      <text x="60" y="80" text-anchor="middle" font-family="system-ui" font-size="7" fill="#8E8A9F">RECOVERY</text>
+      <path d="M44 94h8l3-7 4 13 3-6h14" stroke="#F06468" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+    aw2: `<svg viewBox="0 0 120 150" width="86" height="108" aria-hidden="true">
+      <rect x="34" y="4" width="52" height="26" rx="11" fill="#1d2530"/>
+      <rect x="34" y="120" width="52" height="26" rx="11" fill="#1d2530"/>
+      <rect x="27" y="24" width="66" height="102" rx="26" fill="#0e1319" stroke="#c9a227" stroke-width="2.5"/>
+      <rect x="34" y="31" width="52" height="88" rx="21" fill="#05070a"/>
+      <rect x="91" y="56" width="6" height="19" rx="3" fill="#c9a227"/>
+      <circle cx="94" cy="46" r="4.8" fill="#e0c15a"/>
+      <circle cx="60" cy="70" r="21" fill="none" stroke="#1b2a2a" stroke-width="6"/>
+      <circle cx="60" cy="70" r="21" fill="none" stroke="#2ECC9A" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="132" stroke-dashoffset="34" transform="rotate(-90 60 70)"/>
+      <text x="60" y="75" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="15" font-weight="800" fill="#fff">72</text>
+    </svg>`,
+    amz: `<svg viewBox="0 0 120 150" width="86" height="108" aria-hidden="true">
+      <rect x="40" y="6" width="40" height="30" rx="9" fill="#2b3440"/>
+      <rect x="40" y="116" width="40" height="30" rx="9" fill="#2b3440"/>
+      <circle cx="60" cy="76" r="40" fill="#0e1319" stroke="#59656f" stroke-width="3"/>
+      <circle cx="60" cy="76" r="32" fill="#05070a"/>
+      <rect x="99" y="68" width="6" height="16" rx="3" fill="#7d8894"/>
+      <circle cx="60" cy="76" r="24" fill="none" stroke="#16232b" stroke-width="5"/>
+      <circle cx="60" cy="76" r="24" fill="none" stroke="#06B6D4" stroke-width="5" stroke-linecap="round"
+              stroke-dasharray="151" stroke-dashoffset="52" transform="rotate(-90 60 76)"/>
+      <text x="60" y="73" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="15" font-weight="800" fill="#fff">7.4</text>
+      <text x="60" y="86" text-anchor="middle" font-family="system-ui" font-size="7" fill="#8E8A9F">SLEEP</text>
+    </svg>`,
+    bip: `<svg viewBox="0 0 120 150" width="86" height="108" aria-hidden="true">
+      <rect x="42" y="6" width="36" height="28" rx="8" fill="#2b3440"/>
+      <rect x="42" y="118" width="36" height="28" rx="8" fill="#2b3440"/>
+      <rect x="28" y="30" width="64" height="92" rx="18" fill="#0e1319" stroke="#59656f" stroke-width="2.5"/>
+      <rect x="35" y="37" width="50" height="78" rx="13" fill="#05070a"/>
+      <rect x="90" y="66" width="5" height="16" rx="2.5" fill="#7d8894"/>
+      <text x="60" y="64" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="18" font-weight="800" fill="#fff">9:41</text>
+      <path d="M42 82h7l3-8 4 15 3-7h19" stroke="#F06468" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="42" y="92" width="36" height="4" rx="2" fill="#1d2b33"/>
+      <rect x="42" y="92" width="24" height="4" rx="2" fill="#2ECC9A"/>
+      <rect x="42" y="101" width="36" height="4" rx="2" fill="#1d2b33"/>
+      <rect x="42" y="101" width="14" height="4" rx="2" fill="#06B6D4"/>
+    </svg>`,
+    mi: `<svg viewBox="0 0 120 150" width="86" height="108" aria-hidden="true">
+      <path d="M46 8h28v42H46z" fill="#2b3440"/>
+      <path d="M46 102h28v40H46z" fill="#2b3440"/>
+      <rect x="38" y="34" width="44" height="84" rx="22" fill="#0e1319" stroke="#59656f" stroke-width="2.5"/>
+      <rect x="44" y="40" width="32" height="72" rx="16" fill="#05070a"/>
+      <circle cx="60" cy="62" r="11" fill="none" stroke="#1d2b33" stroke-width="4"/>
+      <circle cx="60" cy="62" r="11" fill="none" stroke="#EAB34E" stroke-width="4" stroke-linecap="round"
+              stroke-dasharray="69" stroke-dashoffset="22" transform="rotate(-90 60 62)"/>
+      <text x="60" y="88" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="11" font-weight="800" fill="#fff">8 240</text>
+      <text x="60" y="99" text-anchor="middle" font-family="system-ui" font-size="6.5" fill="#8E8A9F">STEPS</text>
+    </svg>`,
+    scl: `<svg viewBox="0 0 150 120" width="112" height="90" aria-hidden="true">
+      <rect x="18" y="20" width="114" height="82" rx="14" fill="#0e1319" stroke="#59656f" stroke-width="2.5"/>
+      <rect x="26" y="28" width="98" height="66" rx="10" fill="#111a22"/>
+      <rect x="52" y="44" width="46" height="24" rx="6" fill="#05070a"/>
+      <text x="75" y="61" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="15" font-weight="800" fill="#2ECC9A">78.4</text>
+      <text x="75" y="82" text-anchor="middle" font-family="system-ui" font-size="7.5" fill="#8E8A9F">BODY FAT 18.2%</text>
+      <circle cx="36" cy="38" r="3" fill="#2b3440"/><circle cx="114" cy="38" r="3" fill="#2b3440"/>
+      <circle cx="36" cy="84" r="3" fill="#2b3440"/><circle cx="114" cy="84" r="3" fill="#2b3440"/>
+    </svg>`,
+    bp: `<svg viewBox="0 0 150 120" width="112" height="90" aria-hidden="true">
+      <path d="M20 40c0-8 6-14 14-14h34v52H34c-8 0-14-6-14-14z" fill="#1b232c" stroke="#59656f" stroke-width="2.5"/>
+      <path d="M24 44h40" stroke="#39434e" stroke-width="3" stroke-linecap="round"/>
+      <path d="M24 58h40" stroke="#39434e" stroke-width="3" stroke-linecap="round"/>
+      <path d="M68 46c14 0 14 12 0 12" stroke="#7d8894" stroke-width="3" fill="none"/>
+      <rect x="78" y="24" width="54" height="72" rx="10" fill="#0e1319" stroke="#59656f" stroke-width="2.5"/>
+      <rect x="85" y="32" width="40" height="34" rx="6" fill="#05070a"/>
+      <text x="105" y="48" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="15" font-weight="800" fill="#fff">118</text>
+      <text x="105" y="61" text-anchor="middle" font-family="ui-rounded,system-ui" font-size="11" font-weight="700" fill="#8E8A9F">76</text>
+      <circle cx="93" cy="80" r="6" fill="#2ECC9A"/>
+      <rect x="105" y="75" width="20" height="10" rx="5" fill="#2b3440"/>
+    </svg>`,
+  };
+
+  /* ── Unit economics, in one place ──────────────────────────────────────
+     `base` is Birmarket's list price (checked 16 Aug 2026). Emil buys there with
+     a 10% discount, so his cost is base × 0.90, and the shop sells at base × MARKUP.
+       margin per unit = base × (MARKUP − 0.90)
+     Change MARKUP alone to reprice the whole shop. Nothing below re-states a
+     price, so a supplier change can never leave a stale number on a card.
+     ⚠️ The 10% assumes the discount holds per order and does not expire — if it
+     is a one-off promo, the margin goes with it. */
+  const SUPPLIER_DISCOUNT = 0.10;
+  const MARKUP = 1.05;
+  const sale = (base) => Math.round(base * MARKUP);
+  const cost = (base) => base * (1 - SUPPLIER_DISCOUNT);
+  const margin = (base) => sale(base) - cost(base);
+
+  /* `base` = Birmarket list price, `img` = the product shot. If the image host
+     ever blocks hotlinking, `onerror` swaps in the drawn art instead of leaving
+     a broken frame. Replace `img` with your own photo the day you hold stock —
+     a real photo of real stock outsells a press render. */
+  const SHOP = [
+    {id:'aw',  base:629,    badge:'best',  img:'img/aw.webp'},
+    {id:'aw2', base:848.98, badge:null,    img:'img/aw2.webp'},
+    {id:'amz', base:299,    badge:'value', img:'img/amz.webp'},
+    {id:'bip', base:149,    badge:null,    img:'img/bip.webp'},
+    {id:'mi',  base:94.3,   badge:null,    img:'img/mi.webp'},
+    {id:'scl', base:32.99,  badge:'new',   img:'img/scl.webp'},
+    {id:'bp',  base:230,    badge:null,    img:'img/bp.webp'},
+  ];
+
+  const money = (n) => (Math.round(n * 100) / 100).toFixed(2).replace(/\.00$/, '');
+
+  const renderShop = () => {
+    const grid = document.getElementById('shopGrid');
+    if (!grid) return;
+    const items = t('sh_items');
+    grid.innerHTML = SHOP.map(p => {
+      const it = items[p.id]; if (!it) return '';
+      const badge = p.badge
+        ? `<span class="badge ${p.badge === 'value' ? 'gold' : ''}">${t('sh_badge_' + p.badge)}</span>` : '';
+      const art = (ART[p.id] || '').replace(/"/g, '&quot;');
+      return `<article class="item reveal">
+        <div class="top">${badge}
+          <img class="shot" src="${p.img}" alt="${it.n}"
+               onerror="this.outerHTML=this.dataset.fallback" data-fallback="${art}">
+        </div>
+        <div class="in">
+          <h3>${it.n}</h3>
+          <p class="sub">${it.s}</p>
+          <ul class="unlocks">${it.u.map(u => `<li>${u}</li>`).join('')}</ul>
+          <div class="buy">
+            <span class="price">${sale(p.base)} ₼</span>
+            <button data-order="${it.n.replace(/"/g, '&quot;')}">${t('sh_buy')}</button>
+          </div>
+        </div>
+      </article>`;
+    }).join('');
+    grid.querySelectorAll('.reveal').forEach(n => io.observe(n));
+  };
+
+  /* ── Competitions — rows from the database, so a new challenge ships
+        without touching this file. ─────────────────────────────────────── */
+  let comps = [], compCounts = {};
+  const fmtDate = (iso) => {
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString(lang === 'az' ? 'az-AZ' : 'en-GB', {day:'numeric', month:'short'});
+  };
+  const renderComps = () => {
+    const list = document.getElementById('compList');
+    if (!list) return;
+    if (!comps.length) { list.innerHTML = `<p class="muted">${t('co_none')}</p>`; return; }
+    const today = new Date().toISOString().slice(0, 10);
+    list.innerHTML = comps.map(c => {
+      const past = c.ends_at < today;
+      const soon = c.starts_at > today;
+      const title = lang === 'az' ? c.title_az : c.title_en;
+      const blurb = lang === 'az' ? c.blurb_az : c.blurb_en;
+      const unit  = (lang === 'az' ? c.unit_az : c.unit_en) || '';
+      const prize = lang === 'az' ? c.prize_az : c.prize_en;
+      const n = compCounts[c.id] || 0;
+      return `<article class="comp reveal ${past ? 'past' : ''}">
+        <div>
+          <div class="when">${fmtDate(c.starts_at)} — ${fmtDate(c.ends_at)}${soon ? ' · ' + t('co_soon') : ''}</div>
+          <h3>${title}</h3>
+          <p>${blurb}</p>
+          <div class="facts">
+            <span>${t('co_metric_' + c.metric) || c.metric}</span>
+            ${c.target ? `<span>${t('co_target')}: ${(+c.target).toLocaleString()} ${unit}</span>` : ''}
+            ${prize ? `<span class="prize">🏆 ${prize}</span>` : ''}
+          </div>
+        </div>
+        <div class="join">
+          <b>${n}</b><small>${t('co_entrants')}</small>
+          <button data-join="${c.id}" data-title="${title.replace(/"/g, '&quot;')}" ${past ? 'disabled' : ''}>
+            ${past ? t('co_ended') : t('co_join')}
+          </button>
+        </div>
+      </article>`;
+    }).join('');
+    list.querySelectorAll('.reveal').forEach(n => io.observe(n));
+  };
+  window.__renderShopComps = () => { renderShop(); renderComps(); };
+
+  Promise.all([
+    fetch(SUPA + '/rest/v1/hd_competitions?select=*&order=starts_at.asc',
+          {headers:{'apikey': ANON}}).then(r => r.ok ? r.json() : []).catch(() => []),
+    fetch(SUPA + '/rest/v1/rpc/nabzo_competition_counts',
+          {method:'POST', headers:{'apikey': ANON, 'Content-Type':'application/json'}, body:'{}'})
+      .then(r => r.ok ? r.json() : []).catch(() => []),
+  ]).then(([rows, counts]) => {
+    comps = Array.isArray(rows) ? rows : [];
+    (Array.isArray(counts) ? counts : []).forEach(c => { compCounts[c.competition_id] = c.entrants; });
+    renderComps();
+  });
+
+  /* ── One dialog serves both flows: ordering a device and joining a
+        challenge. Same fields, different destination table. ─────────────── */
+  const sheet = document.getElementById('sheet');
+  let sheetMode = null, sheetRef = null;
+  const openSheet = (mode, ref, title) => {
+    sheetMode = mode; sheetRef = ref;
+    document.getElementById('sheetTitle').textContent = title;
+    document.getElementById('sheetSub').textContent = t(mode === 'order' ? 'o_order_sub' : 'o_join_sub');
+    document.getElementById('oQty').parentElement.style.gridTemplateColumns = mode === 'order' ? '1fr 90px' : '1fr';
+    document.getElementById('oQty').style.display = mode === 'order' ? '' : 'none';
+    document.getElementById('oCity').style.display = mode === 'order' ? '' : 'none';
+    document.getElementById('sheetBody').classList.remove('hide');
+    document.getElementById('sheetOk').classList.add('hide');
+    sheet.classList.add('open');
+  };
+  const closeSheet = () => sheet.classList.remove('open');
+  document.getElementById('sheetClose').addEventListener('click', closeSheet);
+  sheet.addEventListener('click', (e) => { if (e.target === sheet) closeSheet(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && sheet.classList.contains('open')) closeSheet(); });
+
+  document.addEventListener('click', (e) => {
+    const o = e.target.closest('[data-order]');
+    if (o) { openSheet('order', o.dataset.order, o.dataset.order); return; }
+    const j = e.target.closest('[data-join]');
+    if (j && !j.disabled) openSheet('join', j.dataset.join, j.dataset.title);
+  });
+
+  document.getElementById('sheetForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('oName').value.trim();
+    const contact = document.getElementById('oContact').value.trim();
+    if (!name || contact.length < 4) return;
+    const btn = document.getElementById('oSend');
+    btn.disabled = true; btn.textContent = t('o_sending');
+    const H2 = {'apikey': ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'};
+    let ok = false;
+    try {
+      if (sheetMode === 'order') {
+        const r = await fetch(SUPA + '/rest/v1/hd_device_orders', {method:'POST', headers:H2,
+          body: JSON.stringify({device: sheetRef, qty: Math.max(1, Math.min(10, +document.getElementById('oQty').value || 1)),
+            name, contact, city: document.getElementById('oCity').value.trim() || null,
+            note: document.getElementById('oNote').value.trim() || null})});
+        ok = r.ok;
+      } else {
+        const r = await fetch(SUPA + '/rest/v1/hd_competition_signups', {method:'POST', headers:H2,
+          body: JSON.stringify({competition_id: +sheetRef, name, contact})});
+        ok = r.ok;
+        if (ok) { compCounts[sheetRef] = (compCounts[sheetRef] || 0) + 1; renderComps(); }
+      }
+    } catch { ok = false; }
+    btn.disabled = false; btn.textContent = t('o_send');
+    if (ok) {
+      document.getElementById('sheetBody').classList.add('hide');
+      document.getElementById('sheetOk').classList.remove('hide');
+      document.getElementById('sheetForm').reset();
+    } else {
+      document.getElementById('sheetSub').textContent = t('o_fail');
+    }
+  });
+
+
+  /* ── B2B enquiry ───────────────────────────────────────────────────────
+     The two <select>s are filled from the dictionary, so a language switch
+     rebuilds them; the chosen INDEX is preserved, and the value written to the
+     database is the English label — a lead list half in Azerbaijani cannot be
+     filtered. */
+  const fillSelect = (el, key) => {
+    if (!el) return;
+    const keep = el.selectedIndex < 0 ? 0 : el.selectedIndex;
+    el.innerHTML = t(key).map((o, i) =>
+      `<option value="${i === 0 ? '' : T.en[key][i]}"${i === 0 ? ' disabled' : ''}>${o}</option>`).join('');
+    el.selectedIndex = keep;
+  };
+  window.__fillB2B = () => {
+    fillSelect(document.getElementById('bSize'), 'bb_sizes');
+    fillSelect(document.getElementById('bInterest'), 'bb_interests');
+  };
+
+  const b2bForm = document.getElementById('b2bForm');
+  if (b2bForm) b2bForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const company = document.getElementById('bCompany').value.trim();
+    const name = document.getElementById('bName').value.trim();
+    const contact = document.getElementById('bContact').value.trim();
+    if (!company || !name || contact.length < 4) return;
+    const btn = document.getElementById('bSend'), ok = document.getElementById('b2bOk');
+    btn.disabled = true; btn.textContent = t('bb_sending');
+    let sent = false;
+    try {
+      const r = await fetch(SUPA + '/rest/v1/hd_b2b_leads', {
+        method: 'POST',
+        headers: {'apikey': ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'},
+        body: JSON.stringify({company, name, contact,
+          headcount: document.getElementById('bSize').value || null,
+          interest: document.getElementById('bInterest').value || null,
+          note: document.getElementById('bNote').value.trim() || null})
+      });
+      sent = r.ok;
+    } catch { sent = false; }
+    btn.disabled = false; btn.textContent = t('bb_send');
+    ok.textContent = sent ? t('bb_ok') : t('bb_fail');
+    ok.classList.add('show');
+    if (sent) b2bForm.reset();
+  });
+
+  /* ── Robot coach chat ────────────────────────────────────────────────── */
+  const panel = document.getElementById('botPanel');
+  const msgs = document.getElementById('botMsgs');
+  const bubble = document.getElementById('botBubble');
+  const input = document.getElementById('botInput');
+  const sendBtn = document.getElementById('botSend');
+  const history = [];
+  let greeted = false;
+
+  const add = (text, who) => {
+    const d = document.createElement('div');
+    d.className = 'msg ' + who + ' in';
+    d.textContent = text;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+  };
+
+  const openBot = () => {
+    panel.classList.add('open');
+    document.getElementById('botLaunch').style.display = 'none';
+    if (!greeted) { greeted = true; add(t('b_greet'), 'bot'); }
+    setTimeout(() => input.focus(), 250);
+  };
+  const closeBot = () => {
+    panel.classList.remove('open');
+    document.getElementById('botLaunch').style.display = 'flex';
+  };
+  document.getElementById('botBtn').addEventListener('click', openBot);
+  document.getElementById('botClose').addEventListener('click', closeBot);
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && panel.classList.contains('open')) closeBot(); });
+
+  /* The bubble waits a few seconds — showing it instantly reads as an ad. */
+  setTimeout(() => bubble.classList.add('show'), 4200);
+  setTimeout(() => bubble.classList.remove('show'), 16000);
+
+  const ask = async (text) => {
+    const q = text.trim();
+    if (!q) return;
+    add(q, 'me');
+    history.push({role: 'user', content: q});
+    input.value = ''; sendBtn.disabled = true;
+
+    const typing = document.createElement('div');
+    typing.className = 'msg bot typing';
+    typing.innerHTML = '<i></i><i></i><i></i>';
+    msgs.appendChild(typing); msgs.scrollTop = msgs.scrollHeight;
+
+    let reply = '';
+    try {
+      const r = await fetch(SUPA + '/functions/v1/sitechat', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({message: q, history: history.slice(-6)})
+      });
+      const j = await r.json().catch(() => ({}));
+      reply = j.reply || (r.status === 429 ? t('b_rate') : t('b_err'));
+    } catch { reply = t('b_net'); }
+    typing.remove();
+    add(reply, 'bot');
+    history.push({role: 'assistant', content: reply});
+    sendBtn.disabled = false;
+    input.focus();
+  };
+
+  document.getElementById('botForm').addEventListener('submit', (e) => { e.preventDefault(); ask(input.value); });
+  document.getElementById('botSugg').addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') ask(e.target.textContent);
+  });
+
+  /* ── Tester signup ───────────────────────────────────────────────────── */
+  const form = document.getElementById('tfForm');
+  if (form) form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    if (fd.get('website')) return;                       // honeypot
+    const email = (fd.get('email') || '').toString().trim();
+    const btn = document.getElementById('tfSubmit');
+    const res = document.getElementById('tfResult');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { form.querySelector('[name=email]').focus(); return; }
+    btn.disabled = true; btn.textContent = t('t_sending');
+    let ok = true;
+    try {
+      const r = await fetch(SUPA + '/rest/v1/hd_testers', {
+        method: 'POST',
+        headers: {'apikey': ANON, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'},
+        body: JSON.stringify({
+          email, name: (fd.get('name') || '').toString().trim() || null,
+          device: (fd.get('device') || '').toString().trim() || null, source: 'nabzo.store'
+        })
+      });
+      /* 409 = this email is already on the list. That is a success for the human. */
+      ok = r.ok || r.status === 409;
+
+      /* Hand the address to TestFlight as an external tester. Deliberately NOT
+         awaited into `ok`: our own list is the durable record, so an Apple hiccup
+         must not turn a successful sign-up into an error message. Apple sends the
+         invitation itself once the build clears Beta App Review. */
+      if (ok) {
+        fetch(SUPA + '/functions/v1/tfinvite', {
+          method: 'POST', headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            email,
+            firstName: (fd.get('name') || '').toString().trim().split(' ')[0] || 'Nabzo',
+            lastName: (fd.get('name') || '').toString().trim().split(' ').slice(1).join(' ') || 'Tester',
+          })
+        }).catch(() => {});
+      }
+    } catch { ok = false; }
+
+    btn.disabled = false; btn.textContent = t('t_submit');
+    document.getElementById('tfTitle').textContent = ok ? t('t_ok_title') : t('t_err_title');
+    document.getElementById('tfMsg').textContent = ok ? t('t_ok_msg') : t('t_err_msg');
+    res.classList.toggle('err', !ok);
+    if (ok) form.style.display = 'none';
+    res.classList.add('show');
+    res.scrollIntoView({behavior: 'smooth', block: 'center'});
+  });
+
+  /* ── Live seat count. The site should not claim "50 seats" once ten people
+        have signed up — so it asks the database, and quietly keeps the printed
+        default if the call fails. ─────────────────────────────────────────── */
+  fetch(SUPA + '/rest/v1/rpc/nabzo_tester_seats', {
+    method: 'POST', headers: {'apikey': ANON, 'Content-Type': 'application/json'}, body: '{}'
+  }).then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || typeof j.left !== 'number') return;
+    seatsLeft = j.left;
+    const n = document.getElementById('seatsLeft');
+    if (n) n.textContent = seatsLeft;
+    const b = document.querySelector('.annbar span');
+    if (b) b.innerHTML = t('annLive').replace('{n}', seatsLeft);
+  }).catch(() => {});
+
+  document.querySelectorAll('[data-ic]').forEach(n => { n.innerHTML = ICONS[n.dataset.ic] || ''; });
+
+  applyLang();
+})();
+</script>
+</body>
+</html>
