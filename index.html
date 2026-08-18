@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nabzo — bədəninin nəbzi</title>
-<meta name="description" content="Nabzo — iPhone-un və saatın oxuduğu məlumatı bərpa, yuxu və gündəlik bala çevirən süni intellekt sağlamlıq məşqçisi. iOS və Android buraxılış tarixləri.">
+<meta name="description" content="Nabzo — iPhone-un və saatın oxuduğu məlumatı bərpa, yuxu və gündəlik bala çevirən süni intellekt sağlamlıq məşqçisi. App Store-da pulsuz.">
 <meta name="theme-color" content="#0A0812">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nabzo — bədəninin nəbzi">
@@ -307,6 +307,22 @@ section{padding:clamp(72px,10vh,128px) 0}
 @media (max-width:560px){
   .annbar{font-size:13px; padding:9px 12px}
   .annbar .ann-tail{display:none}
+}
+
+/* ── App Store button ─────────────────────────────────────────────────
+   Nabzo went live on the App Store on 2026-08-17. Downloading is now the
+   primary action everywhere; the TestFlight flow moved behind it rather than
+   being deleted, because early builds still need testers. */
+.btn-appstore{
+  display:inline-flex; align-items:center; gap:10px;
+  background:#000; color:#fff; border:1px solid #000;
+}
+.btn-appstore:hover{ background:#1a1a1a; border-color:#1a1a1a; }
+.btn-appstore svg{ width:22px; height:22px; flex:0 0 auto; fill:currentColor; }
+.btn-appstore .as-sub{ display:block; font-size:11px; opacity:.75; line-height:1.1; font-weight:500; }
+.btn-appstore .as-main{ display:block; font-size:16px; line-height:1.15; font-weight:700; }
+@media (prefers-color-scheme: light){
+  .btn-appstore{ background:#000; color:#fff; }
 }
 
 /* ── Tester flow ──────────────────────────────────────────────────────── */
@@ -995,7 +1011,7 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
   <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 </div>
 
-<a class="annbar" href="#tester"><span data-i18n-html="ann"></span></a>
+<a class="annbar" href="https://apps.apple.com/app/id6792228978" target="_blank" rel="noopener"><span data-i18n-html="ann"></span></a>
 
 <header id="hdr">
   <div class="wrap nav">
@@ -1006,13 +1022,13 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
       <a href="#shop" data-i18n="nav_shop"></a>
       <a href="#b2b" data-i18n="nav_b2b"></a>
       <a href="#game" data-i18n="nav_game"></a>
-      <a href="#launch" data-i18n="nav_launch"></a>
+      <a href="#tester" data-i18n="nav_launch"></a>
     </nav>
     <div class="lang" role="group" aria-label="Language">
       <button data-lang="en" type="button">EN</button>
       <button data-lang="az" type="button">AZ</button>
     </div>
-    <a class="btn btn-primary" href="#tester" data-i18n="cta_tester"></a>
+    <a class="btn btn-appstore" href="https://apps.apple.com/app/id6792228978" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span class="as-main" data-i18n="cta_download"></span></a>
   </div>
 </header>
 
@@ -1028,8 +1044,8 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
       </h1>
       <p class="lead" data-i18n="hero_lead"></p>
       <div class="cta">
-        <a class="btn btn-primary btn-lg" href="#tester" data-i18n="hero_cta1"></a>
-        <a class="btn btn-ghost" href="#launch" data-i18n="hero_cta2"></a>
+        <a class="btn btn-appstore btn-lg" href="https://apps.apple.com/app/id6792228978" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><span class="as-sub" data-i18n="as_sub"></span><span class="as-main" data-i18n="hero_cta1"></span></span></a>
+        <a class="btn btn-ghost" href="#tester" data-i18n="hero_cta2"></a>
       </div>
 
       <!-- Real ECG geometry, not a zigzag: flat baseline → P wave → QRS complex
@@ -1067,7 +1083,6 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
     <div class="wrap">
       <div class="tester-box reveal">
         <div class="center">
-          <div class="seats" id="seats"><span class="led live" style="width:8px;height:8px;border-radius:50%;background:var(--gold)"></span> <span data-i18n-html="t_seats"></span></div>
           <p class="eyebrow" style="margin-bottom:10px" data-i18n="t_eyebrow"></p>
           <h2 style="font-size:clamp(30px,4.6vw,50px)" data-i18n="t_title"></h2>
           <p class="muted" style="max-width:560px;margin:16px auto 34px" data-i18n="t_lead"></p>
@@ -1572,7 +1587,7 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
       <div class="cta-box reveal">
         <h2 data-i18n="c_title"></h2>
         <p data-i18n="c_lead"></p>
-        <a class="btn btn-primary btn-lg" href="#tester" data-i18n="c_btn"></a>
+        <a class="btn btn-appstore btn-lg" href="https://apps.apple.com/app/id6792228978" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><span class="as-sub" data-i18n="as_sub"></span><span class="as-main" data-i18n="c_btn"></span></span></a>
       </div>
       <p class="disclaimer wrap" style="padding:0" data-i18n="c_disclaimer"></p>
     </div>
@@ -1664,28 +1679,29 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
      with half its copy hard-coded in the markup can only ever be half translated. */
   const T = {
     en: {
+      as_sub: 'Download on the', cta_download: 'App Store',
       docTitle: 'Nabzo — the pulse of your body',
       docDesc: 'Nabzo turns what your iPhone and watch already record into recovery, sleep and a daily fitness score. iOS and Android release dates.',
-      ann: '🚀 Beta is open — <b>200</b> TestFlight seats<span class="ann-tail"> · run Nabzo before anyone else</span> <i class="arrow">→</i>',
-      annLive: '🚀 Beta is open — <b>{n}</b> seats left<span class="ann-tail"> · run Nabzo before anyone else</span> <i class="arrow">→</i>',
+      ann: '🎉 Nabzo is live on the App Store<span class="ann-tail"> · free to download</span> <i class="arrow">→</i>',
+      annLive: '🎉 Nabzo is live on the App Store<span class="ann-tail"> · free to download</span> <i class="arrow">→</i>',
       nav_features: 'Features', nav_calc: 'Calories', nav_train: 'Training', nav_game: 'Game 🎾',
-      nav_devices: 'Devices', nav_launch: 'Release', cta_tester: 'Become a tester',
+      nav_devices: 'Devices', nav_launch: 'Testers', cta_tester: 'Become a tester',
 
       hero_l1: 'The pulse', hero_l2: 'of your', hero_l3: 'body.',
       hero_lead: 'Nabzo turns what your iPhone and watch already record into recovery, sleep and a daily fitness score — and explains it in plain language.',
-      hero_cta1: 'Become a tester — free', hero_cta2: 'Release dates',
+      hero_cta1: 'Download', hero_cta2: 'Get early builds',
       chip_bpm: 'bpm · live', chip_ios: '· in App Store review', chip_android: '· in progress', chip_watch: '· included',
 
-      t_seats: 'TestFlight · <b id="seatsLeft">200</b> seats left',
-      t_eyebrow: 'Beta', t_title: 'In your hands before the App Store.',
-      t_lead: 'Nabzo is running on TestFlight right now. Three steps, about two minutes — and you see every new build first.',
+      t_seats: 'TestFlight · <b id="seatsLeft">200</b> seats',
+      t_eyebrow: 'Early access', t_title: 'Want the next version first?',
+      t_lead: 'Nabzo is on the App Store, so you don’t need this to use it. TestFlight is for people who want new builds weeks early and don’t mind the odd rough edge.',
       t_s1_h: 'Install TestFlight', t_s1_p: 'Apple’s free testing app. <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">Get it on the App Store →</a>',
       t_s2_h: 'Open the invite', t_s2_p: 'The button below takes you straight into Nabzo’s test group. No code, no waiting.',
       t_s3_h: 'Use it and tell me', t_s3_p: 'Take a screenshot and send it with TestFlight’s “Send Feedback” — it comes straight to me.',
       t_ph_name: 'Your name', t_ph_device: 'Your gear (e.g. iPhone 14 + Amazfit)', t_ph_email: 'Your email',
       t_submit: 'Join and open TestFlight',
       t_note: 'The email is only used for beta news. You can also skip this and go <a href="https://testflight.apple.com/join/THnzA3gv" target="_blank" rel="noopener" style="color:var(--accent-ink)">straight to TestFlight</a>.',
-      t_ok_title: 'You’re on the list 🎉', t_ok_msg: 'You are on Nabzo\u2019s TestFlight tester list. Apple is reviewing the current beta build and will email your invitation the moment it clears \u2014 no code to enter, nothing else to do.',
+      t_ok_title: 'You’re on the list 🎉', t_ok_msg: 'You are on Nabzo’s TestFlight tester list. Apple is reviewing the current beta build and will email your invitation the moment it clears \u2014 no code to enter, nothing else to do.',
       t_err_title: 'Sign-up failed', t_err_msg: 'Something went wrong — no harm done, the TestFlight link still works.',
       t_open_tf: 'Open in TestFlight', t_sending: 'Sending…',
 
@@ -1711,7 +1727,7 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
       sp_eyebrow: 'Every move counts', sp_title: 'One hour is not one hour.',
       sp_lead: 'Nabzo tracks distance per sport and effort in MET-minutes, so an hour of tennis and an hour of walking never score the same. Below: what each sport costs, what it earns, and what the app does with it.',
       sp1_h: 'Running', sp1_p: 'Earns ~590 MET-min an hour — over half your week in one session. Nabzo keeps run distance separate from walking, tracks pace and heart zones, and warns you when your acute:chronic load ratio spikes. That warning is the point: most running injuries arrive after a sudden jump in volume, not after a hard day.',
-      sp2_h: 'Cycling', sp2_p: 'Earns ~450 MET-min an hour with almost no joint impact — which is why it is the app\u2019s first suggestion when your load is already high but you still want to move. Cycling distance flows in from Apple Health on its own; nothing extra to log.',
+      sp2_h: 'Cycling', sp2_p: 'Earns ~450 MET-min an hour with almost no joint impact — which is why it is the app’s first suggestion when your load is already high but you still want to move. Cycling distance flows in from Apple Health on its own; nothing extra to log.',
       sp3_h: 'Swimming', sp3_p: 'Earns ~420 MET-min an hour and is the one hard session your knees never feel. Heart-rate data is unreliable underwater, so Nabzo scores swims on duration and distance instead of pretending the HR trace is good.',
       sp4_h: 'Tennis', sp4_p: 'Earns ~440 MET-min an hour — one match is close to half the weekly guideline, plus the change-of-direction work no treadmill gives you. Counted as endurance, so it satisfies the cardio side of your week.',
       sp_note: '* kcal for a 75 kg body: kcal = MET × kg × hours. Your own number changes with your weight — try it in the calculator above.',
@@ -1749,8 +1765,8 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
       l4_when: 'Q1 2027', l4_h: 'Android · Google Play', l4_p: 'Open to everyone: the same coach, the same scores, device data through Health Connect.',
       l_tag_plan: 'Planned',
 
-      c_title: 'Don’t want to wait?', c_lead: 'The beta is running now. Join before the TestFlight seats run out — you stay a tester after launch too.',
-      c_btn: 'Become a tester — free',
+      c_title: 'Ready when you are.', c_lead: 'Nabzo is on the App Store — free to download, and it starts reading your Apple Health data the moment you let it.',
+      c_btn: 'Download',
       c_disclaimer: 'Nabzo is a health and habit app. Its scores and comments are estimates, not a medical diagnosis or treatment advice. If something worries you, see a doctor.',
 
       b_bubble: 'Ask me 👋', b_bubble_sub: 'anything about Nabzo',
@@ -1775,7 +1791,7 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
                  ['🍫','chocolate bar',230],['🌯','doner wrap',600],['🍯','baklava piece',120]],
 
       tr_eyebrow: 'Training', tr_title: 'What to train, and how.',
-      tr_lead: 'These are the app\u2019s own prescriptions — the same week shapes and doses the coach hands you when it spots a gap.',
+      tr_lead: 'These are the app’s own prescriptions — the same week shapes and doses the coach hands you when it spots a gap.',
       tr_beg_h: 'Starting out', tr_beg_1: 'easy cardio sessions', tr_beg_2: 'full-body strength', tr_beg_3: 'mind-body session', tr_beg_4: 'rest / restorative days',
       tr_exp_h: 'Already training', tr_exp_1: 'cardio (80% easy)', tr_exp_2: 'strength', tr_exp_3: 'mind-body', tr_exp_4: 'full rest day',
       tr_dose_h: 'The strength dose that actually matters',
@@ -1795,8 +1811,8 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
 
       nav_shop: 'Shop', nav_comps: 'Competitions',
       sh_eyebrow: 'Shop', sh_title: 'Buy the device that actually feeds Nabzo.',
-      sh_lead: 'Not every band talks to Apple Health, and the ones that don\u2019t leave Nabzo half blind. These do — each card says exactly which part of the app it switches on.',
-      sh_note: 'Order here, pay on delivery in Baku — no prepayment. We confirm the price and availability by phone before anything ships. The manufacturer\u2019s warranty applies; we hand over the receipt with the device.',
+      sh_lead: 'Not every band talks to Apple Health, and the ones that don’t leave Nabzo half blind. These do — each card says exactly which part of the app it switches on.',
+      sh_note: 'Order here, pay on delivery in Baku — no prepayment. We confirm the price and availability by phone before anything ships. The manufacturer’s warranty applies; we hand over the receipt with the device.',
       sh_buy: 'Order',
       sh_badge_best: 'Best data', sh_badge_value: 'Best value', sh_badge_new: 'New',
       sh_items: {
@@ -1811,12 +1827,12 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
         mi:  {n:'Xiaomi Smart Band 10', s:'The cheapest way to stop guessing',
               u:['Steps, workouts, sleep duration','Resting heart rate','2-week battery','Syncs through Mi Fitness']},
         scl: {n:'Xiaomi Smart Scale S200', s:'Weight alone is a bad number — this fixes it',
-              u:['Body fat % and BMI into Apple Health','Feeds the app\u2019s Body & Fitness screen','Trend lines, not single readings','Whole family, one scale']},
+              u:['Body fat % and BMI into Apple Health','Feeds the app’s Body & Fitness screen','Trend lines, not single readings','Whole family, one scale']},
         bp:  {n:'Omron M3 Comfort', s:'The one number no wearable can read',
-              u:['Clinically validated upper-arm cuff','Readings appear on Nabzo\u2019s trend screen once they are in Apple Health','Irregular-heartbeat detection','Two-user memory, 60 readings']},
+              u:['Clinically validated upper-arm cuff','Readings appear on Nabzo’s trend screen once they are in Apple Health','Irregular-heartbeat detection','Two-user memory, 60 readings']},
       },
 
-      co_eyebrow: 'Competitions', co_title: 'Compete, don\u2019t just track.',
+      co_eyebrow: 'Competitions', co_title: 'Compete, don’t just track.',
       co_lead: 'Challenges scored from Apple Health — no manual logging, no screenshots, no honour system. Join from here, compete from the app.',
       co_join: 'Join', co_entrants: 'entrants', co_ended: 'Finished', co_soon: 'Opens soon',
       co_target: 'Target', co_prize: 'Prize', co_none: 'No open challenges right now — the next one is being planned.',
@@ -1913,21 +1929,22 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
     },
 
     az: {
+      as_sub: 'Yüklə', cta_download: 'App Store',
       docTitle: 'Nabzo — bədəninin nəbzi',
       docDesc: 'Nabzo iPhone-un və saatının onsuz da topladığı məlumatı bərpa, yuxu və gündəlik fitnes balına çevirir. iOS və Android buraxılış tarixləri.',
-      ann: '🚀 Beta açıqdır — TestFlight-da <b>200</b> tester yeri<span class="ann-tail"> · Nabzo-nu hamıdan əvvəl işlət</span> <i class="arrow">→</i>',
-      annLive: '🚀 Beta açıqdır — <b>{n}</b> tester yeri qalıb<span class="ann-tail"> · Nabzo-nu hamıdan əvvəl işlət</span> <i class="arrow">→</i>',
+      ann: '🎉 Nabzo App Store-dadır<span class="ann-tail"> · pulsuz yüklə</span> <i class="arrow">→</i>',
+      annLive: '🎉 Nabzo App Store-dadır<span class="ann-tail"> · pulsuz yüklə</span> <i class="arrow">→</i>',
       nav_features: 'İmkanlar', nav_calc: 'Kalori', nav_train: 'Məşq', nav_game: 'Oyun 🎾',
-      nav_devices: 'Cihazlar', nav_launch: 'Buraxılış', cta_tester: 'Tester ol',
+      nav_devices: 'Cihazlar', nav_launch: 'Testerlər', cta_tester: 'Tester ol',
 
       hero_l1: 'Bədəninin', hero_l2: 'nəbzi.', hero_l3: 'Hər gün.',
       hero_lead: 'Nabzo iPhone-unun və saatının onsuz da topladığı məlumatı bərpa, yuxu və gündəlik fitnes balına çevirir — və bunu sənə insan dilində izah edir.',
-      hero_cta1: 'Tester ol — pulsuz', hero_cta2: 'Buraxılış tarixləri',
+      hero_cta1: 'Yüklə', hero_cta2: 'Erkən versiyalar',
       chip_bpm: 'bpm · canlı', chip_ios: '· App Store baxışında', chip_android: '· hazırlanır', chip_watch: '· daxildir',
 
-      t_seats: 'TestFlight · <b id="seatsLeft">200</b> yer qalıb',
-      t_eyebrow: 'Beta', t_title: 'App Store-dan əvvəl sənin əlində.',
-      t_lead: 'Nabzo hazırda TestFlight-da işləyir. Üç addım, təxminən iki dəqiqə — və hər həftə yeni versiyanı ilk sən görürsən.',
+      t_seats: 'TestFlight · <b id="seatsLeft">200</b> yer',
+      t_eyebrow: 'Erkən giriş', t_title: 'Növbəti versiyanı birinci istəyirsən?',
+      t_lead: 'Nabzo App Store-dadır, yəni istifadə etmək üçün buna ehtiyac yoxdur. TestFlight yeni versiyaları həftələrlə əvvəl görmək istəyən və kiçik qüsurlara dözən adamlar üçündür.',
       t_s1_h: 'TestFlight-ı yüklə', t_s1_p: 'Apple-ın pulsuz test tətbiqi. <a href="https://apps.apple.com/app/testflight/id899247664" target="_blank" rel="noopener">App Store-dan al →</a>',
       t_s2_h: 'Dəvəti aç', t_s2_p: 'Aşağıdakı düymə səni birbaşa Nabzo-nun test qrupuna aparır \u2014 Apple betanı təsdiqlədi, kod və gözləmə yoxdur.',
       t_s3_h: 'İşlət və yaz', t_s3_p: 'Ekranın şəklini çək, TestFlight-dakı «Send Feedback» ilə göndər — birbaşa mənə gəlir.',
@@ -1998,8 +2015,8 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
       l4_when: '2027-ci ilin I rübü', l4_h: 'Android · Google Play', l4_p: 'Hamı üçün açıq buraxılış: eyni məşqçi, eyni ballar, Health Connect ilə cihaz məlumatı.',
       l_tag_plan: 'Planda',
 
-      c_title: 'Gözləmək istəmirsən?', c_lead: 'Beta elə indi işləyir. TestFlight yerləri bitənə qədər qoşul — buraxılışdan sonra da tester olaraq qalırsan.',
-      c_btn: 'Tester ol — pulsuz',
+      c_title: 'İstədiyin an hazırdır.', c_lead: 'Nabzo App Store-dadır — pulsuz yüklənir və icazə verdiyin andan Apple Health məlumatlarını oxumağa başlayır.',
+      c_btn: 'Yüklə',
       c_disclaimer: 'Nabzo sağlamlıq və vərdiş tətbiqidir. Göstərdiyi ballar və şərhlər təxmini qiymətləndirmədir, tibbi diaqnoz və ya müalicə tövsiyəsi deyil. Narahatlıq varsa həkimə müraciət et.',
 
       b_bubble: 'Sual ver 👋', b_bubble_sub: 'Nabzo haqqında nə istəsən soruş',
@@ -2179,10 +2196,9 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
     document.querySelectorAll('[data-i18n-html]').forEach(n => { n.innerHTML = t(n.dataset.i18nHtml); });
     document.querySelectorAll('[data-i18n-ph]').forEach(n => { n.placeholder = t(n.dataset.i18nPh); });
 
-    // The announcement bar carries a live number, so it is rebuilt rather than
-    // copied: switching language must not roll the seat count back to 50.
-    const bar = document.querySelector('.annbar span');
-    if (bar) bar.innerHTML = seatsLeft === null ? t('ann') : t('annLive').replace('{n}', seatsLeft);
+    // The announcement bar advertises the App Store release and no longer
+    // carries a live number, so the [data-i18n-html] pass above already
+    // localised it. It must NOT be rebuilt from the seat count.
 
     // Marquee is duplicated on purpose — the loop needs two copies to be seamless.
     const mq = document.querySelector('#marquee ul');
@@ -3082,10 +3098,11 @@ footer{border-top:1px solid var(--hair); padding:40px 0; color:var(--muted); fon
   }).then(r => r.ok ? r.json() : null).then(j => {
     if (!j || typeof j.left !== 'number') return;
     seatsLeft = j.left;
+    // Tester box only, never the announcement bar. Rewriting the bar here
+    // would have reverted the App Store message to beta copy a second after
+    // load, and only on connections fast enough to return in time.
     const n = document.getElementById('seatsLeft');
     if (n) n.textContent = seatsLeft;
-    const b = document.querySelector('.annbar span');
-    if (b) b.innerHTML = t('annLive').replace('{n}', seatsLeft);
   }).catch(() => {});
 
   document.querySelectorAll('[data-ic]').forEach(n => { n.innerHTML = ICONS[n.dataset.ic] || ''; });
